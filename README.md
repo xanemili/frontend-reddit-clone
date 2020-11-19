@@ -1,32 +1,58 @@
-BACKEND
-USER
-/api/register - post
-/api/user/:id - get/put/delete
-/api/user/:id/post - get
-/api/user/:id/comments - get
+# Reddit Clone
+
+## MVPs (in order of completion)
+1. Subreddit CRUD
+2. Post CRUD
+3. Comments on Posts
+4. Upvote / Downvote -> Karma
+5. Following subreddits
+6. Nested Comments
+
+### Strech Goals
+1. Comment Karma
+2. Subreddit moderators
+3. Saved Posts
+
+---
+## Database Design
+
+![alt text](Database-Design.png "Database")
+---
+
+## Routes
+---
+### Backend
+---
+### User
+| Route                          | Methods                 | Purpose |
+| ------------------------------ | ------------------------| ------- |
+| /api/register                  | POST                    | User account creation |
+| /api/user/:id                  | GET, PUT, DELETE        | Get, edit, or delete User account information |
+| /api/user/:id/post             | GET                     | Get posts associated with the User |
+| /api/user/:id/comments         | GET                     | Get comments associated with the User |
 
 /api/user/:id/subreddit/:subredditId - post/delete
 
-SUBREDDIT
-/api/subreddit/create - post
-/api/subreddit/:subredditId - get/put/delete
-/api/subreddits/:subredditId/post/ -get
+### Subreddit
+| Route                                | Methods                 | Purpose |
+| -----------------------------------  | ------------------------| ------- |
+| /api/subreddit/create                | POST                    | creating subreddits |
+| /api/subreddit/:subredditId          | GET, PUT, DELETE        | subreddit retrieval. edit / delete if owner |
+| /api/subreddits/:subredditId/post/   | GET                     | what was this for again? |
+| /api/post/:postId                    | GET, POST, PUT, DELETE  | CRUD Posts |
+| /api/post/:postId/karma/             | GET, POST               | Upvote and downvote |
 
-/api/post/:postId -get/post/put/delete
-/api/post/:postId/karma/
-
-
-FRONT-END
-/ - display top posts from subreddits you follow
-/login - get/post
-/register - get/post
-
-/r/:subreddit - get
-/r/:subreddit/posts/:postId - get
-
-/subreddits/create - get/post
-/posts/create - get/post
-
-/u/user/:user - get/put/delete
-/u/user/:user/posts - get
-/u/user/:user/comments - get
+---
+### Frontend
+---
+| Route                                | Methods                 | Purpose |
+| -----------------------------------  | ------------------------| ------- |
+| /                                    | GET                     | display top posts from subreddits you follow |
+| /login                               | POST                    | Login Functionality |
+| /register                            | POST                    | User creation form |
+| /r/:subreddit                        | GET                     | Subreddit view page |
+| /r/:subreddit/posts/:postId          | GET                     | Viewing a post within a subreddit |
+| /subreddits/create                   | GET, POST               | Form for creating a subreddit |
+| /posts/create                        | GET, POST               | Form for creating a post |
+| /u/user/:user                        | GET, PUT, DELETE        | User profile page |
+| /u/user/:user/comments               | GET                     | User comments |
