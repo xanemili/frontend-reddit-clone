@@ -8,14 +8,16 @@ subreddit_routes = Blueprint('subreddit', __name__)
 
 
 @subreddit_routes.route('/create', methods=['POST'])
+@login_required
 def create_subreddit():
     """
     Creates a new subreddit
     """
+    print(current_user)
     form = SubredditForm()
     print(request.get_json())
-    # form['csrf_token'].data = request.cookies['csrf_token']
-    if form:
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
         try:
             subreddit = Subreddit(
                 name=form.data['name'],
