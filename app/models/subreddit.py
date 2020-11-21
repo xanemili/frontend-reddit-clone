@@ -1,4 +1,5 @@
 from .db import db
+from datetime import datetime
 
 
 class Subreddit(db.Model):
@@ -9,8 +10,12 @@ class Subreddit(db.Model):
     about = db.Column(db.Text)
     rules = db.Column(db.Text)
     owner = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    created_on = db.Column(db.DateTime, server_default=db.func.now())
+    updated_on = db.Column(db.DateTime, server_default=db.func.now(),
+                           server_onupdate=db.func.now())
 
     users = db.relationship("User", back_populates='subreddits')
+    posts = db.relationship("Post", back_populates='subreddits')
 
     def to_dict(self):
         return {
