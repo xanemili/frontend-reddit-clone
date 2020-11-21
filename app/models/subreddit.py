@@ -8,9 +8,9 @@ class Subreddit(db.Model):
     name = db.Column(db.String(30), unique=True)
     about = db.Column(db.Text)
     rules = db.Column(db.Text)
-    owner = db.Column(db.Integer, ForeignKey('users.id'))
+    owner = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    users = relationship("User", backpopulates='subreddit')
+    users = db.relationship("User", back_populates='subreddits')
 
     def to_dict(self):
         return {

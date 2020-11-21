@@ -1,3 +1,3 @@
 from .login_form import LoginForm
 from .signup_form import SignUpForm
-from .subreddit_form import subreddit_form
+from .subreddit_form import SubredditForm
