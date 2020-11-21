@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from app.models import db, Subreddit
 from app.forms import SubredditForm
 from sqlalchemy.exc import IntegrityError
@@ -13,21 +13,30 @@ def create_subreddit():
     Creates a new subreddit
     """
     form = SubredditForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
+    print(request.get_json())
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    if form:
         try:
             subreddit = Subreddit(
                 name=form.data['name'],
                 about=form.data['about'],
-                rules=form.data['rules']
+                rules=form.data['rules'],
+                owner=1
             )
             db.session.add(subreddit)
-            db.commit()
+            db.session.commit()
             return subreddit.to_dict()
         except IntegrityError:
-            return {error}
+            return {"error": "new error"}
 
 
-@subreddit_routes.route('/<string:subreddit>', methods=['GET'])
+@subreddit_routes.route('/r/<string:subreddit>', methods=['GET'])
 def view_subreddit(subreddit):
-    pass
+    """
+    Getting Subreddit Information
+    - Posts, Karma,
+    """
+    subreddit = Subreddit.query.filter(Subreddit.name == subreddit).all()
+    if len(subreddit) == 0:
+        return 'Subreddit does not exist'
+    return subreddit[0].name
