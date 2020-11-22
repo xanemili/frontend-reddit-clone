@@ -13,6 +13,6 @@ def subreddit_exists(form, field):
 
 
 class SubredditForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired(), subreddit_exists])
     about = TextAreaField('about')
     rules = TextAreaField('rules')

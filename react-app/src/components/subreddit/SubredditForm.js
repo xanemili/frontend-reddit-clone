@@ -15,15 +15,16 @@ const SubredditForm = ({authenticated}) => {
   const submitSubreddit = async (e) => {
     e.preventDefault();
     const subreddit = await createSubreddit(name, about, rules);
+    console.log(subreddit)
     if (!subreddit.errors) {
-      return <Redirect to='/' />
+      return <Redirect to='/r/subreddit.name' />
     } else {
       setErrors(subreddit.errors)
     }
   };
 
   if (!authenticated) {
-    return <Redirect to='/' />;
+    return <Redirect to='/login' />;
   }
 
   return(
