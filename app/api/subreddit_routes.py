@@ -3,7 +3,7 @@ from app.models import db, Subreddit
 from app.forms import SubredditForm
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
-import os
+from .auth_routes import validation_errors_to_error_messages
 
 subreddit_routes = Blueprint('subreddits', __name__)
 
@@ -14,37 +14,37 @@ def create_subreddit():
     """
     Creates a new subreddit
     """
-    print(request.cookies)
     form = SubredditForm()
-    print(form['csrf_token'])
     print(request.get_json())
     form['csrf_token'].data = request.cookies['csrf_token']
-    print(form.validate(), form.validate_on_submit())
+    print(current_user.id)
     if form.validate_on_submit():
         try:
             subreddit = Subreddit(
                 name=form.data['name'],
                 about=form.data['about'],
                 rules=form.data['rules'],
-                owner=1
+                owner=current_user.id
             )
-            print(subreddit)
             db.session.add(subreddit)
             db.session.commit()
             return subreddit.to_dict()
-        except IntegrityError(err):
-
+        except IntegrityError:
             return {"errors": "Subreddit already exists."}
-    return 'failed to validate'
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @subreddit_routes.route('/r/<string:subreddit>', methods=['GET'])
 def view_subreddit(subreddit):
     """
     Getting Subreddit Information
-    - Posts, Karma,
+    - Posts, Karma, and Owner Info
     """
     subreddit = Subreddit.query.filter(Subreddit.name == subreddit).all()
     if len(subreddit) == 0:
-        return 'Subreddit does not exist'
-    return {"name": subreddit[0].name}
+        return {'subreddit': 'Subreddit does not exist'}, 404
+    posts = Posts.
+    return {
+        "subreddit": subreddit,
+        "posts": post_list
+    }
