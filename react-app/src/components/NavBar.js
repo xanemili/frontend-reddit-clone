@@ -32,7 +32,7 @@ const NavBar = ({ setAuthenticated }) => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/r/xander" exact={true} activeClassName="active">
+          <NavLink to="/r/AskReddit" exact={true} activeClassName="active">
             Basic
           </NavLink>
         </li>

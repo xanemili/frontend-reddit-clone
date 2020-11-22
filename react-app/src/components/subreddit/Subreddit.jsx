@@ -4,20 +4,24 @@ import { useParams } from 'react-router-dom';
 const Subreddit = () => {
 
     const [subreddit, setSubreddit] = useState({})
-    const { subredditId } = useParams();
+    const [postList, setPostList] = useState({})
+    const { subredditName } = useParams();
 
     useEffect(()=> {
         (async () => {
-            const response = await fetch('/api/subreddits/r/xander')
+            const response = await fetch(`/api/subreddits/r/${subredditName}`)
             const subreddit = await response.json();
             console.log(subreddit)
             setSubreddit(subreddit);
         })();
-    }, [subredditId])
+    }, [subredditName])
+
+    if (!subreddit){
+        return null;
+    }
 
     return (
         <div>
-            {subreddit.name}
         </div>
     )
 }
