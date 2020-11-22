@@ -27,6 +27,16 @@ const NavBar = ({ setAuthenticated }) => {
           </NavLink>
         </li>
         <li>
+          <NavLink to="/subreddits/create" exact={true} activeClassName="active">
+            Create
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/r/xander" exact={true} activeClassName="active">
+            Basic
+          </NavLink>
+        </li>
+        <li>
           <LogoutButton setAuthenticated={setAuthenticated} />
         </li>
       </ul>

@@ -22,6 +22,10 @@ const SubredditForm = ({authenticated}) => {
     }
   };
 
+  if (!authenticated) {
+    return <Redirect to='/' />;
+  }
+
   return(
     <form onSubmit={submitSubreddit}>
       <div>
@@ -58,8 +62,8 @@ const SubredditForm = ({authenticated}) => {
           value={rules}
           onChange={updateValue(setRules)}
         />
-      </div>
       <button type='submit'>Create</button>
+      </div>
     </form>
   );
 };
