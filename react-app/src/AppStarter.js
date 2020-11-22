@@ -40,7 +40,7 @@ function App() {
       <Route path="/sign-up" exact={true}>
         <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
       </Route>
-      <Route path="/r/:subreddit">
+      <Route path="/r/:subredditName">
         <Subreddit authenticated={authenticated}/>
       </Route>
       <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>

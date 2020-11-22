@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import db, Subreddit
+from app.models import db, Subreddit, Post
 from app.forms import SubredditForm
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
@@ -40,11 +40,14 @@ def view_subreddit(subreddit):
     Getting Subreddit Information
     - Posts, Karma, and Owner Info
     """
-    subreddit = Subreddit.query.filter(Subreddit.name == subreddit).all()
-    if len(subreddit) == 0:
+    subreddit = Subreddit.query.filter(Subreddit.name == subreddit).first()
+    if not subreddit:
         return {'subreddit': 'Subreddit does not exist'}, 404
-    posts = Posts.
+
+    post_list = Post.query.filter(Post.subredditId == subreddit.id).all()
+    test_post = post_list[0].to_dict()
+    print(test_post)
     return {
-        "subreddit": subreddit,
-        "posts": post_list
+        "subreddit": subreddit.to_dict(),
+        "posts": test_post
     }
