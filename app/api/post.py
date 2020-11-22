@@ -21,7 +21,7 @@ def create_post():
                 # Discuss how to get the userId for who is posting
                 # Initial thoughts are pass it with the request object.
                 # For now fill with a default userId = 1
-                userId=1
+                userId=form.data['userId']
                 subredditId=form.data['subreddit']
                 title=form.data['title']
                 # Type has not been fully flushed out
