@@ -1,16 +1,12 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, TextAreaField
+from wtforms import StringField, TextAreaField, IntegerField
 from wtforms.validators import DataRequired, Email, ValidationError
 from app.models import Subreddit
 
 
-subreddits = Subreddit.query.all()
-subreddit_choices = [(subreddit.id, subreddit.name)
-                     for subreddit in subreddits]
-
-
 class PostForm(FlaskForm):
-    subreddit = SelectField("subreddit", choices=subreddit_choices)
+    # subreddit will take an int passed in from the request object
+    subreddit = IntegerField("subreddit", [DataRequired()])
     title = StringField("title", [DataRequired()])
     # Discuss how to select the type for the post
     # Initial thoughts are grab the element that is active from the form itself to pass in.
