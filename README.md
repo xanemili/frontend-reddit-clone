@@ -37,6 +37,7 @@
 | Route                                | Methods                 | Purpose |
 | -----------------------------------  | ------------------------| ------- |
 | /api/subreddit/create                | POST                    | creating subreddits |
+| /api/subreddit/all                   | GET                     | returns all subreddits |
 | /api/subreddit/:subredditId          | GET, PUT, DELETE        | subreddit retrieval. edit / delete if owner |
 | /api/subreddits/:subredditId/post/   | GET                     | what was this for again? |
 | /api/post/:postId                    | GET, POST, PUT, DELETE  | CRUD Posts |

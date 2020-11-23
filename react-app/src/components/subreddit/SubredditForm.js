@@ -15,26 +15,18 @@ const SubredditForm = ({authenticated}) => {
   const submitSubreddit = async (e) => {
     e.preventDefault();
     const subreddit = await createSubreddit(name, about, rules);
-<<<<<<< HEAD
-    if (!subreddit.errors) {
-      return <Redirect to='/' />
-=======
     console.log(subreddit)
     if (!subreddit.errors) {
       return <Redirect to='/r/subreddit.name' />
->>>>>>> main
     } else {
       setErrors(subreddit.errors)
     }
   };
 
-<<<<<<< HEAD
-=======
   if (!authenticated) {
     return <Redirect to='/login' />;
   }
 
->>>>>>> main
   return(
     <form onSubmit={submitSubreddit}>
       <div>
@@ -71,19 +63,10 @@ const SubredditForm = ({authenticated}) => {
           value={rules}
           onChange={updateValue(setRules)}
         />
-<<<<<<< HEAD
-      </div>
-      <button type='submit'>Create</button>
-=======
       <button type='submit'>Create</button>
       </div>
->>>>>>> main
     </form>
   );
 };
 
-<<<<<<< HEAD
 export default SubredditForm;
-=======
-export default SubredditForm;
->>>>>>> main

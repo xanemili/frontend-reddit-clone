@@ -50,3 +50,13 @@ def view_subreddit(subreddit):
     return {
         "subreddit": subreddit.to_dict(),
     }
+
+@subreddit_routes.route('/all', methods=['GET'])
+def all_subreddit():
+    """
+    Gets all subreddits for Select Field on Post creation
+    Returns a list of subreddits
+    """
+    subreddits = Subreddit.query.all()
+    subreddit_list = [subreddit.to_dict() for subreddit in subreddits]
+    return subreddit_list

@@ -7,29 +7,25 @@ from flask_login import current_user, login_required
 post_routes = Blueprint('post', __name__)
 
 
-@post_routes.route("/create", methods=["POSTS"])
-@login_required
+@post_routes.route("/create", methods=["POST"])
+# @login_required
 def create_post():
     """
     Creates a new post
     """
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
+    if form:
         try:
             post = Post(
-                # Discuss how to get the userId for who is posting
-                # Initial thoughts are pass it with the request object.
-                # For now fill with a default userId = 1
-                userId=form.data['userId'],
-                subredditId=form.data['subreddit'],
+                userId=1,
+                subredditId=form.data['subredditId'],
                 title=form.data['title'],
                 # Type has not been fully flushed out
                 # Currently Type is set as a stringfield
                 # Check app.forms.post_form.py for more details
                 type=form.data['type'],
-                content=form.data['content'],
-                karma=0
+                content=form.data['content']
             )
             db.session.add(post)
             db.session.commit()
