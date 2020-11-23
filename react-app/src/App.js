@@ -11,6 +11,10 @@ import Subreddit from "./components/subreddit/Subreddit";
 import Sidebar from './components/sidebar/Sidebar'
 import { authenticate } from "./services/auth";
 
+function Layout(props) {
+  return <div id="layout">{props.children}</div>;
+}
+
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -32,31 +36,35 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
-      <Route path="/login" exact={true}>
-        <LoginForm
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-        />
-      </Route>
-      <Route path="/sign-up" exact={true}>
-        <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-      </Route>
-      <Route path="/r/:subredditName">
-        <Subreddit authenticated={authenticated}/>
-      </Route>
-      <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-        <UsersList/>
-      </ProtectedRoute>
-      <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-        <User />
-      </ProtectedRoute>
-      <ProtectedRoute path="/subreddits/create" exact={true} authenticated={authenticated}>
-        <SubredditForm authenticated={authenticated}/>
-      </ProtectedRoute>
-      <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
-        <h1>My Home Page</h1>
-        <Sidebar />
-      </ProtectedRoute>
+      <Layout>
+        <div id="container">
+          <Route path="/login" exact={true}>
+            <LoginForm
+              authenticated={authenticated}
+              setAuthenticated={setAuthenticated}
+              />
+          </Route>
+          <Route path="/sign-up" exact={true}>
+            <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+          </Route>
+          <Route path="/r/:subredditName">
+            <Subreddit authenticated={authenticated}/>
+          </Route>
+          <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
+            <UsersList/>
+          </ProtectedRoute>
+          <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+            <User />
+          </ProtectedRoute>
+          <ProtectedRoute path="/subreddits/create" exact={true} authenticated={authenticated}>
+            <SubredditForm authenticated={authenticated}/>
+          </ProtectedRoute>
+          <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+            <h1>My Home Page</h1>
+            <Sidebar />
+          </ProtectedRoute>
+        </div>
+      </Layout>
     </BrowserRouter>
   );
 }
