@@ -30,7 +30,7 @@ const Post = () => {
     if(post){
         return (
             <div>
-                {/* {errors ? <div>{errors}</div> : ''} */}
+                {errors ? <div>{errors}</div> : ''}
                 <div className='post_header'>
                     <span className='post_subreddit'>{`r/${subreddit.name}`}</span> <span className='post_username'>{`Posted by ${user.username}`}</span>
                 </div>
