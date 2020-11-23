@@ -42,7 +42,7 @@ const Subreddit = () => {
   const postComponents = posts.map((post) => {
     return (
       <li key={post.id}>
-        <Post title={post.title} type={post.type} content={post.content}/>
+        <Post id={post.id} title={post.title} type={post.type} content={post.content}/>
       </li>
     );
   })
