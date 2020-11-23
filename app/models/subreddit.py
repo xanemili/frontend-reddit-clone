@@ -19,6 +19,7 @@ class Subreddit(db.Model):
 
     def to_dict(self):
         return {
+            'id': self.id,
             'name': self.name,
             'about': self.about,
             'rules': self.rules,
