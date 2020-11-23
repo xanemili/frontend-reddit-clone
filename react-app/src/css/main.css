@@ -528,6 +528,43 @@ TODO Fix the top menu alignments etc
   margin-top: 10px;
 }
 
+
+.sidebar__container{
+  border: 2px solid black;
+  width: 350px;
+  margin-left: 80%;
+}
+
+.about__container{
+  border: 2px solid black;
+
+}
+
+.about__title{
+  text-align: center;
+  border: 1px solid black;
+  background-color: #c4dbf1;
+}
+
+.about__description{
+  margin: 5px 5px;
+}
+
+.about__users{
+  text-align: center;
+  margin: 5px 5px;
+}
+
+.create__btn {
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid black;
+  width: 100px;
+  background-color: #c4dbf1;
+}
+
 @media only screen and (max-width: 800px) {
   #container {
     margin: 0;

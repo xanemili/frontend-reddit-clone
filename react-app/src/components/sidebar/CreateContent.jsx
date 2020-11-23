@@ -4,11 +4,17 @@ import {NavLink} from 'react-router-dom';
 const CreateContent = () => {
 
   return (
-    <div>
-      <div>
-      <NavLink to="/subreddits/create" exact={true} activeClassName="active">
-        Create
-      </NavLink>
+    <div className="sidebar__container">
+      <div className="about__container">
+        <div className= "about__title">Link Title Here</div>
+        <div className="about__description">Add text here from when a user creates the subreddit</div>
+        <div className="about__users">Total Users</div>
+        <div className="about__date"> Created:</div>
+        <NavLink style={{ width: 'fit-content', textDecoration: 'none' }} to="/subreddits/create" exact={true} activeClassName="active">
+          <div className="create__btn">
+              Create
+          </div>
+        </NavLink>
       </div>
       
       <div>
@@ -20,5 +26,9 @@ const CreateContent = () => {
   )
 }
 
+
+//rules
+//info
+//
 
 export default CreateContent;
