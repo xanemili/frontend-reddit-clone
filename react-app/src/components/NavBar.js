@@ -2,35 +2,42 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
-const NavBar = ({ setAuthenticated }) => {
+const NavBar = ({ authenticated, setAuthenticated }) => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <NavLink to="/" exact={true} activeClassName="active">
-            Home
+    <header id="header">
+      <nav className="top-menu" />
+      <div className="main-header">
+
+        <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img">
+          Reddit Clone
           </NavLink>
-        </li>
-        <li>
-          <NavLink to="/login" exact={true} activeClassName="active">
-            Login
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/sign-up" exact={true} activeClassName="active">
-            Sign Up
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/users" exact={true} activeClassName="active">
-            Users
-          </NavLink>
-        </li>
-        <li>
-          <LogoutButton setAuthenticated={setAuthenticated} />
-        </li>
-      </ul>
-    </nav>
+        <div className="tab-menu" />
+
+        <div className="user-header">
+          {authenticated ? (
+            <span>
+              Hello{'insert user'}
+              <NavLink to="/users" exact={true} activeClassName="active">
+                Users
+                </NavLink>
+            </span>
+          ) : (
+              <span>
+                Want to join?
+                <NavLink to="/sign-up" exact={true} activeClassName="active">
+                  Sign up
+            </NavLink> in
+              seconds. Or
+                <NavLink to="/login" exact={true} activeClassName="active">
+                  Login
+            </NavLink>
+              </span>
+            )}
+        </div>
+
+        <LogoutButton setAuthenticated={setAuthenticated} />
+      </div>
+    </header>
   );
 }
 
