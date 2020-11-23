@@ -55,3 +55,32 @@ def subreddit_posts(subreddit):
     if len(posts) == 0:
         return {"errors": "There are no posts in this subreddit"}, 404
     return {"posts": [post.to_joined_dict() for post in posts]}
+
+
+@post_routes.route("/<int:postId>/karma", methods=['GET','POST'])
+# @login_required
+def subreddit_upvote(postId):
+    """
+    Upvoting a comment.
+    """
+    if request.method == 'GET':
+        post = Post.query.get(postId)
+        return {'karma': post.karma}
+
+    if req['karma'] and request.method == 'POST':
+        req = request.get_json()
+        post = Post.query.get(postId)
+        if not post:
+            return 'Post does not exist'
+
+        if req['karma'] == 'upvote':
+            post.karma += 1
+            return 'upvoted'
+        elif req['karma'] == 'downvote':
+            post.karma -= 1
+            return 'downvoted'
+        db.session.commit()
+    return {'error': 'Post could not be upvoted'}
+
+
+# @post_routes.route("/<int:postId>")
