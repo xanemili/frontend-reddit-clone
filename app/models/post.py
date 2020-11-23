@@ -20,11 +20,24 @@ class Post(db.Model):
     users = db.relationship('User', back_populates='posts')
     subreddits = db.relationship('Subreddit', back_populates='posts')
 
-    def to_dict(self):
+    def to_simple_dict(self):
         return {
+            'id': self.id,
             'title': self.title,
             'type': self.type,
             'content': self.content,
             'karma': self.karma,
-            'created_on': self.created_on
+            'created_on': self.created_on,
+        }
+
+    def to_joined_dict(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'type': self.type,
+            'content': self.content,
+            'karma': self.karma,
+            'created_on': self.created_on,
+            'subreddit': self.subreddits.to_dict(),
+            'user': self.users.to_dict()
         }
