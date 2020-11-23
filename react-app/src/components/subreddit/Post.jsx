@@ -1,6 +1,7 @@
 import React from 'react';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 const Post = ({title, type, content,  }) => {
 
@@ -20,6 +21,8 @@ const Post = ({title, type, content,  }) => {
 
     </div>
 =======
+=======
+>>>>>>> post retrieval from the database
 const Post = ({ title, type, content,  }) => {
   return (
     <>
@@ -36,6 +39,9 @@ const Post = ({ title, type, content,  }) => {
 
       </div>
     </>
+<<<<<<< HEAD
+>>>>>>> post retrieval from the database
+=======
 >>>>>>> post retrieval from the database
   )
 }
