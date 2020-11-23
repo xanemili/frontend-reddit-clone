@@ -30,11 +30,12 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
+    <div className="login-box" id="login">
     <form onSubmit={onLogin}>
       <div>
         {errors.map((error) => (
           <div>{error}</div>
-        ))}
+          ))}
       </div>
       <div>
         <label htmlFor="email">Email</label>
@@ -44,7 +45,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
           placeholder="Email"
           value={email}
           onChange={updateEmail}
-        />
+          />
       </div>
       <div>
         <label htmlFor="password">Password</label>
@@ -58,6 +59,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         <button type="submit">Login</button>
       </div>
     </form>
+    </div>
   );
 };
 

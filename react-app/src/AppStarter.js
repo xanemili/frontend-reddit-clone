@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import SubredditForm from './components/subreddit/SubredditForm'
 import Subreddit from "./components/subreddit/Subreddit";
+import Sidebar from './components/sidebar/Sidebar'
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -30,7 +31,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} />
+      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
       <Route path="/login" exact={true}>
         <LoginForm
           authenticated={authenticated}
@@ -54,6 +55,7 @@ function App() {
       </ProtectedRoute>
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <h1>My Home Page</h1>
+        <Sidebar />
       </ProtectedRoute>
     </BrowserRouter>
   );
