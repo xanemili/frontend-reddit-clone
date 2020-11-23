@@ -8,6 +8,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import SubredditForm from './components/subreddit/SubredditForm'
 import Subreddit from "./components/subreddit/Subreddit";
+import Post from "./components/Post"
 import Sidebar from './components/sidebar/Sidebar'
 import { authenticate } from "./services/auth";
 
@@ -46,6 +47,9 @@ function App() {
           </Route>
           <Route path="/sign-up" exact={true}>
             <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+          </Route>
+          <Route path="/r/:subredditName/post/:postId">
+            <Post authenticated={authenticated}/>
           </Route>
           <Route path="/r/:subredditName">
             <Subreddit authenticated={authenticated}/>

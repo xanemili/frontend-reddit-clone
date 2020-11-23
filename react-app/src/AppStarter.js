@@ -7,6 +7,8 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import SubredditForm from './components/subreddit/SubredditForm'
+import PostForm from './components/post/PostForm'
+import Post from './components/Post'
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -39,6 +41,9 @@ function App() {
       <Route path="/sign-up" exact={true}>
         <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
       </Route>
+      <Route path="/r/:subredditName/post/:postId">
+        <Post authenticated={authenticated}/>
+      </Route>
       <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
         <UsersList/>
       </ProtectedRoute>
@@ -47,6 +52,9 @@ function App() {
       </ProtectedRoute>
       <Route path="/subreddits/create">
         <SubredditForm authenticated={authenticated}/>
+      </Route>
+      <Route path="/posts/create">
+        <PostForm authenticated={authenticated}/>
       </Route>
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <h1>My Home Page</h1>

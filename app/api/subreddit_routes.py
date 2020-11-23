@@ -51,6 +51,7 @@ def view_subreddit(subreddit):
         "subreddit": subreddit.to_dict(),
     }
 
+
 @subreddit_routes.route('/all', methods=['GET'])
 def all_subreddit():
     """
@@ -59,4 +60,4 @@ def all_subreddit():
     """
     subreddits = Subreddit.query.all()
     subreddit_list = [subreddit.to_dict() for subreddit in subreddits]
-    return subreddit_list
+    return {"subreddits": subreddit_list}
