@@ -22,6 +22,7 @@ const Subreddit = () => {
 
   return (
     <div>
+      {/* <Post /> */}
     </div>
   )
 }
