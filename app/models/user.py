@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    # deleted = db.Column(db.DateTime, default=False)
 
     subreddits = db.relationship('Subreddit', back_populates='users')
     posts = db.relationship('Post', back_populates='users')
@@ -26,6 +27,12 @@ class User(db.Model, UserMixin):
         return check_password_hash(self.password, password)
 
     def to_dict(self):
+        # if self.deleted:
+        #     return {
+        #         "id": self.id,
+        #         "username": 'deleted',
+        #         "email": 'deleted'
+        #     }
         return {
             "id": self.id,
             "username": self.username,

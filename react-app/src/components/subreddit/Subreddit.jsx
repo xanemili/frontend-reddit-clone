@@ -3,27 +3,27 @@ import { useParams } from 'react-router-dom';
 
 const Subreddit = () => {
 
-    const [subreddit, setSubreddit] = useState({})
-    const [postList, setPostList] = useState({})
-    const { subredditName } = useParams();
+  const [subreddit, setSubreddit] = useState({})
+  const [postList, setPostList] = useState({})
+  const { subredditName } = useParams();
 
-    useEffect(()=> {
-        (async () => {
-            const response = await fetch(`/api/subreddits/r/${subredditName}`)
-            const subreddit = await response.json();
-            console.log(subreddit)
-            setSubreddit(subreddit);
-        })();
-    }, [subredditName])
+  useEffect(() => {
+    (async () => {
+      const response = await fetch(`/api/subreddits/r/${subredditName}`)
+      const subreddit = await response.json();
+      console.log(subreddit)
+      setSubreddit(subreddit);
+    })();
+  }, [subredditName])
 
-    if (!subreddit){
-        return null;
-    }
+  if (!subreddit) {
+    return null;
+  }
 
-    return (
-        <div>
-        </div>
-    )
+  return (
+    <div>
+    </div>
+  )
 }
 
 export default Subreddit;
