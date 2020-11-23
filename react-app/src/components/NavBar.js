@@ -11,7 +11,7 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
         <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img">
           Reddit Clone
           </NavLink>
-        <div classname="tab-menu" />
+        <div className="tab-menu" />
 
         <div className="user-header">
           {authenticated ? (
