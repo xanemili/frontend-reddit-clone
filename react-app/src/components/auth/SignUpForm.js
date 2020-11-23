@@ -7,6 +7,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [regErrorMsg, setErrorMsg] = useState('')
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -39,24 +40,41 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   }
 
   return (
+    <div className="reg-form">
+      <h4 className="modal-title">Create a new account</h4>
+      {regErrorMsg ? (
+        <div>
+          {regErrorMsg}
+          <div className="close-button"
+            onClick={() => {
+              setErrorMsg = ''
+            }}>
+          </div>
+        </div>
+      ) : ('') }
+
     <form onSubmit={onSignUp}>
       <div>
         <label>User Name</label>
         <input
           type="text"
           name="username"
+          placeholder="username"
           onChange={updateUsername}
           value={username}
-        ></input>
+          required
+          ></input>
       </div>
       <div>
         <label>Email</label>
         <input
           type="text"
           name="email"
+          placeholder="email"
           onChange={updateEmail}
           value={email}
-        ></input>
+          required
+          ></input>
       </div>
       <div>
         <label>Password</label>
@@ -65,7 +83,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           name="password"
           onChange={updatePassword}
           value={password}
-        ></input>
+          ></input>
       </div>
       <div>
         <label>Repeat Password</label>
@@ -75,10 +93,13 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           onChange={updateRepeatPassword}
           value={repeatPassword}
           required={true}
-        ></input>
+          ></input>
       </div>
-      <button type="submit">Sign Up</button>
+      <div className="register-button-box">
+        <button  className="button-primary" type="submit">Sign Up</button>
+      </div>
     </form>
+    </div>
   );
 };
 
