@@ -1,4 +1,5 @@
 export const createSubreddit = async(name, about, rules) => {
+  const ruleString = rules.join('#')
   const response = await fetch('/api/subreddits/create', {
     method: "POST",
     headers: {
@@ -7,7 +8,7 @@ export const createSubreddit = async(name, about, rules) => {
     body: JSON.stringify({
       name,
       about,
-      rules
+      rules: ruleString
     })
   });
   console.log(response)

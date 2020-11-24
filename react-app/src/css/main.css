@@ -632,6 +632,23 @@ TODO Fix the top menu alignments etc
  
 }
 
+.home-sidebar__container{
+  border: 1px solid black;
+}
+.home-sidebar__followed{
+  margin-top: 0px;
+  background-color: #4f86b5;
+  text-align: center;
+  border-bottom: 1px solid rgba(137, 137, 137, 1);
+}
+
+.home-sidebar__top{
+  background-color: #4f86b5;
+  text-align: center;
+  border-top: 1px solid rgba(137, 137, 137, 1);
+  border-bottom: 1px solid rgba(137, 137, 137, 1);
+}
+
 
 
 @media only screen and (max-width: 800px) {
