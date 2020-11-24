@@ -1,8 +1,22 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { createSubreddit } from '../../services/subreddit';
 import Rule from './Rules'
 
+<<<<<<< HEAD
+=======
+
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "add-rule":
+      return { rules: [...state.rules, { text:action.text }] };
+    default:
+      return state
+  }
+
+}
+>>>>>>> a5c0e63d448423eea07253992a60450b069fd827
 
 const SubredditForm = ({authenticated}) => {
   const [errors, setErrors] = useState([]);
@@ -74,7 +88,11 @@ const SubredditForm = ({authenticated}) => {
           </div>
           <div>
           <div>
+<<<<<<< HEAD
             <h4> Rules:</h4>
+=======
+            <h4>Rules:</h4>
+>>>>>>> a5c0e63d448423eea07253992a60450b069fd827
             {ruleIds.map((ruleId) => (
               <div key={ruleId}> <Rule id = {ruleId} rules={rules} setRules={setRules} /></div>
             ))}
