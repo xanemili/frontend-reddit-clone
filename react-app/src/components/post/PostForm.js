@@ -32,7 +32,7 @@ const PostForm = ({authenticated}) => {
     e.preventDefault();
     const post = await createPost(subredditId, title, type, content);
     // console.log(post)
-    if (post) {
+    if (!post.errors) {
       setRedirect(true)
     } else {
       setErrors(post.errors)

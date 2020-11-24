@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
-import { getPost } from '../services/post'
+import { getPost } from '../../services/post'
 
 const Post = () => {
     // Comment creation field and displaying comments will be a seperate component
