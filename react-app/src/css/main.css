@@ -47,6 +47,7 @@ body {
   grid-template-columns: 150px 1fr 300px;
 }
 
+
 .logo img {
   width: 120px;
 }
@@ -647,7 +648,7 @@ TODO Fix the top menu alignments etc
 }
 .subreddit__form__input{
   margin: 10px;
- 
+
 }
 
 .home-sidebar__container{
@@ -667,8 +668,6 @@ TODO Fix the top menu alignments etc
   border-bottom: 1px solid rgba(137, 137, 137, 1);
 }
 
-
-
 .subreddit__form-header{
   text-align: center;
 }
@@ -683,7 +682,7 @@ TODO Fix the top menu alignments etc
 }
 .subreddit__form__input{
   margin: 10px;
- 
+
 }
 
 .home-sidebar__container{

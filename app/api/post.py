@@ -80,6 +80,3 @@ def subreddit_upvote(postId):
         db.session.commit()
         return {'karma': post.karma}
     return {'error': 'Post could not be upvoted'}
-
-
-# @post_routes.route("/<int:postId>")
