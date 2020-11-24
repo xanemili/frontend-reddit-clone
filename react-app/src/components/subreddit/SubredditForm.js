@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { createSubreddit } from '../../services/subreddit';
 import Rule from './Rules'
@@ -79,7 +79,6 @@ const SubredditForm = ({authenticated}) => {
               <div key={ruleId}> <Rule id = {ruleId} rules={rules} setRules={setRules} /></div>
             ))}
             <button type= 'button' onClick={createText}>+</button>
-            <button type= 'button' onClick={() => console.log(rules)}>+</button>
           </div>
           <div className="create__subreddit">
             <button type='submit'>Create</button>
