@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Post from './Post'
+import PostKarma from '../karma/PostKarma.jsx'
 
 const Subreddit = () => {
 
@@ -20,7 +21,6 @@ const Subreddit = () => {
         setErrors(subreddit.errors);
       }
     })();
-    console.log(errors)
   }, [subredditName])
 
   useEffect(() => {
@@ -41,20 +41,27 @@ const Subreddit = () => {
 
   const postComponents = posts.map((post) => {
     return (
-      <li key={post.id}>
+      <Link key={post.id} className='landing__posts__container'>
+        <PostKarma id={post.id} />
         <Post id={post.id} title={post.title} type={post.type} content={post.content}/>
-      </li>
+      </Link>
     );
   })
 
   return (
     <div>
-      {errors ? <div>{errors}</div> : ''}
-      {console.log(errors)}
-      <h1>{subreddit.name}</h1>
-      <div>About: {subreddit.about}</div>
-      <div>Rules: {subreddit.rules}</div>
-      <ul>{postComponents}</ul>
+        <div className=''>
+          <div>{subreddit.name}</div>
+          <div>/r/{subreddit.name}</div>
+          <button className='button-primary'>
+            Follow
+          </button>
+        </div>
+      <div id='container'>
+        {errors ? <div>{errors}</div> : ''}
+        {console.log(errors)}
+        <ul>{postComponents}</ul>
+      </div>
     </div>
   )
 }

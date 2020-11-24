@@ -67,19 +67,18 @@ def subreddit_upvote(postId):
         post = Post.query.get(postId)
         return {'karma': post.karma}
 
+    req = request.get_json()
     if req['karma'] and request.method == 'POST':
-        req = request.get_json()
         post = Post.query.get(postId)
         if not post:
             return 'Post does not exist'
-
         if req['karma'] == 'upvote':
+            print('upvote')
             post.karma += 1
-            return 'upvoted'
         elif req['karma'] == 'downvote':
             post.karma -= 1
-            return 'downvoted'
         db.session.commit()
+        return {'karma': post.karma}
     return {'error': 'Post could not be upvoted'}
 
 

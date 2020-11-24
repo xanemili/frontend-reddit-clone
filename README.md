@@ -16,7 +16,7 @@
 ---
 ## Database Design
 
-![alt text](Database-Design.png "Database")
+![alt text](Updated-Database-Schema.png "Database")
 ---
 
 ## Wireframes
