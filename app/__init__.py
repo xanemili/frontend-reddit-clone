@@ -10,6 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.post import post_routes
 from .api.subreddit_routes import subreddit_routes
+from .api.post import post_routes
 
 from .seeds import seed_commands
 

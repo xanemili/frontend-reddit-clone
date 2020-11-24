@@ -16,8 +16,25 @@
 ---
 ## Database Design
 
-![alt text](Database-Design.png "Database")
+![alt text](Updated-Database-Schema.png "Database")
 ---
+
+## Wireframes
+
+Home:
+https://wireframe.cc/KOzRBB
+
+Create a Post(text):
+https://wireframe.cc/XwkLbm
+
+Create a Post(image):
+https://wireframe.cc/jiyxth
+
+View an Image Post:
+https://wireframe.cc/vzCC6y
+
+View a Text Post:
+https://wireframe.cc/wEpFRi
 
 ## Routes
 ---
