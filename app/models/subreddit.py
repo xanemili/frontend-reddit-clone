@@ -23,5 +23,6 @@ class Subreddit(db.Model):
             'name': self.name,
             'about': self.about,
             'rules': self.rules,
-            'owner': self.owner
+            'owner': self.owner,
+            'created_on': self.created_on
         }
