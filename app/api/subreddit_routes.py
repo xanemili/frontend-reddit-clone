@@ -4,6 +4,7 @@ from app.forms import SubredditForm
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
 from .auth_routes import validation_errors_to_error_messages
+from datetime import datetime
 
 subreddit_routes = Blueprint('subreddits', __name__)
 
@@ -46,7 +47,6 @@ def view_subreddit(subreddit):
 
     post_list = Post.query.filter(Post.subredditId == subreddit.id).all()
     test_post = post_list[0].to_dict()
-    print(test_post)
     return {
         "subreddit": subreddit.to_dict(),
     }

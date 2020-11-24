@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Post from './Post'
+import CreateContent from '../sidebar/CreateContent'
 
 const Subreddit = () => {
 
@@ -50,10 +51,9 @@ const Subreddit = () => {
   return (
     <div>
       {errors ? <div>{errors}</div> : ''}
-      {console.log(errors)}
+      {console.log(subreddit)}
       <h1>{subreddit.name}</h1>
-      <div>About: {subreddit.about}</div>
-      <div>Rules: {subreddit.rules}</div>
+      <CreateContent name={subreddit.name} about={subreddit.about} rules={subreddit.rules} created={subreddit.created_on}/>
       <ul>{postComponents}</ul>
     </div>
   )
