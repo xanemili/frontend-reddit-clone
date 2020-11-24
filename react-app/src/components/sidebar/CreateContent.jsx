@@ -1,26 +1,26 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-const CreateContent = () => {
-
+const CreateContent = ({ name, about, created, rules }) => {
+  console.log(typeof created)
   return (
-    <div className="sidebar__container">
+    <div className= 'sidebar__container'>
       <div className="about__container">
-        <div className= "about__title">Link Title Here</div>
-        <div className="about__description">Add text here from when a user creates the subreddit</div>
-        <div className="about__users">Total Users</div>
-        <div className="about__date"> Created:</div>
+        <h3 className= "about__title">{name}</h3>
+        <h4 className= 'about__header'>About</h4>
+        <div className="about__description">{about}</div>
+        <div className="about__users">Members</div>
+        <div className="about__date"> Created: {created}</div>
         <NavLink style={{ width: 'fit-content', textDecoration: 'none' }} to="/subreddits/create" exact={true} activeClassName="active">
           <div className="create__btn">
               Create
           </div>
         </NavLink>
       </div>
-      
-      <div>
-      <NavLink to="/r/AskReddit" exact={true} activeClassName="active">
-        Basic
-      </NavLink>
+      <div className='rules__container'>
+        <h4 className='rules__header'>Rules:</h4>
+        <div className='rules'>{rules}</div>
+
       </div>
     </div>
   )
