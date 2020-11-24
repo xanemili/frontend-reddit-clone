@@ -29,4 +29,5 @@ const Rule = ({ id, rules, setRules }) => {
     )
 }
 
+
 export default Rule;
