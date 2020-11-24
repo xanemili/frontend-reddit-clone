@@ -1,8 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import Rule from '../subreddit/Rules';
 
 const CreateContent = ({ name, about, created, rules }) => {
-  console.log(typeof created)
+  
+  let ruleList = rules.split('#')
+  
+
   return (
     <div className= 'sidebar__container'>
       <div className="about__container">
@@ -11,16 +15,19 @@ const CreateContent = ({ name, about, created, rules }) => {
         <div className="about__description">{about}</div>
         <div className="about__users">Members</div>
         <div className="about__date"> Created: {created}</div>
+      </div>
+      <div className='rules__container'>
+        <h4 className='rules__header'>Rules:</h4>
+        {ruleList.map((rule) => {
+          if (rule !== ""){
+            return <li className='rules'>{rule}</li>
+          }
+        })}
         <NavLink style={{ width: 'fit-content', textDecoration: 'none' }} to="/subreddits/create" exact={true} activeClassName="active">
           <div className="create__btn">
               Create
           </div>
         </NavLink>
-      </div>
-      <div className='rules__container'>
-        <h4 className='rules__header'>Rules:</h4>
-        <div className='rules'>{rules}</div>
-
       </div>
     </div>
   )

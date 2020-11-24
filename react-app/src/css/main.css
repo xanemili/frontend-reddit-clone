@@ -554,6 +554,7 @@ TODO Fix the top menu alignments etc
 }
 
 .sidebar__container{
+  position: relative;
   width: 350px;
   margin-left: 80%;
   border: 2px solid black;
@@ -596,24 +597,6 @@ TODO Fix the top menu alignments etc
   width: 100px;
   background-color: #c4dbf1;
   margin-top: 10px;
-}
-.rules__container{
-
-}
-
-.rules__header{
-  text-align: center;
-  padding-top: 15px;
-}
-
-.rules{
-  margin-left: 10px;
-}
-
-.subreddit__form__container{
-  border: 2px solid black;
-  width:400px;
-  margin: 45px auto;
 }
 .rules__container{
 
@@ -688,6 +671,8 @@ TODO Fix the top menu alignments etc
 .home-sidebar__container{
   border: 1px solid black;
 }
+
+
 .home-sidebar__followed{
   margin-top: 0px;
   background-color: #4f86b5;
