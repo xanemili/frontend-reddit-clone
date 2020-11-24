@@ -4,6 +4,17 @@ import { createSubreddit } from '../../services/subreddit';
 import Rule from './Rules'
 
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "add-rule":
+      return { rules: [...state.rules, { text:action.text }] };
+    default:
+      return state
+  }
+
+}
+
+
 const SubredditForm = ({authenticated}) => {
   const [errors, setErrors] = useState([]);
   const [name, setName] = useState('');
@@ -74,7 +85,7 @@ const SubredditForm = ({authenticated}) => {
           </div>
           <div>
           <div>
-            <h4> Rules:</h4>
+            <h4>Rules:</h4>
             {ruleIds.map((ruleId) => (
               <div key={ruleId}> <Rule id = {ruleId} rules={rules} setRules={setRules} /></div>
             ))}
