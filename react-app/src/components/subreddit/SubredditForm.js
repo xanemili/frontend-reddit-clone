@@ -20,9 +20,8 @@ const SubredditForm = ({authenticated}) => {
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
   const [ruleIds, setRuleIds] = useState([1])
-  const [rule, setRule] = useState();
-  const [{ rules }, dispatch] = useReducer(reducer, { rules: []});
-  console.log('rules', rule)
+  const [rules, setRules] = useState([]);
+  // console.log('rules', rule)
 
   const updateValue = (setfunc) => (e) => {
     setfunc(e.target.value)
@@ -32,8 +31,6 @@ const SubredditForm = ({authenticated}) => {
     let newRules = [...ruleIds]
     newRules.push(ruleIds.length + 1)
     setRuleIds(newRules)
-    dispatch({ type:"add-rule", rule})
-    setRule('')
   }
 
   const submitSubreddit = async (e) => {
@@ -90,20 +87,10 @@ const SubredditForm = ({authenticated}) => {
           <div>
             <h4>Rules:</h4>
             {ruleIds.map((ruleId) => (
-              <div key={ruleId}> <Rule id = {ruleId} updateValue = {updateValue} /></div>
-              // <div>
-              //   <label className="subreddit__form__label" htmlFor='Rules'>{ruleId}:</label>
-              //   <input
-              //       className="subreddit__form__input"
-              //       name='rules'
-              //       type='text'
-              //       placeholder={`Rule ${ruleId}`}
-              //       value={rule}
-              //       onChange={updateValue(setRule)}
-              //   />
-              // </div>
+              <div key={ruleId}> <Rule id = {ruleId} rules={rules} setRules={setRules} /></div>
             ))}
             <button type= 'button' onClick={createText}>+</button>
+            <button type= 'button' onClick={() => console.log(rules)}>+</button>
           </div>
           <div className="create__subreddit">
             <button type='submit'>Create</button>
