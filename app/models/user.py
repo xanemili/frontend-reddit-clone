@@ -10,6 +10,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    created_at = db.Column(db.DateTime, server_default=db.func.now())
     # deleted = db.Column(db.DateTime, default=False)
 
     subreddits = db.relationship('Subreddit', back_populates='users')
@@ -44,4 +45,16 @@ class User(db.Model, UserMixin):
             "id": self.id,
             "username": self.username,
             "email": self.email,
-            "subscriptions": subscriptions}
+            "subscriptions": subscriptions
+        }
+
+    # Returns all information for a user
+    def to_joined_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            'subreddits': [subreddit.to_dict() for subreddit in self.subreddits],
+            "posts": [post.to_simple_dict() for post in self.posts],
+            "created_at": self.created_at,
+        }

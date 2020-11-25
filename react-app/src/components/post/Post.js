@@ -24,8 +24,6 @@ const Post = () => {
         })();
     }, [postId])
 
-    // console.log(post)
-    // console.log('subreddit', subreddit)
     if(post.type === 'image'){
         return(
             <div>
