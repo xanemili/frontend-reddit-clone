@@ -16,6 +16,9 @@ class Subreddit(db.Model):
 
     users = db.relationship("User", back_populates='subreddits')
     posts = db.relationship("Post", back_populates='subreddits')
+    subscribers = db.relationship(
+        'User', back_populates='subscriptions',
+        secondary='subreddit_subscriptions', cascade='all')
 
     def to_dict(self):
         return {
@@ -24,5 +27,12 @@ class Subreddit(db.Model):
             'about': self.about,
             'rules': self.rules,
             'owner': self.owner,
-            'created_on': self.created_on
+            'created_on': self.created_on,
+            'subscribers': len(self.subscribers)
+        }
+
+    def to_simple_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name
         }
