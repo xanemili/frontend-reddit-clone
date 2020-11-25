@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useParams, Link, NavLink} from "react-router-dom";
+import {useParams, Link, NavLink, Redirect} from "react-router-dom";
 import UserSidebar from './sidebar/UserSidebar'
 import Post from './subreddit/Post'
 import PostKarma from './karma/PostKarma.jsx'
@@ -47,52 +47,62 @@ function User() {
     setDisplay('post')
   }
 
-  const setSubredditDisplay = () => {
-    console.log(posts)
-    setDisplay('subreddit')
+  const setCommentsDisplay = () => {
+    // console.log(posts)
+    setDisplay('comments')
   }
+
+  const goToPost = (subreddit, postId) => {
+    console.log('working')
+    return <Redirect to={`/r/${subreddit}/post/${postId}`}/>
+  }
+
 
   if (!user) {
     return null;
   }
 
   const postComponents = posts.map((post) => {
-    console.log('post', post)
+    // console.log('post', post)
 
     return (
-      <Link key={post.id} className='landing__posts__container'>
+      <Link to={`/r/${post.subreddit.name}/post/${post.id}`} key={post.id} className='landing__posts__container'>
         <PostKarma id={post.id} />
         <Post id={post.id} username={user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
       </Link>
     );
   })
 
-  if (display === 'post'){
-    return (
+  if(display === 'comments'){
+    return(
       <div>
-        <button onClick={setSubredditDisplay}>Subreddits</button>
         <button onClick={setPostDisplay}>Posts</button>
+        <button onClick={setCommentsDisplay}>Comments</button>
         <UserSidebar name={user.username} created={user.created_at} karma={karma} />
+        <div>
+          u/{user.username}'s Comments
+        </div>
         <div id='container'>
-          <ul>{postComponents}</ul>
+          Comments Here
         </div>
       </div>
-    );
+    )
   }
+
 
   return (
     <div>
-      <button onClick={setSubredditDisplay}>Subreddits</button>
       <button onClick={setPostDisplay}>Posts</button>
+      <button onClick={setCommentsDisplay}>Comments</button>
       <UserSidebar name={user.username} created={user.created_at} karma={karma} />
       <div>
-        <strong>subreddits</strong> {subreddits.map(subreddit => (
-          <div>
-            <NavLink to={`/r/${subreddit.name}`}>{subreddit.name}</NavLink>
-          </div>
-        ))}
+        u/{user.username}'s Posts
+      </div>
+      <div id='container'>
+        <ul>{postComponents}</ul>
       </div>
     </div>
   );
+
 }
 export default User;
