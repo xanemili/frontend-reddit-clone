@@ -26,20 +26,32 @@ const Post = () => {
 
     // console.log(post)
     // console.log('subreddit', subreddit)
-
-    if(post){
-        return (
+    if(post.type === 'image'){
+        return(
             <div>
                 {errors ? <div>{errors}</div> : ''}
                 <div className='post_header'>
                     <span className='post_subreddit'>{`r/${subreddit.name}`}</span> <span className='post_username'>{`Posted by ${user.username}`}</span>
                 </div>
                 <h1 className='post_title'>{post.title}</h1>
-                <div className='post_content'>{post.content}</div>
+                <div>
+                    <img src={post.content} />
+                </div>
             </div>
         )
-
     }
+
+    return (
+        <div>
+            {errors ? <div>{errors}</div> : ''}
+            <div className='post_header'>
+                <span className='post_subreddit'>{`r/${subreddit.name}`}</span> <span className='post_username'>{`Posted by ${user.username}`}</span>
+            </div>
+            <h1 className='post_title'>{post.title}</h1>
+            <div className='post_content'>{post.content}</div>
+        </div>
+    )
+
 }
 
 export default Post;
