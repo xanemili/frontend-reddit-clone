@@ -11,6 +11,7 @@
     "dangerously-set-inner-html": "^2.0.1",
     "gh-pages": "^2.0.1",
     "http-proxy-middleware": "^1.0.5",
+    "javascript-time-ago": "^2.3.3",
     "moment": "^2.24.0",
     "react": "^17.0.1",
     "react-dangerous-html": "^1.0.0",
