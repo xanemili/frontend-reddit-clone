@@ -27,6 +27,7 @@ function App() {
       if (!user.errors) {
         setAuthenticated(true);
       }
+      console.log(user)
       setLoaded(true);
     })();
   }, []);
@@ -50,7 +51,7 @@ function App() {
       <Route path="/r/:subredditName/post/:postId">
         <PostDisplay authenticated={authenticated}/>
       </Route>
-      <Route exact={true} path="/r/:subredditName">
+      <Route path="/r/:subredditName">
         <Subreddit authenticated={authenticated}/>
       </Route>
       <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
@@ -65,10 +66,10 @@ function App() {
       <ProtectedRoute path="/posts/create" exact={true} authenticated={authenticated}>
         <PostForm authenticated={authenticated}/>
       </ProtectedRoute>
-      <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
+      <Route path="/" exact={true} authenticated={authenticated}>
         <h1>My Home Page</h1>
         <Sidebar />
-      </ProtectedRoute>
+      </Route>
     </BrowserRouter>
   );
 }

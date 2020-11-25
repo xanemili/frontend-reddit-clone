@@ -14,6 +14,11 @@ class User(db.Model, UserMixin):
 
     subreddits = db.relationship('Subreddit', back_populates='users')
     posts = db.relationship('Post', back_populates='users')
+    subscriptions = db.relationship(
+        'Subreddit', back_populates='subscribers',
+        secondary='subreddit_subscriptions',
+        # cascade='all, delete'
+        )
 
     @property
     def password(self):
@@ -33,8 +38,10 @@ class User(db.Model, UserMixin):
         #         "username": 'deleted',
         #         "email": 'deleted'
         #     }
+        subscriptions = [subreddit.name
+                         for subreddit in self.subscriptions]
         return {
             "id": self.id,
             "username": self.username,
-            "email": self.email
-        }
+            "email": self.email,
+            "subscriptions": subscriptions}
