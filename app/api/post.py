@@ -57,7 +57,7 @@ def subreddit_posts(subreddit):
     return {"posts": [post.to_joined_dict() for post in posts]}
 
 
-@post_routes.route("/<int:postId>/karma", methods=['GET','POST'])
+@post_routes.route("/<int:postId>/karma", methods=['GET', 'POST'])
 # @login_required
 def subreddit_upvote(postId):
     """
