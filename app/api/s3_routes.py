@@ -34,10 +34,11 @@ def upload_file():
         # When passing in the string of the name of the bucket the upload file runs into the credentials error
         # However when passing in Config.S3_BUCKET we get an error that says it expects a string
         output = upload_file_to_s3(file, 'aa-reddit-clone-images')
-    return str(output)
+        print(output)
+        return {"output": str(output)}
 
-    # else:
-    #     return print("something wrong"), 400
+    else:
+        return print("something wrong"), 400
 
 
 def upload_file_to_s3(file, bucket_name, acl="public-read"):
@@ -56,8 +57,8 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
             ExtraArgs={
                 "ACL": acl,
                 # For testing purposes because passed in file does not have a kay content_type
-                # "ContentType": file.content_type
-                "ContentType": 'image/jpeg'
+                "ContentType": file.content_type
+                # "ContentType": 'image/jpeg'
             }
         )
 
