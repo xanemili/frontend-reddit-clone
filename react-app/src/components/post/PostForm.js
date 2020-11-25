@@ -76,6 +76,7 @@ const PostForm = ({authenticated}) => {
     data.append("file", image)
 
     const newImage = await uploadImage(data)
+    console.log(newImage)
     // console.log('image', newImage)
     // console.log('data', data)
   }

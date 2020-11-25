@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, Flask
 from werkzeug.utils import secure_filename
 from app.helpers import *
 from app.config import Config
@@ -8,16 +8,14 @@ s3_routes = Blueprint('s3', __name__)
 
 @s3_routes.route('/upload', methods=['POST'])
 def upload_file():
-    # request.file does not have the correct keys avaliable to it
-    # This is most likely due to the way the data is being passed in through the frontend
-    # As these other methods require that the post is being sent directly from the form itself
-    # However request.files does contain a file with the appropriate name, but stored in an ImmutableMultiDict
-    # print("method", request.method)
-    print("request,", request.files)
+    # file is being properly set.
+    # Unable to locate credentials error, unsure why credentials would be set up poorly
+    # Generate new keys and secret to use and try again.
+    print("request,", request.files['file'])
     # if "user_file" not in request.files:
     #     return print("No user_file key in request.files"), 400
 
-    file = request.files
+    file = request.files['file']
     print('fileHere', file)
     """
         These attributes are also available
@@ -31,13 +29,15 @@ def upload_file():
     if file.filename == "":
         return print("please select a file"), 400
 
-    if file and allowed_file(file.filename):
+    if file:
         file.filename = secure_filename(file.filename)
-        output = upload_file_to_s3(file, Config.S3_BUCKET)
-        return str(output)
+        # When passing in the string of the name of the bucket the upload file runs into the credentials error
+        # However when passing in Config.S3_BUCKET we get an error that says it expects a string
+        output = upload_file_to_s3(file, 'aa-reddit-clone-images')
+    return str(output)
 
-    else:
-        return print("something wrong"), 400
+    # else:
+    #     return print("something wrong"), 400
 
 
 def upload_file_to_s3(file, bucket_name, acl="public-read"):
@@ -51,14 +51,18 @@ def upload_file_to_s3(file, bucket_name, acl="public-read"):
         s3.upload_fileobj(
             file,
             bucket_name,
+            # For testing purposes because the passed in file does not have a key filename
             file.filename,
             ExtraArgs={
                 "ACL": acl,
-                "ContentType": file.content_type
+                # For testing purposes because passed in file does not have a kay content_type
+                # "ContentType": file.content_type
+                "ContentType": 'image/jpeg'
             }
         )
 
     except Exception as e:
+        # Error recieved Fileobj must implement read
         print("Something Happened: ", e)
         return e, 400
 
