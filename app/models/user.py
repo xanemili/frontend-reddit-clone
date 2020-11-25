@@ -58,3 +58,14 @@ class User(db.Model, UserMixin):
             "posts": [post.to_joined_dict() for post in self.posts],
             "created_at": self.created_at,
         }
+
+    # Returns all information for a user
+    def to_joined_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            'subreddits': [subreddit.to_dict() for subreddit in self.subreddits],
+            "posts": [post.to_simple_dict() for post in self.posts],
+            "created_at": self.created_at,
+        }

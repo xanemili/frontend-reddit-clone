@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
+<<<<<<< HEAD
 import {useParams, Link, NavLink, Redirect} from "react-router-dom";
 import UserSidebar from './sidebar/UserSidebar'
 import Post from './subreddit/Post'
 import PostKarma from './karma/PostKarma.jsx'
 
 // Use createContent sidebar instead of Sidebar component to load the sidebar
+=======
+import {useParams} from "react-router-dom";
+import Subreddit from "./subreddit/Subreddit";
+>>>>>>> Updated Users model to have the method to_joined_dict and created at for users
 
 function User() {
   const [user, setUser] = useState({});
