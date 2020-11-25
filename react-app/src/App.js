@@ -73,7 +73,7 @@ function App() {
       <ProtectedRoute path="/" exact={true} authenticated={authenticated}>
         <h1>My Home Page</h1>
         <Sidebar />
-        <Post />
+        <PostDisplay />
       </ProtectedRoute>
     </BrowserRouter>
   );
