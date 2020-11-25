@@ -37,7 +37,6 @@ const SubredditForm = ({authenticated}) => {
     e.preventDefault();
     const subreddit = await createSubreddit(name, about, rules);
     console.log(subreddit)
-    console.log()
 
     if (!subreddit.errors) {
       return <Redirect to='/r/subreddit.name' />

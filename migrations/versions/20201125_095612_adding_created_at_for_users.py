@@ -1,7 +1,7 @@
 """Adding created at for users
 
 Revision ID: 62cf0a02a2c9
-Revises: 04ef402c4795
+Revises: 3b09472836fd
 Create Date: 2020-11-25 09:56:12.994616
 
 """
@@ -11,7 +11,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision = '62cf0a02a2c9'
-down_revision = '04ef402c4795'
+down_revision = '3b09472836fd'
 branch_labels = None
 depends_on = None
 

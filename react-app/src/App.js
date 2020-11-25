@@ -54,7 +54,7 @@ function App() {
         <Route path="/r/:subredditName/post/:postId">
           <PostDisplay authenticated={authenticated}/>
         </Route>
-        <Route path="/r/:subredditName">
+        <Route exact={true} path="/r/:subredditName">
           <Subreddit authenticated={authenticated} subscriptions={subscriptions}/>
         </Route>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>

@@ -1,7 +1,17 @@
 import React from 'react';
 
 
-const Post = ({title, type, content,  }) => {
+const Post = ({title, type, content, username, subreddit, created_on }) => {
+
+  if (type === 'image'){
+    return(
+      <div>
+        <h1>{title}</h1>
+        <img src={content}/>
+
+      </div>
+    )
+  }
 
   return (
     <div className='landing__posts'>
@@ -9,7 +19,7 @@ const Post = ({title, type, content,  }) => {
           {title}
         </div>
         <div>
-          owner
+          r/{subreddit} u/{username}  created on {created_on}
         </div>
         <div className='comments'>
           <a className='meta-area'>
