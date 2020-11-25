@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { createTextPost, uploadImage } from '../../services/post';
+import { createPost, uploadImage } from '../../services/post';
 import { getSubreddits } from '../../services/subreddit'
 
 const PostForm = ({authenticated}) => {
@@ -17,7 +17,7 @@ const PostForm = ({authenticated}) => {
   // Calls the helper function when the component is loaded
   useEffect(() => {
     getAllSubreddits()
-    console.log("type", type)
+    // console.log("type", type)
   }, [])
 
   // Will only set the subreddit after someone as changed the selected subreddit
@@ -40,6 +40,7 @@ const PostForm = ({authenticated}) => {
     return response.subreddits
   }
 
+  // Helper functions to help set the State in the form
   const updateValue = (setfunc) => (e) => {
     setfunc(e.target.value)
   }
@@ -53,7 +54,7 @@ const PostForm = ({authenticated}) => {
   }
 
   const setImageHelper = (e) => {
-    console.log(e.target.files[0])
+    // console.log(e.target.files[0])
     setImage(e.target.files[0])
 
   }
@@ -61,7 +62,7 @@ const PostForm = ({authenticated}) => {
   // Helper function to help handle the post submit request
   const submitTextPost = async (e) => {
     e.preventDefault();
-    const post = await createTextPost(subredditId, title, type, content);
+    const post = await createPost(subredditId, title, type, content);
     if (!post.errors) {
       setRedirect(true)
     } else {
@@ -69,6 +70,7 @@ const PostForm = ({authenticated}) => {
     }
   };
 
+  // Handles the Image uploading onto AWS S3
   const submitImagePost = async (e) => {
     e.preventDefault();
     const data = new FormData();
@@ -77,7 +79,15 @@ const PostForm = ({authenticated}) => {
 
     const newImage = await uploadImage(data)
     const imageUrl = newImage.output
-    console.log(imageUrl)
+
+    const post = await createPost(subredditId, title, type, imageUrl);
+    if(!post.errors){
+      setRedirect(true)
+
+    } else {
+      setErrors(post.errors)
+
+    }
   }
 
   if (!authenticated) {
@@ -95,6 +105,26 @@ const PostForm = ({authenticated}) => {
         <button type='button' onClick={setTextType}>Text</button>
         <button type='button' onClick={setImageType}>Image</button>
         <form encType='multipart/formdata' onSubmit={submitImagePost}>
+          <div>
+            <label htmlFor='title'>Title</label>
+            <input
+              name='title'
+              type='text'
+              placeholder='title'
+              value={title}
+              onChange={updateValue(setTitle)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor='subreddits'>Subreddit</label>
+            <select name="subreddits" id="post_subreddits" onChange={updateValue(setSubredditId)} >
+                {subreddits.map((subreddit) => (
+                    <option key={subreddit.id} value={subreddit.id}>{subreddit.name}</option>
+                ))}
+
+            </select>
+          </div>
           <label htmlFor="user_file">Upload Your File</label>
           <input type="file" name="user_file" required onChange={setImageHelper}/>
           <button type="submit">Upload</button>
