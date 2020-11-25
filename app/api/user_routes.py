@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, Subreddit, Subscription, db
+from app.models import User, Subreddit, Subscription, db, Post
 from sqlalchemy.exc import IntegrityError
 
 user_routes = Blueprint('users', __name__)
@@ -16,8 +16,8 @@ def users():
 @user_routes.route('/<int:id>', methods=['GET'])
 @login_required
 def user(id):
-    user = User.query.get(id)
-    return user.to_dict()
+    user = User.query.join(Subreddit).join(Post).filter(User.id == id).one()
+    return user.to_joined_dict()
 
 
 # @user_routes.route('/<int:id>', methods=['DELETE'])
