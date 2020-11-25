@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import Rule from '../subreddit/Rules';
+
 
 const CreateContent = ({ name, about, created, rules }) => {
   
