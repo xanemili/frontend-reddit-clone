@@ -5,12 +5,12 @@ import PostKarma from '../karma/PostKarma.jsx'
 import CreateContent from '../sidebar/CreateContent'
 
 
-const Subreddit = ({subreddits}) => {
+const Subreddit = ({subscriptions}) => {
 
   const [subreddit, setSubreddit] = useState({rules:""})
   const [posts, setPosts] = useState([])
   const [errors, setErrors] = useState('')
-  const [subscribed, setSubscribed] = useState(true)
+  const [subscribed, setSubscribed] = useState(false)
   const [postErrors, setPostErrors] = useState('')
   const { subredditName } = useParams();
   const [loading, setloading] = useState(true)
@@ -34,6 +34,11 @@ const Subreddit = ({subreddits}) => {
     };
 
     fetchData();
+    console.log(subscriptions, subredditName)
+    console.log(subscriptions.indexOf(subredditName))
+    if (subscriptions.indexOf(subredditName) !== -1){
+      setSubscribed(true);
+    }
 
     return () => {
       mounted = false
@@ -52,6 +57,9 @@ const Subreddit = ({subreddits}) => {
     })
     let subscribe = await response.json()
     console.log(subscribe)
+    if (!subscribe.errors){
+      setSubscribed(!subscribed)
+    }
   }
 
   const postComponents = posts.map((post) => {

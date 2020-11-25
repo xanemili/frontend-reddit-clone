@@ -4,7 +4,7 @@ import LogoutButton from './auth/LogoutButton';
 import searchFetch from '../services/search'
 
 
-const NavBar = ({ authenticated, setAuthenticated }) => {
+const NavBar = ({ authenticated, setAuthenticated, subscriptions }) => {
   const [search, setSearch] = useState('')
 
   const updateValue= async (e) => {
@@ -20,6 +20,18 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
     }
   }
 
+  const selectOptions = (subs) => {
+    console.log(subs)
+    return (
+      <select>
+      {subs.map( sub => (
+          <option>
+          {sub}
+          </option>
+      ))}
+    </select>
+    )
+  }
 
   return (
     <header id="header">
@@ -35,16 +47,18 @@ const NavBar = ({ authenticated, setAuthenticated }) => {
               <button className="search" onClick={searchRes}></button>
               <div className="search__bar">
                 <input
-                  className="search__input" 
+                  className="search__input"
                   name="search"
-                  type="text" 
+                  type="text"
                   placeholder="Search..."
                   value={search}
-                  onChange={updateValue} 
+                  onChange={updateValue}
                 />
               </div>
             </div>
           </div>
+
+          {selectOptions(subscriptions)}
 
         <div className="user-header">
           {authenticated ? (

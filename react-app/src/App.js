@@ -20,12 +20,14 @@ function Layout(props) {
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [subscriptions, setSubscriptions] = useState([])
 
   useEffect(() => {
     (async() => {
       const user = await authenticate();
       if (!user.errors) {
         setAuthenticated(true);
+        setSubscriptions(user.subscriptions)
       }
       console.log(user)
       setLoaded(true);
@@ -38,38 +40,40 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
-      <Route path="/login" exact={true}>
-        <LoginForm
-          authenticated={authenticated}
-          setAuthenticated={setAuthenticated}
-        />
-      </Route>
-      <Route path="/sign-up" exact={true}>
-        <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
-      </Route>
-      <Route path="/r/:subredditName/post/:postId">
-        <PostDisplay authenticated={authenticated}/>
-      </Route>
-      <Route path="/r/:subredditName">
-        <Subreddit authenticated={authenticated}/>
-      </Route>
-      <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
-        <UsersList/>
-      </ProtectedRoute>
-      <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-        <User />
-      </ProtectedRoute>
-      <ProtectedRoute path="/subreddits/create" exact={true} authenticated={authenticated}>
-        <SubredditForm authenticated={authenticated}/>
-      </ProtectedRoute>
-      <ProtectedRoute path="/posts/create" exact={true} authenticated={authenticated}>
-        <PostForm authenticated={authenticated}/>
-      </ProtectedRoute>
-      <Route path="/" exact={true} authenticated={authenticated}>
-        <h1>My Home Page</h1>
-        <Sidebar />
-      </Route>
+    <Layout>
+        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions}/>
+        <Route path="/login" exact={true}>
+          <LoginForm
+            authenticated={authenticated}
+            setAuthenticated={setAuthenticated}
+          />
+        </Route>
+        <Route path="/sign-up" exact={true}>
+          <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+        </Route>
+        <Route path="/r/:subredditName/post/:postId">
+          <PostDisplay authenticated={authenticated}/>
+        </Route>
+        <Route path="/r/:subredditName">
+          <Subreddit authenticated={authenticated} subscriptions={subscriptions}/>
+        </Route>
+        <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
+          <UsersList/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
+          <User />
+        </ProtectedRoute>
+        <ProtectedRoute path="/subreddits/create" exact={true} authenticated={authenticated}>
+          <SubredditForm authenticated={authenticated}/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/posts/create" exact={true} authenticated={authenticated}>
+          <PostForm authenticated={authenticated}/>
+        </ProtectedRoute>
+        <Route path="/" exact={true} authenticated={authenticated}>
+          <h1>My Home Page</h1>
+          <Sidebar />
+        </Route>
+       </Layout>
     </BrowserRouter>
   );
 }

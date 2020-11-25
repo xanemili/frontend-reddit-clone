@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, Subreddit, db
+from app.models import User, Subreddit, Subscription, db
+from sqlalchemy.exc import IntegrityError
 
 user_routes = Blueprint('users', __name__)
 
@@ -38,17 +39,25 @@ def subscriptions():
 
 
 @user_routes.route('/subscriptions', methods=['POST', 'DELETE'])
-# @login_required
+@login_required
 def toggle_subscriptions():
-    user = User.query.get(1)
+    current_user
     subreddit = Subreddit.query.get(1)
+    subscription = Subscription.query.get((current_user.id, subreddit.id))
 
-    if request.method == 'DELETE':
-        print(dir(user.subscriptions))
-        user.subscriptions.remove(subreddit)
-    user.subscriptions.append(subreddit)
-    print(user.subscriptions)
-    db.session.add(user)
-    db.session.commit()
+    try:
+        if request.method == 'DELETE':
+            db.session.delete(subscription)
+        else:
+            if subscription:
+                raise IntegrityError('Entry already exists', subscription, 'user_routes')
+            new_sub = Subscription(
+                user_id=current_user.id,
+                subreddit_id=subreddit.id
+            )
+            db.session.add(new_sub)
+        db.session.commit()
+    except IntegrityError:
+        return {"errors": "There was a problem processing your request."}
 
     return {"subscribe": "subscribed!"}

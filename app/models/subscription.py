@@ -1,7 +1,7 @@
 from .db import db
 
 
-class Subscrition(db.Model):
+class Subscription(db.Model):
     __tablename__ = 'subreddit_subscriptions'
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
