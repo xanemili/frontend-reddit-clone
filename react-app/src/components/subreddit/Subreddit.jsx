@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Post from './Post'
 import PostKarma from '../karma/PostKarma.jsx'
+import CreateContent from '../sidebar/CreateContent'
+
 
 const Subreddit = () => {
 
-  const [subreddit, setSubreddit] = useState({})
+  const [subreddit, setSubreddit] = useState({rules:""})
   const [posts, setPosts] = useState([])
   const [errors, setErrors] = useState('')
   const [postErrors, setPostErrors] = useState('')
@@ -47,7 +49,7 @@ const Subreddit = () => {
       </Link>
     );
   })
-
+  
   return (
     <div>
         <div className=''>
@@ -57,6 +59,7 @@ const Subreddit = () => {
             Follow
           </button>
         </div>
+      <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} />
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
         {console.log(errors)}

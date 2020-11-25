@@ -90,7 +90,6 @@ const SubredditForm = ({authenticated}) => {
               <div key={ruleId}> <Rule id = {ruleId} rules={rules} setRules={setRules} /></div>
             ))}
             <button type= 'button' onClick={createText}>+</button>
-            <button type= 'button' onClick={() => console.log(rules)}>+</button>
           </div>
           <div className="create__subreddit">
             <button type='submit'>Create</button>
