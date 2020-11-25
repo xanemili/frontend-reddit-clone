@@ -12,6 +12,7 @@ from .api.post import post_routes
 from .api.subreddit_routes import subreddit_routes
 from .api.post import post_routes
 from .api.s3_routes import s3_routes
+from .api.search import search_route
 
 from .seeds import seed_commands
 
@@ -38,6 +39,7 @@ app.register_blueprint(subreddit_routes, url_prefix='/api/subreddits')
 app.register_blueprint(post_routes, url_prefix='/api/posts')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(s3_routes, url_prefix='/api/s3')
+app.register_blueprint(search_route, url_prefix='/api/search')
 db.init_app(app)
 Migrate(app, db)
 
