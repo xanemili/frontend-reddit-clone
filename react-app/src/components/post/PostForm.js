@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import { createPost } from '../../services/post';
+import { createTextPost, uploadImage } from '../../services/post';
 import { getSubreddits } from '../../services/subreddit'
 
 const PostForm = ({authenticated}) => {
@@ -12,10 +12,12 @@ const PostForm = ({authenticated}) => {
   const [subreddits, setSubreddits] = useState([])
   const [subredditId, setSubredditId] = useState(0)
   const [redirect, setRedirect] = useState(false)
+  const [image, setImage] = useState({})
 
   // Calls the helper function when the component is loaded
   useEffect(() => {
     getAllSubreddits()
+    console.log("type", type)
   }, [])
 
   // Will only set the subreddit after someone as changed the selected subreddit
@@ -42,16 +44,41 @@ const PostForm = ({authenticated}) => {
     setfunc(e.target.value)
   }
 
+  const setImageType = () => {
+    setType("image")
+  }
+
+  const setTextType = () => {
+    setType("text")
+  }
+
+  const setImageHelper = (e) => {
+    console.log(e.target.files[0])
+    setImage(e.target.files[0])
+
+  }
+
   // Helper function to help handle the post submit request
-  const submitPost = async (e) => {
+  const submitTextPost = async (e) => {
     e.preventDefault();
-    const post = await createPost(subredditId, title, type, content);
+    const post = await createTextPost(subredditId, title, type, content);
     if (!post.errors) {
       setRedirect(true)
     } else {
       setErrors(post.errors)
     }
   };
+
+  const submitImagePost = async (e) => {
+    e.preventDefault();
+    const data = new FormData();
+
+    data.append("file", image)
+
+    const newImage = await uploadImage(data)
+    // console.log('image', newImage)
+    // console.log('data', data)
+  }
 
   if (!authenticated) {
     return <Redirect to='/login' />;
@@ -61,48 +88,67 @@ const PostForm = ({authenticated}) => {
       return <Redirect to={`/r/${subreddit}`} />
   }
 
+  if (type === 'image'){
+    console.log('type', type)
+    return (
+      <div>
+        <button type='button' onClick={setTextType}>Text</button>
+        <button type='button' onClick={setImageType}>Image</button>
+        <form encType='multipart/formdata' onSubmit={submitImagePost}>
+          <label htmlFor="user_file">Upload Your File</label>
+          <input type="file" name="user_file" required onChange={setImageHelper}/>
+          <button type="submit">Upload</button>
+        </form>
+      </div>
+    )
+  }
 
   return(
-    <form onSubmit={submitPost}>
-      <div>
-        {errors.map((error) => (
-          <div>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label htmlFor='title'>Title</label>
-        <input
-          name='title'
-          type='text'
-          placeholder='title'
-          value={title}
-          onChange={updateValue(setTitle)}
-          required
-        />
-      </div>
-      <div>
-      <label htmlFor='content'>Content</label>
-        <input
-          name='content'
-          type='text'
-          placeholder='content'
-          value={content}
-          onChange={updateValue(setContent)}
-          required
-        />
-      </div>
-      <div>
-      <label htmlFor='subreddits'>Subreddit</label>
-        <select name="subreddits" id="post_subreddits" onChange={updateValue(setSubredditId)} >
-            {subreddits.map((subreddit) => (
-                <option key={subreddit.id} value={subreddit.id}>{subreddit.name}</option>
-            ))}
+    <div>
+      <button type='button' onClick={setTextType}>Text</button>
+      <button type='button' onClick={setImageType}>Image</button>
+      <form onSubmit={submitTextPost}>
+        <div>
+          {errors.map((error) => (
+            <div>{error}</div>
+          ))}
+        </div>
+        <div>
+          <label htmlFor='title'>Title</label>
+          <input
+            name='title'
+            type='text'
+            placeholder='title'
+            value={title}
+            onChange={updateValue(setTitle)}
+            required
+          />
+        </div>
+        <div>
+        <label htmlFor='content'>Content</label>
+          <input
+            name='content'
+            type='text'
+            placeholder='content'
+            value={content}
+            onChange={updateValue(setContent)}
+            required
+          />
+        </div>
+        <div>
+        <label htmlFor='subreddits'>Subreddit</label>
+          <select name="subreddits" id="post_subreddits" onChange={updateValue(setSubredditId)} >
+              {subreddits.map((subreddit) => (
+                  <option key={subreddit.id} value={subreddit.id}>{subreddit.name}</option>
+              ))}
 
-        </select>
-      <button type='submit'>Create</button>
-      </div>
-    </form>
+          </select>
+        <button type='submit'>Create</button>
+        </div>
+      </form>
+    </div>
   );
+
 };
 
 export default PostForm;
