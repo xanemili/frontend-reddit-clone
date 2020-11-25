@@ -47,7 +47,7 @@ def view_subreddit(subreddit):
         return {'errors': 'Subreddit does not exist'}, 404
 
     post_list = Post.query.filter(Post.subredditId == subreddit.id).all()
-    test_post = post_list[0].to_simple_dict()
+    # test_post = post_list[0].to_simple_dict()
     print(test_post)
     return {
         "subreddit": subreddit.to_dict(),

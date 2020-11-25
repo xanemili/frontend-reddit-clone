@@ -17,8 +17,17 @@ export const createPost = async(subredditId, title, type, content) => {
   return await response.json()
 }
 
+export const uploadImage = async (data) => {
+  // console.log('dayta', data)
+  const res = await fetch('/api/s3/upload', {
+    method: 'POST',
+    body: data
+  })
+
+  return await res.json()
+}
 
 export const getPost = async(postId) => {
-const response = await fetch(`/api/posts/${postId}`)
-return await response.json()
+  const response = await fetch(`/api/posts/${postId}`)
+  return await response.json()
 }
