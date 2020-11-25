@@ -1,6 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { getPost } from '../../services/post'
+import PostKarma from '../karma/PostKarma'
 
 const Post = () => {
     // Comment creation field and displaying comments will be a seperate component
@@ -31,6 +32,9 @@ const Post = () => {
                 <div className='post_header'>
                     <span className='post_subreddit'>{`r/${subreddit.name}`}</span> <span className='post_username'>{`Posted by ${user.username}`}</span>
                 </div>
+                <div className='post_karma'>
+                    <PostKarma id={post.id}/>
+                </div>
                 <h1 className='post_title'>{post.title}</h1>
                 <div>
                     <img src={post.content} />
@@ -44,6 +48,9 @@ const Post = () => {
             {errors ? <div>{errors}</div> : ''}
             <div className='post_header'>
                 <span className='post_subreddit'>{`r/${subreddit.name}`}</span> <span className='post_username'>{`Posted by ${user.username}`}</span>
+            </div>
+            <div className='post_karma'>
+                <PostKarma id={post.id}/>
             </div>
             <h1 className='post_title'>{post.title}</h1>
             <div className='post_content'>{post.content}</div>

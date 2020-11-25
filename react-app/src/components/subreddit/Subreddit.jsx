@@ -56,7 +56,7 @@ const Subreddit = ({subscriptions}) => {
       headers: {'Content-Type': 'application/json'}
     })
     let subscribe = await response.json()
-    console.log(subscribe)
+    // console.log(subscribe)
     if (!subscribe.errors){
       setSubscribed(!subscribed)
     }
@@ -66,7 +66,7 @@ const Subreddit = ({subscriptions}) => {
     return (
       <Link key={post.id} className='landing__posts__container'>
         <PostKarma id={post.id} />
-        <Post id={post.id} title={post.title} type={post.type} content={post.content}/>
+        <Post id={post.id} username={post.user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
       </Link>
     );
   })
