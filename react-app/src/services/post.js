@@ -18,15 +18,13 @@ export const createTextPost = async(subredditId, title, type, content) => {
 }
 
 export const uploadImage = async (data) => {
-  console.log('dayta', data)
+  // console.log('dayta', data)
   const res = await fetch('/api/s3/upload', {
     method: 'POST',
-    // headers: {
-    //   'Content-Type': 'multipart/form-data'
-    // },
     body: data
   })
-  return await res
+
+  return await res.json()
 }
 
 export const getPost = async(postId) => {
