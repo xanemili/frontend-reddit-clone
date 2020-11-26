@@ -4,11 +4,8 @@ import UserSidebar from './sidebar/UserSidebar'
 import Post from './subreddit/Post'
 import PostKarma from './karma/PostKarma.jsx'
 
-// Use createContent sidebar instead of Sidebar component to load the sidebar
-
 function User() {
   const [user, setUser] = useState({});
-  const [subreddits, setSubreddits] = useState([])
   const [posts, setPosts] = useState([])
   const [karma, setKarma] = useState(0)
   const [display, setDisplay] = useState('')
@@ -22,11 +19,12 @@ function User() {
     }
     (async () => {
       const response = await fetch(`/api/users/${userId}`);
-      const user = await response.json();
+      const userResponse = await response.json();
       // console.log(user)
-      setUser(user);
-      setSubreddits(user.subreddits)
-      setPosts(user.posts)
+      setUser(userResponse);
+      const postResponse = await fetch(`/api/posts/user/${userId}`)
+      const postRes = await postResponse.json()
+      setPosts(postRes.posts);
     })();
   }, [userId]);
 
@@ -52,10 +50,10 @@ function User() {
     setDisplay('comments')
   }
 
-  const goToPost = (subreddit, postId) => {
-    console.log('working')
-    return <Redirect to={`/r/${subreddit}/post/${postId}`}/>
-  }
+  // const goToPost = (subreddit, postId) => {
+  //   console.log('working')
+  //   return <Redirect to={`/r/${subreddit}/post/${postId}`}/>
+  // }
 
 
   if (!user) {
@@ -63,10 +61,11 @@ function User() {
   }
 
   const postComponents = posts.map((post) => {
-    // console.log('post', post)
+    console.log('post', post)
 
     return (
       <Link to={`/r/${post.subreddit.name}/post/${post.id}`} key={post.id} className='landing__posts__container'>
+      {/* <Link key={post.id} className='landing__posts__container'> */}
         <PostKarma id={post.id} />
         <Post id={post.id} username={user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
       </Link>

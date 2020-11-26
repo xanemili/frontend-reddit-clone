@@ -56,6 +56,18 @@ def subreddit_posts(subreddit):
         return {"errors": "There are no posts in this subreddit"}, 404
     return {"posts": [post.to_joined_dict() for post in posts]}
 
+@post_routes.route("/user/<string:userId>", methods=["GET"])
+def user_posts(userId):
+    """
+    Returns every post that belongs to a User
+    """
+    # print(subreddit)
+    posts = Post.query.filter(Post.userId == userId).join(Subreddit).join(User).all()
+    # print(posts)
+    if len(posts) == 0:
+        return {"errors": "There are no posts in this subreddit"}, 404
+    return {"posts": [post.to_joined_dict() for post in posts]}
+
 
 @post_routes.route("/<int:postId>/karma", methods=['GET', 'POST'])
 # @login_required
