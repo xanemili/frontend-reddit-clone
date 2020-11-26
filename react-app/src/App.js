@@ -42,7 +42,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} />
+      <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions} />
       <Route path="/login" exact={true}>
         <LoginForm
           authenticated={authenticated}
@@ -56,7 +56,7 @@ function App() {
         <PostDisplay authenticated={authenticated}/>
       </Route>
       <Route exact={true} path="/r/:subredditName">
-        <Subreddit authenticated={authenticated}/>
+        <Subreddit authenticated={authenticated} subscriptions={subscriptions}/>
       </Route>
       <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
         <UsersList/>

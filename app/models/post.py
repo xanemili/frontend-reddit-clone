@@ -12,11 +12,11 @@ class Post(db.Model):
     created_on = db.Column(db.DateTime, server_default=db.func.now())
     updated_on = db.Column(db.DateTime, server_default=db.func.now(),
                            server_onupdate=db.func.now())
-
     userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     subredditId = db.Column(db.Integer,
                             db.ForeignKey('subreddits.id'), nullable=False)
 
+    comments = db.relationship('Comment', back_populates='posts')
     users = db.relationship('User', back_populates='posts')
     subreddits = db.relationship('Subreddit', back_populates='posts')
 

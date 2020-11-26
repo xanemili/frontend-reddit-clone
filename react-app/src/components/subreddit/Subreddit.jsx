@@ -101,8 +101,6 @@ const Subreddit = ({ subscriptions }) => {
     };
 
     fetchData();
-    console.log(subscriptions, subredditName)
-    console.log(subscriptions.indexOf(subredditName))
     if (subscriptions.indexOf(subredditName) !== -1) {
       setSubscribed(true);
     }

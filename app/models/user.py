@@ -20,6 +20,7 @@ class User(db.Model, UserMixin):
         secondary='subreddit_subscriptions',
         # cascade='all, delete'
         )
+    comments = db.relationship('Comment', back_populates='user')    
 
     @property
     def password(self):
