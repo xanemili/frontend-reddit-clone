@@ -4,7 +4,7 @@ import LogoutButton from './auth/LogoutButton';
 import searchFetch from '../services/search'
 
 
-const NavBar = ({ authenticated, setAuthenticated, subscriptions }) => {
+const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }) => {
   const [search, setSearch] = useState('')
 
   const updateValue= async (e) => {
@@ -63,10 +63,10 @@ const NavBar = ({ authenticated, setAuthenticated, subscriptions }) => {
         <div className="user-header">
           {authenticated ? (
             <span>
-              Hello{'insert user'}
-              <NavLink to="/users" exact={true} activeClassName="active">
-                Users
-                </NavLink>
+              Hello {username}
+              <NavLink to={`/users/${id}`} exact={true} activeClassName="active">
+                My Profile
+              </NavLink>
             </span>
           ) : (
               <span>

@@ -21,15 +21,17 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [subscriptions, setSubscriptions] = useState([])
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     (async() => {
       const user = await authenticate();
+      console.log("user",user);
       if (!user.errors) {
         setAuthenticated(true);
+        setUser(user)
         setSubscriptions(user.subscriptions)
       }
-      console.log(user)
       setLoaded(true);
     })();
   }, []);
@@ -40,8 +42,9 @@ function App() {
 
   return (
     <BrowserRouter>
+    
     <Layout>
-        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions}/>
+        <NavBar {...user} setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions}/>
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
@@ -71,7 +74,7 @@ function App() {
         </ProtectedRoute>
         <Route path="/" exact={true} authenticated={authenticated}>
           <h1>My Home Page</h1>
-          <Sidebar />
+          <Sidebar {...user} />
         </Route>
        </Layout>
     </BrowserRouter>

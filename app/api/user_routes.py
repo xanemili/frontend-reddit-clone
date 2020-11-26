@@ -42,7 +42,7 @@ def subscriptions():
 @login_required
 def toggle_subscriptions():
     current_user
-    subreddit = Subreddit.query.get(1)
+    subreddit = Subreddit.query.get(36)
     subscription = Subscription.query.get((current_user.id, subreddit.id))
 
     try:

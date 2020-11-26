@@ -624,16 +624,18 @@ TODO Fix the top menu alignments etc
 }
 .subreddit__form__input{
   margin: 10px;
-
 }
 
 .home-sidebar__container{
+  margin-top: 0%;
   border: 1px solid black;
+  width: 20%;
+  float: right;
+  margin-right: 5%;
 }
 .home-sidebar__followed{
-  margin-top: 0px;
-  background-color: #4f86b5;
   text-align: center;
+  background-color: #4f86b5;
   border-bottom: 1px solid rgba(137, 137, 137, 1);
 }
 

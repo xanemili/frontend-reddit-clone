@@ -7,7 +7,10 @@ from flask_login import current_user, login_required
 from .auth_routes import validation_errors_to_error_messages
 from datetime import datetime
 
+
 subreddit_routes = Blueprint('subreddits', __name__)
+
+
 
 
 @subreddit_routes.route('/create', methods=['POST'])
@@ -61,3 +64,12 @@ def all_subreddit():
     subreddits = Subreddit.query.all()
     subreddit_list = [subreddit.to_dict() for subreddit in subreddits]
     return {"subreddits": subreddit_list}
+
+@subreddit_routes.route('/sidebar/<string:user>', methods=['GET'])
+def sidebar_info(user):
+    """
+    Gets top subreddits for user on sidebar
+    """
+    top_subreddits = db.session.query(Subreddit, db.func.count(Subreddit.subscribers).label("number_of_subs")).join(Subreddit.subscribers).group_by(Subreddit.id).order_by(db.desc("number_of_subs")).limit(5).all()
+    top_list = [subreddit.to_dict() for (subreddit, rank) in top_subreddits]
+    return {'top_subreddits': top_list}

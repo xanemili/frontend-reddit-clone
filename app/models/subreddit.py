@@ -1,6 +1,6 @@
 from .db import db
 from datetime import datetime
-
+from .subscription import Subscription
 
 class Subreddit(db.Model):
     __tablename__ = 'subreddits'
@@ -18,7 +18,9 @@ class Subreddit(db.Model):
     posts = db.relationship("Post", back_populates='subreddits')
     subscribers = db.relationship(
         'User', back_populates='subscriptions',
-        secondary='subreddit_subscriptions', cascade='all')
+        secondary="subreddit_subscriptions", cascade='all')
+      
+
 
     def to_dict(self):
         return {
