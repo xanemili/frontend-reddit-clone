@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 
-const CreateContent = ({ name, about, created, rules }) => {
+const CreateContent = ({ name, about, created, rules, subCount }) => {
   
   let ruleList = rules.split('#')
   
@@ -13,7 +13,7 @@ const CreateContent = ({ name, about, created, rules }) => {
         <h3 className= "about__title">{name}</h3>
         <h4 className= 'about__header'>About</h4>
         <div className="about__description">{about}</div>
-        <div className="about__users">Members</div>
+  <div className="about__users">Members: {subCount}</div>
         <div className="about__date"> Created: {created}</div>
       </div>
       <div className='rules__container'>

@@ -42,9 +42,12 @@ const Sidebar= ({ username }) => {
           <ul>
           {topSubs.map((sub) => {
             return(
-              <NavLink key = {sub.id} className="sidebar__top-subreddits" style={{ width: 'fit-content', textDecoration: 'none' }} to={`/r/${sub.name}`} exact={true}>
-                <li>/r/{sub.name}</li>
-              </NavLink> 
+              <>
+                <NavLink key = {sub.id} className="sidebar__top-subreddits" style={{ width: 'fit-content', textDecoration: 'none' }} to={`/r/${sub.name}`} exact={true}>
+                  <li>/r/{sub.name}</li>
+                </NavLink> 
+                <div>Members: {sub.subscribers}</div>
+              </>
             )
             })}
           </ul>
