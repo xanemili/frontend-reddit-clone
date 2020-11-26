@@ -1,7 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
 
-
 const CreateContent = ({ name, about, created, rules, subCount }) => {
 
   let ruleList = rules.split('#')
