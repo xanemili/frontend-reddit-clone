@@ -55,10 +55,10 @@ function User() {
     setDisplay('comments')
   }
 
-  const goToPost = (subreddit, postId) => {
-    console.log('working')
-    return <Redirect to={`/r/${subreddit}/post/${postId}`}/>
-  }
+  // const goToPost = (subreddit, postId) => {
+  //   console.log('working')
+  //   return <Redirect to={`/r/${subreddit}/post/${postId}`}/>
+  // }
 
 
   if (!user) {
