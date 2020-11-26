@@ -9,7 +9,7 @@ const PostDisplay = ({authenticated}) => {
         <>
             <PostNavBar />
             <div className='post_content_container'>
-                <Post  authenticated={authenticated}/>
+                <Post authenticated={authenticated}/>
             </div>
         </>
     )
