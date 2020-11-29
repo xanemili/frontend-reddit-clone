@@ -32,25 +32,32 @@ def user(id):
 
 
 @user_routes.route('/subscriptions', methods=['GET'])
-# @login_required
+@login_required
 def subscriptions():
-    subscriptions = User.query.get(1).subscriptions
+    subscriptions = User.query.get(current_user.id).subscriptions
     return {"subscriptions": subscriptions}
 
 
 @user_routes.route('/subscriptions', methods=['POST', 'DELETE'])
 @login_required
 def toggle_subscriptions():
-    current_user
-    subreddit = Subreddit.query.get(36)
+    print(request.is_json)
+    req_data = request.get_json()
+    print(req_data)
+    subreddit_name = req_data['subreddit']
+
+    subreddit = Subreddit.query.filter(Subreddit.name == subreddit_name).first()
     subscription = Subscription.query.get((current_user.id, subreddit.id))
 
+    new_type = 'ADD'
     try:
         if request.method == 'DELETE':
             db.session.delete(subscription)
+            new_type = 'REMOVE'
         else:
             if subscription:
-                raise IntegrityError('Entry already exists', subscription, 'user_routes')
+                raise IntegrityError('Entry already exists',
+                                     subscription, 'user_routes')
             new_sub = Subscription(
                 user_id=current_user.id,
                 subreddit_id=subreddit.id
@@ -60,4 +67,4 @@ def toggle_subscriptions():
     except IntegrityError:
         return {"errors": "There was a problem processing your request."}
 
-    return {"subscribe": "subscribed!"}
+    return {"subscription": subreddit_name, "type": new_type}
