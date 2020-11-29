@@ -6,6 +6,7 @@ import searchFetch from '../services/search'
 
 const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }) => {
   const [search, setSearch] = useState('')
+  const [menuToggle, setMenuToggle] = useState(false)
 
   const updateValue= async (e) => {
     await setSearch(e.target.value)
@@ -20,16 +21,27 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
     }
   }
 
+  const showMenu = () => {
+    setMenuToggle(!menuToggle)
+  }
+
   const selectOptions = (subs) => {
-    console.log(subs)
     return (
-      <select>
-      {subs.map( sub => (
-          <option>
-          {sub}
-          </option>
-      ))}
-    </select>
+      <div className='dropdown__subreddit'>
+        <button className='dropdown__button' onClick={showMenu}>
+          Subscriptions
+        </button>
+        {console.log(subscriptions)}
+      {menuToggle && subscriptions ? <div className={`dropdown__subreddit__content`}>
+        {subs.map( (sub, idx) => (
+          <div key={idx}>
+            <NavLink to={`/r/${sub}`}>
+              {sub}
+            </NavLink>
+          </div>
+        ))}
+      </div> : ''}
+    </div>
     )
   }
 

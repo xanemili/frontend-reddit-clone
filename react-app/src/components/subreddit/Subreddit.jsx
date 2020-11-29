@@ -6,17 +6,13 @@ import CreateContent from '../sidebar/CreateContent'
 
 // Utility function to convert comment list into nested form
 
-
-const Subreddit = ({ subscriptions }) => {
+const Subreddit = ({subscriptions, setSubscriptions}) => {
 
   const [subreddit, setSubreddit] = useState({ rules: "" })
   const [posts, setPosts] = useState([])
   const [errors, setErrors] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const [postErrors, setPostErrors] = useState('')
-
-
-
   const [postList, setPostList] = useState({})
   const { subredditName } = useParams();
   const [loading, setloading] = useState(true)
@@ -40,7 +36,7 @@ const Subreddit = ({ subscriptions }) => {
     };
 
     fetchData();
-    if (subscriptions.indexOf(subredditName) !== -1) {
+    if (subscriptions.indexOf(subredditName) !== -1){
       setSubscribed(true);
     }
 
@@ -56,13 +52,16 @@ const Subreddit = ({ subscriptions }) => {
       method = 'DELETE'
     }
     let response = await fetch(`/api/users/subscriptions`, {
-      method,
-      headers: { 'Content-Type': 'application/json' }
+      method: method,
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        subreddit: subredditName
+      })
     })
     let subscribe = await response.json()
-    // console.log(subscribe)
     if (!subscribe.errors){
       setSubscribed(!subscribed)
+      setSubscriptions({type: subscribe.type, name: subscribe.name, subscriptions: subscribe.subscription})
     }
   }
 
@@ -90,7 +89,6 @@ const Subreddit = ({ subscriptions }) => {
       <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} subCount={subreddit.subscribers} />
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
-        {console.log(errors)}
         <ul>{postComponents}</ul>
       </div>
       </>

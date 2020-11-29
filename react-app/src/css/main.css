@@ -351,7 +351,7 @@ TODO Fix the top menu alignments etc
 
 .author-link {
  color: #0055df;
- font-weight: bold; 
+ font-weight: bold;
 }
 
 
@@ -722,8 +722,48 @@ TODO Fix the top menu alignments etc
   margin-right: 20px;
 }
 
-.sidebar__top-subreddits{
-  margin-top: 50px;
+.dropdown__subreddit {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+
+.dropdown__subreddit__content {
+  position: absolute;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  z-index: 1;
+  background-color: lightcoral;
+  padding: 3px;
+  width: inherit;
+}
+
+.show {
+  display: block
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  background-color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown__button {
+    background-color: black;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: inherit;
+}
+
+.dropdown__button:hover .dropdown__button:focus {
+  background-color: khaki;
 }
 
 @media only screen and (max-width: 800px) {
