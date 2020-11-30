@@ -6,7 +6,7 @@ import loadingGif from '../img/loading.gif'
 import Sidebar from './sidebar/Sidebar'
 
 
-const LandingPage = (user) => {
+const LandingPage = ({ user }) => {
 
   const [posts, setPosts] = useState([])
   const [errors, setErrors] = useState('')

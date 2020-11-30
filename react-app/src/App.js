@@ -28,7 +28,6 @@ function App() {
   useEffect(() => {
     (async() => {
       const user = await authenticate();
-      console.log("user",user);
       setUser(user)
       if (!user.errors) {
         setAuthenticated(true);
@@ -45,7 +44,7 @@ function App() {
   return (
     <BrowserRouter>
     <Layout>
-        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions} setSubscriptions={setSubscriptions} username={user.username}/>
+        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions} setSubscriptions={setSubscriptions} username={user.username} id={user.id}/>
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}
@@ -65,7 +64,7 @@ function App() {
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true} authenticated={authenticated}>
-          <User />
+          <User {...user} />
         </ProtectedRoute>
         <ProtectedRoute path="/subreddits/create" exact={true} authenticated={authenticated}>
           <SubredditForm authenticated={authenticated}/>
@@ -75,7 +74,6 @@ function App() {
         </ProtectedRoute>
         <Route path="/" exact={true} authenticated={authenticated}>
           <LandingPage user = {user} />
-          {/* <Sidebar  /> */}
         </Route>
        </Layout>
     </BrowserRouter>

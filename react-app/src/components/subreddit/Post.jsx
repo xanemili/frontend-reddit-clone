@@ -6,9 +6,14 @@ const Post = ({title, type, content, username, subreddit, created_on }) => {
   if (type === 'image'){
     return(
       <div>
-        <h1>{title}</h1>
-        <img src={content}/>
-
+        <h3 className="post-title">{title}</h3>
+        <img className="post-img" src={content}/>
+        <div>
+          r/{subreddit} u/{username}  created on {created_on}
+        </div>
+        <div className='meta-area'>
+            Comments
+        </div>
       </div>
     )
   }
