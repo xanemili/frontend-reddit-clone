@@ -3,18 +3,13 @@ function reducer(state, action) {
     let comments = [...state]
     if (type === "SUBMIT_COMMENT") {
         comments.push(item);
-        return {
-            comments
-        }
+        return comments    
     }
 
     if (type === "REPLY_COMMENT") {
         // item = {commentObj, parentid}
         let comments = [...state];
-        return {
-            comments
-        }
-
+        return comments
     }
 
     if (type === "GET_COMMENT") {

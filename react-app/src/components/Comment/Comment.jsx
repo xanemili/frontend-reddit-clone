@@ -2,28 +2,8 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import moment from 'moment'
 import {connect} from 'react-redux';
-import { useEffect } from 'react';
 
 
-function nestComments(commentList) {
-    const commentMap = {};
-
-    // move all the comments into a map of id => comment
-    commentList.forEach(comment => commentMap[comment.id] = comment);
-
-    // iterate over the comments again and correctly nest the children
-    commentList.forEach(comment => {
-        if (comment.parentId !== null) {
-            const parent = commentMap[comment.parentId];
-            (parent.children = parent.children || []).push(comment);
-        }
-    });
-
-    // filter the list to return a list of correctly nested comments
-    return commentList.filter(comment => {
-        return comment.parentId === null;
-    });
-}
 
 function Comment({ comment, userid }) {
     const [showChildren, setShowChildren] = useState(true);

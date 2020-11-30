@@ -1,47 +1,43 @@
-import React from 'react';
+import React , {useState} from 'react';
 import { connect } from 'react-redux'
 
 const CommentForm = (props) => {
-
-    function sendToDatabase(comment, postid) {
-
-    }
+    const [content, setContent] = useState('')
     function handleSubmit(event, props) {
         event.preventDefault();
 
         let comment = {
             id: new Date(),
-            postid: "1",
-            userid: "user1",
+            postId: 92,
             content: event.target.body.value,
-            createdAt: new Date(),
-            updatedAt: new Date(),
         }
+        // fetch POST api goes here
+        fetch('/api/comments/new', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(comment)
+        })
+        .then(res => res.json())
+        .then(res => {
+            console.log(res)
+            if (!res.errors) {
+                props.dispatch({ type: 'SUBMIT_COMMENT', item: res })
+                // Do some app logic
+            }
+        })
+        // .catch(err =>  /*handle error event*/)
 
-
-
-        props.dispatch({ type: 'SUBMIT_COMMENT', item: comment })
-
-        // // fetch POST api goes here
-        // fetch('/api/comment/new', {
-        //     method: "POST",
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: JSON.stringify(comment)
-        // })
-        //     .then(res => res.json())
-        //     .then(res => {
-        //         if (res.success) {
-        //             // Do some app logic
-        //         }
-        //     })
-        //     .catch(err =>  /*handle error event*/)
+    }
+    
+    const updateContent = (event) => {
+        setContent(event.target.value)
     }
 
     return (<div className="comment-form">
         <form onSubmit={(event) => handleSubmit(event, props)}>
-            <textarea name="body" rows="5"></textarea>
+            <textarea onChange={updateContent} name="body" rows="5" value={content}></textarea>
             <button>save</button>
         </form>
 
@@ -49,4 +45,4 @@ const CommentForm = (props) => {
     )
 }
 
-export default connect()(CommentForm) 
+export default CommentForm

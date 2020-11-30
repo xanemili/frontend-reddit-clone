@@ -11,6 +11,7 @@ import reducer from '../../services/commentReducer'
 
 
 function nestComments(commentList) {
+    console.log("commentlist:", commentList)
     const commentMap = {};
 
     // move all the comments into a map of id => comment
@@ -30,7 +31,7 @@ function nestComments(commentList) {
     });
 }
 
-const CommentContainer = () => {
+const CommentContainer = ({postId}) => {
     const [loading, setLoading] = useState(true)
     const [comments, dispatch] = useReducer(reducer, [])
     
@@ -77,7 +78,7 @@ const CommentContainer = () => {
                 <hr />
             </div >
             {console.log(comments)}
-            <CommentForm />
+            <CommentForm dispatch={dispatch} postId={postId}/>
             { nestComments(comments).map(comment => <Comment comment={comment} />)}
         </>}
         </div>
