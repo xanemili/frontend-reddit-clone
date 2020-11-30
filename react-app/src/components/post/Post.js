@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getPost } from '../../services/post'
 import PostKarma from '../karma/PostKarma'
 import CommentContainer from '../Comment/CommentContainer'
+import CreateContent from '../sidebar/CreateContent'
 
 const Post = () => {
     // Comment creation field and displaying comments will be a seperate component
@@ -28,34 +29,39 @@ const Post = () => {
 
     if(post.type === 'image'){
         return(
-            <div>
-                {errors ? <div>{errors}</div> : ''}
-                <div className='post_header'>
-                    <span className='post_subreddit'>{`r/${subreddit.name}`}</span> <span className='post_username'>{`Posted by ${user.username}`}</span>
-                </div>
-                <div className='post_karma'>
+            <div className="post_display">
+                <div className='post_karma_container'>
                     <PostKarma id={post.id}/>
                 </div>
-                <h1 className='post_title'>{post.title}</h1>
-                <div>
-                    <img src={post.content} />
+                <div className="post_info_display">
+                    {errors ? <div>{errors}</div> : ''}
+                    <div className='post_header'>
+                        <a href={`/r/${subreddit.name}`}>{`r/${subreddit.name}`}</a> <span>Posted by</span> <a href={`/users/${user.id}`}>{`${user.username}`}</a>
+                    </div>
+                    <h1 className='post_title'>{post.title}</h1>
+                    <div>
+                        <img className='image_display' src={post.content} />
+                    </div>
+                    <div><CommentContainer postId={postId}/></div>
                 </div>
             </div>
         )
     }
 
     return (
-        <div>
-            {errors ? <div>{errors}</div> : ''}
-            <div className='post_header'>
-                <span className='post_subreddit'>{`r/${subreddit.name}`}</span> <span className='post_username'>{`Posted by ${user.username}`}</span>
-            </div>
-            <div className='post_karma'>
+        <div className="post_display">
+            <div className='post_karma_container'>
                 <PostKarma id={postId}/>
             </div>
-            <h1 className='post_title'>{post.title}</h1>
-            <div className='post_content'>{post.content}</div>
-            <div><CommentContainer postId={postId}/></div>
+            <div className="post_info_display">
+                {errors ? <div>{errors}</div> : ''}
+                <div className='post_header'>
+                    <a href={`/r/${subreddit.name}`}>{`r/${subreddit.name}`}</a> <span>Posted by</span> <a href={`/users/${user.id}`}>{`${user.username}`}</a>
+                </div>
+                <h1 className='post_title'>{post.title}</h1>
+                <div className='post_content'>{post.content}</div>
+                <div><CommentContainer postId={postId}/></div>
+            </div>
         </div>
     )
 
