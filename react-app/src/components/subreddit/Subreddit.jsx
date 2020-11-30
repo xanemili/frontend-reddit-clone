@@ -81,20 +81,19 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
     <div> {loading ? <img src={loadingGif} alt="loading"/> :
       <>
         <div className='content__subheader'>
-          <div>
+          <div className="subreddit-title">
             <h3 id={'subreddit__name'}>{subreddit.name}</h3>
-            <div>
-              <div>/r/{subreddit.name}</div>
-              <button className='button-primary' onClick={toggleSubscription}>
-                {subscribed ? 'Unsubscribe' : 'Subscribe'}
-              </button>
-            </div>
+          </div>
+          <div className="subscribe-btn">
+            <button className='button-primary' onClick={toggleSubscription}>
+              {subscribed ? 'Unsubscribe' : 'Subscribe'}
+            </button>
           </div>
         </div>
-      <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} subCount={subreddit.subscribers} />
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
         <ul>{postComponents}</ul>
+        <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} subCount={subreddit.subscribers} />
       </div>
       </>
     }

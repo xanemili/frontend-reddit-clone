@@ -60,10 +60,10 @@ a {
 }
 
 .content__subheader {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   position: relative;
   background-color: lightgrey;
-  /* height: 70px; */
   overflow-wrap: normal;
   padding-bottom: 4px;
   border-radius: 1px;
@@ -76,6 +76,19 @@ a {
 TODO Fix the top menu alignments etc
 */
 
+.subreddit-title{
+  
+  width: fit-content;
+  grid-column-start: 2;
+}
+
+.subscribe-btn{
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  grid-row-start: 1;
+  grid-column-start: 3;
+}
 
 
 #subreddit__name {
