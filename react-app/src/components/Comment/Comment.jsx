@@ -1,48 +1,126 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import moment from 'moment'
-import TimeAgo from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en'
-import CommentBox from './CommentBox'
-//will refactor css to appropriate file later
+import {connect} from 'react-redux';
+import { useEffect } from 'react';
 
 
-function Comment({comment, userid}) {
+function nestComments(commentList) {
+    const commentMap = {};
+
+    // move all the comments into a map of id => comment
+    commentList.forEach(comment => commentMap[comment.id] = comment);
+
+    // iterate over the comments again and correctly nest the children
+    commentList.forEach(comment => {
+        if (comment.parentId !== null) {
+            const parent = commentMap[comment.parentId];
+            (parent.children = parent.children || []).push(comment);
+        }
+    });
+
+    // filter the list to return a list of correctly nested comments
+    return commentList.filter(comment => {
+        return comment.parentId === null;
+    });
+}
+
+function Comment({ comment, userid }) {
     const [showChildren, setShowChildren] = useState(true);
-// this causes the data to check if there are more "children" comments under
-// the current comment. If there are then is recursively renders more of this
-// same component below the one we originally called and if not renders nothing
+    const [showCommentBox, setCommentBox] = useState(false);
+    const [replies, addNewReply] = useState([])
+
+
+
+
+    // this causes the data to check if there are more "children" comments under
+    // the current comment. If there are then is recursively renders more of this
+    // same component below the one we originally called and if not renders nothing
     const nestedComments = (comment.children || []).map(comment => {
-        return <Comment key={comment.id} userid ={userid} comment={comment} type="child"/>
+        return <Comment key={comment.id} userid={comment.userid} comment={comment} type="child" />
     })
+
+    function formHandle(event) {
+        event.preventDefault()
+        const comment = {
+            id: "1",
+            postid: "1", // Get it from the post
+            userid: "user1", // Logged in user
+            content: event.target.comment.value,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        }
+
+        // Send the comment to the API
+
+        // Put the comment into the local state
+        const allReplies = [...replies];
+        allReplies.push(comment);
+        addNewReply(allReplies);
+        console.log("Posting the comment", comment)
+
+    }
+
     return (
         <>
-        <div style={{ "marginLeft": "45px", marginBottom: '10px' }}>
-            <div style ={{display:'inline', fontWeight:'bold', fontSize:'large'}}
-                onClick={() => setShowChildren(!setShowChildren)}>{showChildren ? '-' : '+'}
-                <img src={`https://robohash.org/${comment.userid}.png`} style={{ width: '30px', marginRight: '4px', verticalAlign: 'middle' }} title='' alt=''></img>
-                 <span style={{fontWeight:'bold'}}>
-                    {comment.userid} •
-                 </span>
-                <span style={{ fontSize: '10pt' }}>{moment(new Date(comment.createdAt)).format("MM-DD-YY hh:mm a")}</span>
-              
+            <div style={{ "marginLeft": "45px", marginBottom: '10px' }}>
+                <div className="votes">
+                    <div
+                        className={`arrow up`}
+                    />
+                    <div
+                        className={`arrow down`}
+                    />
+                    </div>
+
+
+                    <div className="comment-author">
+                        <span onClick={() => setShowChildren(!setShowChildren)}>
+                        [{showChildren ? '-' : '+'}]
+                        </span>{' '}
+                    <span className="author-link">{comment.userid}</span> 1 points, posted {moment(comment.createdAt).fromNow()}
+                    </div>
+                {/* this left border is the line that connects the comments on the same level in the thread */}
+                {showChildren &&
+                    <div style={{ "marginTop": "2px", borderLeft: '1px solid #efefef', marginLeft: '4px', position: 'relative' }}>
+                        {/* this next line is the invisible div next to the left border that will collapse the comment thread when clicked */}
+                        <div style={{ width: '15px', float: 'left', position: 'absolute', top: '0', bottom: '0' }} onClick={() => { setShowChildren(!showChildren) }} />
+                        {/* outputs the comment text in the HTML format in which it was saved. this is the main comment */}
+                        <div className="commentDiv comment" dangerouslySetInnerHTML={{ __html: comment.content }} />
+                        <div className="link-area">
+                        <a class="fake-link" onClick={() => setCommentBox(true)}>reply</a>
+                        </div>
+                        {
+                            replies.map(comment => <div class="comment">{comment.content}</div>)
+                        }
+
+                        {
+                            showCommentBox ?
+                                <div className="comment-form" style={{marginLeft: "25px"}}>
+                                    <form onSubmit={(event) => formHandle(event)} >
+                                        <textarea name="comment" rows="5"></textarea>
+                                        <button class="fake-button" type="submit" style={{marginRight: "15px"}}>Save</button>
+                                        {
+                            showCommentBox ?
+                                <button class="fake-button" onClick={() => setCommentBox(false)}>Cancel</button>
+                                : null
+                        }
+                                    </form></div> : null
+                        }
+                        
+                        {/* display any nested comments */}
+                        {nestedComments}
+
+                    </div>
+                }
             </div>
-            {/* this left border is the line that connects the comments on the same level in the thread */}
-            {showChildren &&
-                <div style={{ "marginTop": "2px", borderLeft: '2px solid #cadbce', marginLeft: '4px', position: 'relative' }}>
-                    {/* this next line is the invisible div next to the left border that will collapse the comment thread when clicked */}
-                    <div style={{ width: '15px', float: 'left', position: 'absolute', top: '0', bottom: '0' }} onClick={() => { setShowChildren(!showChildren) }} />
-                    {/* outputs the comment text in the HTML format in which it was saved. this is the main comment */}
-                    <div className="commentDiv" dangerouslySetInnerHTML={{ __html: comment.content }} />
-                    {/* display any nested comments */}
-                    {nestedComments}
-                </div>
-            }
-        </div>
         </>
     )
 }
 
+function mapStateToProps(state) {
+    return {comments: state.comments};
+  }
+  
 
-
-export default Comment
+export default connect(mapStateToProps)(Comment);

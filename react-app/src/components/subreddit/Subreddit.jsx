@@ -3,9 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import Post from './Post'
 import PostKarma from '../karma/PostKarma.jsx'
 import CreateContent from '../sidebar/CreateContent'
-import Comment from '../Comment/Comment'
-import CommentBox from '../Comment/CommentBox';
-import CommentForm from '../Comment/CommentForm'
+
+// Utility function to convert comment list into nested form
+
 
 const Subreddit = ({ subscriptions }) => {
 
@@ -15,68 +15,7 @@ const Subreddit = ({ subscriptions }) => {
   const [subscribed, setSubscribed] = useState(false)
   const [postErrors, setPostErrors] = useState('')
 
-  // this is a fake API for testing purposes//
-  const comments = [
-    {
-      id: "1",
-      postid: "1",
-      userid: "user1",
-      content: "this is user1",
-      createdAt: "2017-05-25 17:39:49.554808-05",
-      updatedAt: "2017-05-25 17:39:49.554808-05",
-      children: [
-        {
-          id: "2",
-          postid: "1",
-          userid: "user2",
-          content: "user2 responding to user1's comment",
-          createdAt: "2020-11-23 12:59:55",
-          updatedAt: "2020-11-23 12:59:55",
-          children: [
-            {
-              id: "3",
-              postid: "1",
-              userid: "user1",
-              content: "user1 responding to user2's nested comment",
-              createdAt: "2020-11-23 13:59:55",
-              updatedAt: "2020-11-23 13:59:55",
-              children: []
-            }
-          ]
-        }
-      ]
-    },
-    {
-      id: "4",
-      postid: "1",
-      userid: "user1",
-      content: "this is user1",
-      createdAt: "2020-11-23 11:59:55",
-      updatedAt: "2020-11-23 11:59:55",
-      children: [
-        {
-          id: "5",
-          postid: "1",
-          userid: "user2",
-          content: "user2 responding to user1's comment",
-          createdAt: "2020-11-23 12:59:55",
-          updatedAt: "2020-11-23 12:59:55",
-          children: [
-            {
-              id: "6",
-              postid: "1",
-              userid: "user1",
-              content: "user1 responding to user2's nested comment",
-              createdAt: "2020-11-23 13:59:55",
-              updatedAt: "2020-11-23 13:59:55",
-              children: []
-            }
-          ]
-        }
-      ]
-    },
-  ]
-  // ^^^this is a fake API for testing purposes^^^//
+
 
   const [postList, setPostList] = useState({})
   const { subredditName } = useParams();
@@ -135,6 +74,9 @@ const Subreddit = ({ subscriptions }) => {
       </Link>
     );
   })
+
+
+
   return (
     <div> {loading ? <div>loading</div> :
       <>
@@ -151,13 +93,12 @@ const Subreddit = ({ subscriptions }) => {
           {console.log(errors)}
           <ul>{postComponents}</ul>
         </div>
-        {/* <Post /> */}
-        <CommentForm />
-        {comments.map(comment => <Comment comment={comment} />)}
+       
       </>
     }
     </div>
   )
 }
+
 
 export default Subreddit;

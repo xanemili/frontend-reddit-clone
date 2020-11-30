@@ -1,7 +1,7 @@
 """create comments table
 
 Revision ID: 430c86acbfd6
-Revises: 3b09472836fd
+Revises: c2d4d51ead03
 Create Date: 2020-11-25 18:50:23.489092
 
 """
@@ -11,7 +11,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision = '430c86acbfd6'
-down_revision = '3b09472836fd'
+down_revision = 'c2d4d51ead03'
 branch_labels = None
 depends_on = None
 

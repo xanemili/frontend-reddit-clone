@@ -201,6 +201,10 @@ TODO Fix the top menu alignments etc
   text-align: center;
   color: #cccccc;
   line-height: 1.2rem;
+  float: left;
+  margin-left: 5px;
+  margin-right: 10px;
+  height: 50px;
 }
 
 .upvote, .votecount, .downvote {}
@@ -300,6 +304,7 @@ TODO Fix the top menu alignments etc
 .url, .meta-area, .link-area {
   font-size: small;
   color: #888888;
+  margin: 5px;
 }
 
 .meta-area a {
@@ -344,9 +349,14 @@ TODO Fix the top menu alignments etc
   text-decoration: none;
 }
 
+.author-link {
+ color: #0055df;
+ font-weight: bold; 
+}
+
+
 .comment-author a {
   text-decoration: none;
-  color: gray;
   border-bottom: 1px dotted gray;
 }
 
