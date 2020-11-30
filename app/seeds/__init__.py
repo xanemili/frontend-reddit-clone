@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .subreddit import seed_subreddits, undo_subreddits
 from .posts import seed_posts, undo_posts
 from .comments import seed_comments, undo_comments
+from .subscribers import seed_subscriptions, undo_subscriptions
 # Creates a seed group to hold our commands
 # So we can type `flask seed --help`
 seed_commands = AppGroup('seed')
@@ -18,6 +19,7 @@ def seed():
     subreddits = seed_subreddits(users)
     posts = seed_posts(users, subreddits)
     seed_comments(users, posts)
+    subscriptions = seed_subscriptions(users, subreddits)
     # Add other seed functions here
 
 
@@ -31,5 +33,5 @@ def undo():
     undo_posts()
     undo_subreddits()
     undo_users()
-
+    undo_subscriptions()
     # Add other undo functions here

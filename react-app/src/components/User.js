@@ -6,7 +6,7 @@ import PostKarma from './karma/PostKarma.jsx'
 
 // Use createContent sidebar instead of Sidebar component to load the sidebar
 
-function User() {
+function User({ id }) {
   const [user, setUser] = useState({});
   const [subreddits, setSubreddits] = useState([])
   const [posts, setPosts] = useState([])
@@ -15,19 +15,18 @@ function User() {
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId }  = useParams();
-
   useEffect(() => {
     if (!userId) {
       return
     }
     (async () => {
-      const response = await fetch(`/api/users/${userId}`);
+      const response = await fetch(`/api/users/${id}`);
       const userResponse = await response.json();
       // console.log(user)
       setUser(userResponse);
       // Sets the posts after fetching all posts that belong to a user.
       // Must be done seperate from the user response to add the subreddit names on the returned object
-      const postResponse = await fetch(`/api/posts/user/${userId}`)
+      const postResponse = await fetch(`/api/posts/user/${id}`)
       const postRes = await postResponse.json()
       setPosts(postRes.posts);
     })();
@@ -76,33 +75,33 @@ function User() {
     );
   })
 
-  if(display === 'comments'){
-    return(
-      <div>
-        <button onClick={setPostDisplay}>Posts</button>
-        <button onClick={setCommentsDisplay}>Comments</button>
-        <UserSidebar name={user.username} created={user.created_at} karma={karma} />
-        <div>
-          u/{user.username}'s Comments
-        </div>
-        <div id='container'>
-          Comments Here
-        </div>
-      </div>
-    )
-  }
+  // if(display === 'comments'){
+  //   return(
+  //     <div>
+  //       <button onClick={setPostDisplay}>Posts</button>
+  //       <button onClick={setCommentsDisplay}>Comments</button>
+  //       <UserSidebar name={user.username} created={user.created_at} karma={karma} />
+  //       <div>
+  //         u/{user.username}'s Comments
+  //       </div>
+  //       <div id='container'>
+  //         Comments Here
+  //       </div>
+  //     </div>
+  //   )
+  // }
 
 
   return (
     <div>
-      <button onClick={setPostDisplay}>Posts</button>
-      <button onClick={setCommentsDisplay}>Comments</button>
-      <UserSidebar name={user.username} created={user.created_at} karma={karma} />
-      <div>
+      {/* <button onClick={setPostDisplay}>Posts</button> */}
+      {/* <button onClick={setCommentsDisplay}>Comments</button> */}
+      <div className='user-page__header'>
         u/{user.username}'s Posts
       </div>
       <div id='container'>
         <ul>{postComponents}</ul>
+        <UserSidebar className="user-sidebar" name={user.username} created={user.created_at} karma={karma} />
       </div>
     </div>
   );

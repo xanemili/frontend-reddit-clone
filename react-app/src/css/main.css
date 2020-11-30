@@ -166,6 +166,15 @@ TODO Fix the top menu alignments etc
   flex-direction: column;
 }
 
+.post-title{
+  width: 95%;
+  text-align: center;
+}
+
+.post-img{
+  width:95%;
+}
+
 .landing__posts__container {
   grid-column-start: 1;
   border-radius: 4px;
@@ -562,7 +571,6 @@ TODO Fix the top menu alignments etc
 
 /* Ad and hooks  */
 
-.banner {}
 
 .padding {
   padding: 10px;
@@ -587,8 +595,10 @@ TODO Fix the top menu alignments etc
 
 .sidebar__container{
   position: relative;
-  width: 350px;
-  margin-left: 80%;
+  width: fit-content;
+  height: fit-content;
+  
+  margin-left: 10%;
   border: 2px solid black;
 }
 
@@ -618,6 +628,17 @@ TODO Fix the top menu alignments etc
   text-align: center;
   margin: 5px 5px;
   width: fit-content;
+}
+
+.user-page__header{
+  margin-top: 30px;
+  position: relative;
+  width: fit-content;
+  grid-column-start: 1;
+  margin-left: auto;
+  margin-right: 55%;
+  font-size: 20px;
+  font-weight: bolder;
 }
 
 .create__btn {
@@ -815,10 +836,8 @@ TODO Fix the top menu alignments etc
   justify-content: space-between;
 }
 
-/* .navbar-logout-btn {
-  width: fit-content;
-  display: inline-block;
-} */
+
+
 @media only screen and (max-width: 800px) {
   #container {
     margin: 0;
