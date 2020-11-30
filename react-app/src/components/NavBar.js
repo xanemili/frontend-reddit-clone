@@ -48,41 +48,39 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
     <header id="header">
       <nav className="top-menu" />
       <div className="main-header">
-
-
-
-        <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img">
-          Reddit Clone
-          </NavLink>
+        <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img" />
         <div className="tab-menu">
           {selectOptions(subscriptions)}
-          <div className="search__container">
-            <div className="search__elements">
-              <button className="search" onClick={searchRes}></button>
-              <div className="search__bar">
-                <input
-                  className="search__input"
-                  name="search"
-                  type="text"
-                  placeholder="Search..."
-                  value={search}
-                  onChange={updateValue}
-                />
-              </div>
+        </div>
+        <div className="search__container">
+          <div className="search__elements">
+            <button className="search" onClick={searchRes}></button>
+            <div className="search__bar">
+              <input
+                className="search__input"
+                name="search"
+                type="text"
+                placeholder="Search..."
+                value={search}
+                onChange={updateValue}
+              />
             </div>
           </div>
-          </div>
-
-
-
+        </div>
+          
         <div className="user-header">
           {authenticated ? (
-            <span>
-              Hello {username}
+            <>
+            <div className= "navbar-username">
+              Hello {username}!
+            </div>
+            <div  className= "navbar-profile-link">
               <NavLink to={`/users/${id}`} exact={true} activeClassName="active">
                 My Profile
               </NavLink>
-            </span>
+                <LogoutButton  setAuthenticated={setAuthenticated} />
+            </div>
+            </>
           ) : (
               <span>
                 Want to join?
@@ -95,7 +93,7 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
             </NavLink>
               </span>
             )}
-          <LogoutButton setAuthenticated={setAuthenticated} />
+          
         </div>
 
       </div>

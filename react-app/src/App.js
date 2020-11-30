@@ -29,6 +29,7 @@ function App() {
     (async() => {
       const user = await authenticate();
       console.log("user",user);
+      setUser(user)
       if (!user.errors) {
         setAuthenticated(true);
         setSubscriptions({type: 'ADD', subscriptions: user.subscriptions})
@@ -44,7 +45,7 @@ function App() {
   return (
     <BrowserRouter>
     <Layout>
-        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
+        <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions} setSubscriptions={setSubscriptions} username={user.username}/>
         <Route path="/login" exact={true}>
           <LoginForm
             authenticated={authenticated}

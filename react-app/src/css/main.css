@@ -11,6 +11,11 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+a {
+  text-decoration: none;
+  color: #000;
+}
+
 .center {
   text-align: center;
 }
@@ -44,7 +49,9 @@ body {
 
 .main-header {
   display: grid;
-  grid-template-columns: 150px;
+  grid-template-columns: 15% 15% 55% 15%;
+  justify-content: space-between;
+  position: relative;
 }
 
 
@@ -69,9 +76,7 @@ body {
 TODO Fix the top menu alignments etc
 */
 
-.main-header {
-  position: relative;
-}
+
 
 #subreddit__name {
   font-size: 1.5em;
@@ -80,13 +85,12 @@ TODO Fix the top menu alignments etc
 
 
 #header-img.default-header {
-  text-indent: -9999px;
   background-image: url('../img/logo.png');
   /* background-position: 0px -1323px; */
   background-repeat: no-repeat;
   background-size: contain;
   height: 60px;
-  width: 100%;
+  width: 250px;
   display: inline-block;
   vertical-align: bottom;
   margin-bottom: 3px;
@@ -98,14 +102,16 @@ TODO Fix the top menu alignments etc
 }
 
 .tab-menu {
-  display: inline-block;
-  vertical-align: bottom;
+  display: flex;
+  float: left;
+  justify-content: flex-start;
 }
 
 .user-header {
+  display: grid;
+  grid-column-start: 4;
   font-size: small;
-  width: 310px;
-  position: absolute;
+  width: 250px;
   right: 0px;
   bottom: 0px;
   background-color: #EFF7FF;
@@ -142,7 +148,7 @@ TODO Fix the top menu alignments etc
   margin-left: 5px;
   margin-right: 5px;
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 70% 30%;
   padding: 20px 24px;
 }
 
@@ -161,8 +167,11 @@ TODO Fix the top menu alignments etc
 }
 
 .landing__posts__container {
+  grid-column-start: 1;
   border-radius: 4px;
   border: 1px solid #8b8c8d;
+  margin-left: 20%;
+  width: 60%;
   padding: 3px;
   display: flex;
   flex-flow: row;
@@ -656,6 +665,7 @@ TODO Fix the top menu alignments etc
 }
 
 .home-sidebar__container{
+  grid-column-start: 2;
   margin-top: 0%;
   border: 1px solid black;
   width: 20%;
@@ -694,6 +704,7 @@ TODO Fix the top menu alignments etc
 
 .home-sidebar__container{
   border: 1px solid black;
+  grid-column-start: 2;
 }
 
 
@@ -712,22 +723,22 @@ TODO Fix the top menu alignments etc
 }
 
 .search__container{
-  display: grid;
-  grid-row-start: 1 ;
-  grid-column-start: 2;
-  grid-column-end: 2;
+  display: flex;
   position: relative;
-  margin-left: auto;
-  margin-right: auto;
+  /* margin-left: 20%; */
+  margin-right: 30%;
   margin-bottom: 5px;
   margin-top: 20px;
 }
 
 .search__elements{
   display: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search {
+  display: flex;
   flex: 1;
   width: 15%;
   height: 15%;
@@ -744,17 +755,20 @@ TODO Fix the top menu alignments etc
 .dropdown__subreddit {
   position: relative;
   display: inline-block;
+  grid-column-start: 2;
   width: 200px;
+  align-self: center;
 }
 
 .dropdown__subreddit__content {
   position: absolute;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px rgba(85, 50, 50, 0.2);
   border-radius: 3px;
   z-index: 1;
   background-color: lightgrey;
   padding: 3px;
   width: inherit;
+  display: block;
 }
 
 .show {
@@ -778,7 +792,9 @@ TODO Fix the top menu alignments etc
     font-size: 16px;
     border: none;
     cursor: pointer;
-    width: inherit;
+    width: fit-content;
+    height: fit-content;
+    align-self: center;
     border-radius: 6px;
 }
 
@@ -786,11 +802,24 @@ TODO Fix the top menu alignments etc
   background-color: khaki;
 }
 
+.navbar-username {
+  justify-self: center;
+}
+
+.navbar-profile-link {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .navbar-logout-btn {
+  width: fit-content;
+  display: inline-block;
+} */
 @media only screen and (max-width: 800px) {
   #container {
     margin: 0;
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 80% 20%;
   }
   #sidebar {
     padding: 10px;
@@ -821,9 +850,7 @@ TODO Fix the top menu alignments etc
   .reg-form {
     padding: 10px;
   }
-  #header-img.default-header {
-    margin-bottom: 30px;
-  }
+  
   .user-header {
     border-radius: 0;
     width: 100%;
