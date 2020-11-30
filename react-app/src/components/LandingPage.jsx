@@ -3,9 +3,10 @@ import { useParams, Link } from 'react-router-dom';
 import Post from './subreddit/Post'
 import PostKarma from './karma/PostKarma.jsx'
 import loadingGif from '../img/loading.gif'
+import Sidebar from './sidebar/Sidebar'
 
 
-const LandingPage = () => {
+const LandingPage = (user) => {
 
   const [posts, setPosts] = useState([])
   const [errors, setErrors] = useState('')
@@ -55,6 +56,7 @@ const LandingPage = () => {
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
         <ul>{postComponents}</ul>
+        <Sidebar {...user} />
       </div>
       </>
     }
