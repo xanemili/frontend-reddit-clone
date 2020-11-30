@@ -4,14 +4,20 @@ import Post from './Post'
 import PostKarma from '../karma/PostKarma.jsx'
 import CreateContent from '../sidebar/CreateContent'
 
+// Utility function to convert comment list into nested form
 
-const Subreddit = ({subscriptions}) => {
 
-  const [subreddit, setSubreddit] = useState({rules:""})
+const Subreddit = ({ subscriptions }) => {
+
+  const [subreddit, setSubreddit] = useState({ rules: "" })
   const [posts, setPosts] = useState([])
   const [errors, setErrors] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const [postErrors, setPostErrors] = useState('')
+
+
+
+  const [postList, setPostList] = useState({})
   const { subredditName } = useParams();
   const [loading, setloading] = useState(true)
 
@@ -24,7 +30,7 @@ const Subreddit = ({subscriptions}) => {
       const postResponse = await fetch(`/api/posts/r/${subredditName}`)
       const posts = await postResponse.json();
 
-      if(!subreddit.errors && mounted &&!posts.errors) {
+      if (!subreddit.errors && mounted && !posts.errors) {
         setloading(false)
         setSubreddit(subreddit.subreddit);
         setPosts(posts.posts)
@@ -34,9 +40,7 @@ const Subreddit = ({subscriptions}) => {
     };
 
     fetchData();
-    console.log(subscriptions, subredditName)
-    console.log(subscriptions.indexOf(subredditName))
-    if (subscriptions.indexOf(subredditName) !== -1){
+    if (subscriptions.indexOf(subredditName) !== -1) {
       setSubscribed(true);
     }
 
@@ -53,7 +57,7 @@ const Subreddit = ({subscriptions}) => {
     }
     let response = await fetch(`/api/users/subscriptions`, {
       method,
-      headers: {'Content-Type': 'application/json'}
+      headers: { 'Content-Type': 'application/json' }
     })
     let subscribe = await response.json()
     // console.log(subscribe)
@@ -71,6 +75,8 @@ const Subreddit = ({subscriptions}) => {
     );
   })
 
+
+
   return (
     <div> {loading ? <div>loading</div> :
       <>
@@ -81,16 +87,18 @@ const Subreddit = ({subscriptions}) => {
             {subscribed ? 'Unsubscribe' : 'Subscribe'}
           </button>
         </div>
-      <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} />
-      <div id='container'>
-        {errors ? <div>{errors}</div> : ''}
-        {console.log(errors)}
-        <ul>{postComponents}</ul>
-      </div>
+        <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} />
+        <div id='container'>
+          {errors ? <div>{errors}</div> : ''}
+          {console.log(errors)}
+          <ul>{postComponents}</ul>
+        </div>
+       
       </>
     }
     </div>
   )
 }
+
 
 export default Subreddit;

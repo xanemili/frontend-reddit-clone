@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react';
 import { useParams } from 'react-router-dom';
 import { getPost } from '../../services/post'
 import PostKarma from '../karma/PostKarma'
+import CommentContainer from '../Comment/CommentContainer'
 
 const Post = () => {
     // Comment creation field and displaying comments will be a seperate component
@@ -54,6 +55,7 @@ const Post = () => {
             </div>
             <h1 className='post_title'>{post.title}</h1>
             <div className='post_content'>{post.content}</div>
+            <div><CommentContainer postId={postId}/></div>
         </div>
     )
 

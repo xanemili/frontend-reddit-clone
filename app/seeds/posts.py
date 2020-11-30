@@ -116,6 +116,7 @@ def seed_posts(user_list, subreddit_list):
     ]
     db.session.add_all(post_list)
     db.session.commit()
+    return post_list 
 
 
 def undo_posts():
