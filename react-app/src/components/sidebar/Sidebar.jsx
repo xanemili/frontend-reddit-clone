@@ -41,7 +41,14 @@ const Sidebar= ({ username }) => {
           </div>
           <ul>
           {topSubs.map((sub) => {
-              return <li key = {sub.id}>/r/{sub.name}</li>
+            return(
+              <>
+                <NavLink key = {sub.id} className="sidebar__top-subreddits" style={{ width: 'fit-content', textDecoration: 'none' }} to={`/r/${sub.name}`} exact={true}>
+                  <li>/r/{sub.name}</li>
+                </NavLink> 
+                <div>Members: {sub.subscribers}</div>
+              </>
+            )
             })}
           </ul>
           <NavLink style={{ width: 'fit-content', textDecoration: 'none' }} to="/subreddits/create" exact={true} activeClassName="active">

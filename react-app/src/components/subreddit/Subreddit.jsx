@@ -87,13 +87,12 @@ const Subreddit = ({ subscriptions }) => {
             {subscribed ? 'Unsubscribe' : 'Subscribe'}
           </button>
         </div>
-        <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} />
-        <div id='container'>
-          {errors ? <div>{errors}</div> : ''}
-          {console.log(errors)}
-          <ul>{postComponents}</ul>
-        </div>
-       
+      <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} subCount={subreddit.subscribers} />
+      <div id='container'>
+        {errors ? <div>{errors}</div> : ''}
+        {console.log(errors)}
+        <ul>{postComponents}</ul>
+      </div>
       </>
     }
     </div>
