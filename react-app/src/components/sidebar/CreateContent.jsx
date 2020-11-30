@@ -2,10 +2,15 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 
+<<<<<<< HEAD
 const CreateContent = ({ name, about, created, rules, subCount }) => {
   
+=======
+const CreateContent = ({ name, about, created, rules }) => {
+
+>>>>>>> pulling in landing page and more styling
   let ruleList = rules.split('#')
-  
+
 
   return (
     <div className= 'sidebar__container'>
@@ -18,9 +23,9 @@ const CreateContent = ({ name, about, created, rules, subCount }) => {
       </div>
       <div className='rules__container'>
         <h4 className='rules__header'>Rules:</h4>
-        {ruleList.map((rule) => {
+        {ruleList.map((rule, idx) => {
           if (rule !== ""){
-            return <li className='rules'>{rule}</li>
+            return <li className='rules' key={idx}>{rule}</li>
           }
         })}
         <NavLink style={{ width: 'fit-content', textDecoration: 'none' }} to="/subreddits/create" exact={true} activeClassName="active">

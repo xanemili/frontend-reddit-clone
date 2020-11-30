@@ -44,12 +44,25 @@ body {
 
 .main-header {
   display: grid;
-  grid-template-columns: 150px 1fr 300px;
+  grid-template-columns: 150px;
 }
 
 
 .logo img {
   width: 120px;
+}
+
+.content__subheader {
+  display: flex;
+  position: relative;
+  background-color: lightgrey;
+  /* height: 70px; */
+  overflow-wrap: normal;
+  padding-bottom: 4px;
+  border-radius: 1px;
+  border-bottom: 1px solid darkgrey;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
 /*
@@ -59,6 +72,12 @@ TODO Fix the top menu alignments etc
 .main-header {
   position: relative;
 }
+
+#subreddit__name {
+  font-size: 1.5em;
+  margin: 0px;
+}
+
 
 #header-img.default-header {
   text-indent: -9999px;
@@ -351,7 +370,7 @@ TODO Fix the top menu alignments etc
 
 .author-link {
  color: #0055df;
- font-weight: bold; 
+ font-weight: bold;
 }
 
 
@@ -722,8 +741,49 @@ TODO Fix the top menu alignments etc
   margin-right: 20px;
 }
 
-.sidebar__top-subreddits{
-  margin-top: 50px;
+.dropdown__subreddit {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+
+.dropdown__subreddit__content {
+  position: absolute;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  border-radius: 3px;
+  z-index: 1;
+  background-color: lightgrey;
+  padding: 3px;
+  width: inherit;
+}
+
+.show {
+  display: block
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  background-color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown__button {
+    background-color: darkgrey;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    width: inherit;
+    border-radius: 6px;
+}
+
+.dropdown__button:hover .dropdown__button:focus {
+  background-color: khaki;
 }
 
 @media only screen and (max-width: 800px) {

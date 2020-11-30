@@ -6,6 +6,7 @@ import searchFetch from '../services/search'
 
 const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }) => {
   const [search, setSearch] = useState('')
+  const [menuToggle, setMenuToggle] = useState(false)
 
   const updateValue= async (e) => {
     await setSearch(e.target.value)
@@ -20,16 +21,26 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
     }
   }
 
+  const showMenu = () => {
+    setMenuToggle(!menuToggle)
+  }
+
   const selectOptions = (subs) => {
-    console.log(subs)
     return (
-      <select>
-      {subs.map( sub => (
-          <option>
-          {sub}
-          </option>
-      ))}
-    </select>
+      <div className='dropdown__subreddit'>
+        <button className='dropdown__button' onClick={showMenu}>
+          Subscriptions
+        </button>
+      {menuToggle && subscriptions ? <div className={`dropdown__subreddit__content`}>
+        {subs.map( (sub, idx) => (
+          <div key={idx}>
+            <NavLink to={`/r/${sub}`}>
+              {sub}
+            </NavLink>
+          </div>
+        ))}
+      </div> : ''}
+    </div>
     )
   }
 
@@ -38,10 +49,13 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
       <nav className="top-menu" />
       <div className="main-header">
 
+
+
         <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img">
           Reddit Clone
           </NavLink>
-        <div className="tab-menu" />
+        <div className="tab-menu">
+          {selectOptions(subscriptions)}
           <div className="search__container">
             <div className="search__elements">
               <button className="search" onClick={searchRes}></button>
@@ -57,8 +71,9 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
               </div>
             </div>
           </div>
+          </div>
 
-          {selectOptions(subscriptions)}
+
 
         <div className="user-header">
           {authenticated ? (
@@ -80,9 +95,9 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
             </NavLink>
               </span>
             )}
+          <LogoutButton setAuthenticated={setAuthenticated} />
         </div>
 
-        <LogoutButton setAuthenticated={setAuthenticated} />
       </div>
     </header>
   );

@@ -3,20 +3,17 @@ import { useParams, Link } from 'react-router-dom';
 import Post from './Post'
 import PostKarma from '../karma/PostKarma.jsx'
 import CreateContent from '../sidebar/CreateContent'
+import loadingGif from '../../img/loading.gif'
 
 // Utility function to convert comment list into nested form
 
-
-const Subreddit = ({ subscriptions }) => {
+const Subreddit = ({subscriptions, setSubscriptions}) => {
 
   const [subreddit, setSubreddit] = useState({ rules: "" })
   const [posts, setPosts] = useState([])
   const [errors, setErrors] = useState('')
   const [subscribed, setSubscribed] = useState(false)
   const [postErrors, setPostErrors] = useState('')
-
-
-
   const [postList, setPostList] = useState({})
   const { subredditName } = useParams();
   const [loading, setloading] = useState(true)
@@ -40,7 +37,7 @@ const Subreddit = ({ subscriptions }) => {
     };
 
     fetchData();
-    if (subscriptions.indexOf(subredditName) !== -1) {
+    if (subscriptions.indexOf(subredditName) !== -1){
       setSubscribed(true);
     }
 
@@ -56,19 +53,22 @@ const Subreddit = ({ subscriptions }) => {
       method = 'DELETE'
     }
     let response = await fetch(`/api/users/subscriptions`, {
-      method,
-      headers: { 'Content-Type': 'application/json' }
+      method: method,
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        subreddit: subredditName
+      })
     })
     let subscribe = await response.json()
-    // console.log(subscribe)
     if (!subscribe.errors){
       setSubscribed(!subscribed)
+      setSubscriptions({type: subscribe.type, name: subscribe.name, subscriptions: subscribe.subscription})
     }
   }
 
   const postComponents = posts.map((post) => {
     return (
-      <Link key={post.id} className='landing__posts__container'>
+      <Link key={post.id} className='landing__posts__container' to={`/r/${subredditName}/post/${post.id}`}>
         <PostKarma id={post.id} />
         <Post id={post.id} username={post.user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
       </Link>
@@ -78,19 +78,26 @@ const Subreddit = ({ subscriptions }) => {
 
 
   return (
-    <div> {loading ? <div>loading</div> :
+    <div> {loading ? <img src={loadingGif} alt="loading"/> :
       <>
-        <div className=''>
-          <div>{subreddit.name}</div>
-          <div>/r/{subreddit.name}</div>
-          <button className='button-primary' onClick={toggleSubscription}>
-            {subscribed ? 'Unsubscribe' : 'Subscribe'}
-          </button>
+        <div className='content__subheader'>
+          <div>
+            <h3 id={'subreddit__name'}>{subreddit.name}</h3>
+            <div>
+              <div>/r/{subreddit.name}</div>
+              <button className='button-primary' onClick={toggleSubscription}>
+                {subscribed ? 'Unsubscribe' : 'Subscribe'}
+              </button>
+            </div>
+          </div>
         </div>
+<<<<<<< HEAD
       <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} subCount={subreddit.subscribers} />
+=======
+      <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} />
+>>>>>>> pulling in landing page and more styling
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
-        {console.log(errors)}
         <ul>{postComponents}</ul>
       </div>
       </>

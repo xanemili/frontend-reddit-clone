@@ -13,7 +13,6 @@ const PostKarma = ({id}) => {
       if (karma) {
         setKarma(karma.karma)
       }
-      console.log(karma)
     })();
   }, [id, setKarma])
 

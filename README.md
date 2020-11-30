@@ -1,8 +1,8 @@
 # Reddit Clone
 
 ## MVPs (in order of completion)
-1. Subreddit CRUD
-2. Post CRUD
+1. Subreddit CR UD
+2. Post CR UD
 3. Comments on Posts
 4. Upvote / Downvote -> Karma
 5. Following subreddits
@@ -12,6 +12,7 @@
 1. Comment Karma
 2. Subreddit moderators
 3. Saved Posts
+4. Users
 
 ---
 ## Database Design
