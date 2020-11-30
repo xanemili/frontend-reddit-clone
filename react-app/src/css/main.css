@@ -44,12 +44,25 @@ body {
 
 .main-header {
   display: grid;
-  grid-template-columns: 150px 1fr 300px;
+  grid-template-columns: 150px;
 }
 
 
 .logo img {
   width: 120px;
+}
+
+.content__subheader {
+  display: flex;
+  position: relative;
+  background-color: lightgrey;
+  /* height: 70px; */
+  overflow-wrap: normal;
+  padding-bottom: 4px;
+  border-radius: 1px;
+  border-bottom: 1px solid darkgrey;
+  padding: 10px;
+  margin-bottom: 20px;
 }
 
 /*
@@ -58,6 +71,16 @@ TODO Fix the top menu alignments etc
 
 .main-header {
   position: relative;
+}
+
+#subreddit__name {
+  font-size: 1.5em;
+  margin: 0px;
+}
+
+#subreddit__name__description__container {
+  display: flex;
+  flex-direction: row;
 }
 
 #header-img.default-header {

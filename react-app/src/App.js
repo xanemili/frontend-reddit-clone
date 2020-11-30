@@ -13,6 +13,7 @@ import PostDisplay from "./components/post/PostDisplay"
 import Sidebar from './components/sidebar/Sidebar'
 import { authenticate } from "./services/auth";
 import {subscriptionReducer} from './services/reducer'
+import LandingPage from './components/LandingPage'
 
 function Layout(props) {
   return <div id="layout">{props.children}</div>;
@@ -22,6 +23,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [subscriptions, setSubscriptions] = useReducer(subscriptionReducer, [])
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     (async() => {
@@ -41,7 +43,6 @@ function App() {
 
   return (
     <BrowserRouter>
-
     <Layout>
         <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
         <Route path="/login" exact={true}>
@@ -56,7 +57,7 @@ function App() {
         <Route path="/r/:subredditName/post/:postId">
           <PostDisplay authenticated={authenticated}/>
         </Route>
-        <Route path="/r/:subredditName">
+        <Route path="/r/:subredditName" exact>
           <Subreddit authenticated={authenticated} subscriptions={subscriptions} setSubscriptions={setSubscriptions}/>
         </Route>
         <ProtectedRoute path="/users" exact={true} authenticated={authenticated}>
@@ -72,7 +73,7 @@ function App() {
           <PostForm authenticated={authenticated}/>
         </ProtectedRoute>
         <Route path="/" exact={true} authenticated={authenticated}>
-          <h1>My Home Page</h1>
+          <LandingPage />
           <Sidebar {...user} />
         </Route>
        </Layout>

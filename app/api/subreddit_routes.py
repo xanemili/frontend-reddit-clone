@@ -1,6 +1,6 @@
 
 from flask import Blueprint, jsonify, session, request
-from app.models import db, Subreddit, Post
+from app.models import db, Subreddit, Post, User
 from app.forms import SubredditForm
 from sqlalchemy.exc import IntegrityError
 from flask_login import current_user, login_required
@@ -9,8 +9,6 @@ from datetime import datetime
 
 
 subreddit_routes = Blueprint('subreddits', __name__)
-
-
 
 
 @subreddit_routes.route('/create', methods=['POST'])
@@ -65,6 +63,7 @@ def all_subreddit():
     subreddit_list = [subreddit.to_dict() for subreddit in subreddits]
     return {"subreddits": subreddit_list}
 
+
 @subreddit_routes.route('/sidebar/<string:user>', methods=['GET'])
 def sidebar_info(user):
     """
@@ -73,3 +72,14 @@ def sidebar_info(user):
     top_subreddits = db.session.query(Subreddit, db.func.count(Subreddit.subscribers).label("number_of_subs")).join(Subreddit.subscribers).group_by(Subreddit.id).order_by(db.desc("number_of_subs")).limit(5).all()
     top_list = [subreddit.to_dict() for (subreddit, rank) in top_subreddits]
     return {'top_subreddits': top_list}
+
+
+@subreddit_routes.route('/', methods=['GET'])
+def landing_page():
+    """
+    Gets top posts based on Karma for subreddits user is subscribed to
+    """
+    top_posts = Post.query.join(User).join(Subreddit).order_by(db.desc(Post.karma))
+    print(top_posts)
+    top_post_list = [post.to_joined_dict() for (post) in top_posts]
+    return {'posts': top_post_list}

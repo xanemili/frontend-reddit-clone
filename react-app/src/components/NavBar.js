@@ -49,10 +49,13 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
       <nav className="top-menu" />
       <div className="main-header">
 
+
+
         <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img">
           Reddit Clone
           </NavLink>
-        <div className="tab-menu" />
+        <div className="tab-menu">
+          {selectOptions(subscriptions)}
           <div className="search__container">
             <div className="search__elements">
               <button className="search" onClick={searchRes}></button>
@@ -68,8 +71,9 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
               </div>
             </div>
           </div>
+          </div>
 
-          {selectOptions(subscriptions)}
+
 
         <div className="user-header">
           {authenticated ? (
@@ -91,9 +95,9 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
             </NavLink>
               </span>
             )}
+          <LogoutButton setAuthenticated={setAuthenticated} />
         </div>
 
-        <LogoutButton setAuthenticated={setAuthenticated} />
       </div>
     </header>
   );

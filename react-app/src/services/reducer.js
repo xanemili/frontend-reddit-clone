@@ -7,9 +7,8 @@ export const subscriptionReducer = (state, action) => {
             return subscriptions;
         case 'ADD':
             const newState = [...state]
-            newState.concat(action.subscriptions)
-            console.log(newState, action.subscriptions)
-            return newState.concat(action.subscriptions)
+            let new_arr = newState.concat(action.subscriptions)
+            return new_arr
         default:
             throw new Error();
     }
