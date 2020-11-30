@@ -77,7 +77,7 @@ TODO Fix the top menu alignments etc
 */
 
 .subreddit-title{
-  
+
   width: fit-content;
   grid-column-start: 2;
 }
@@ -373,7 +373,12 @@ TODO Fix the top menu alignments etc
 /* Submit page  */
 
 .submit-form {
-  width: 500px;
+  width: 800px;
+  border: grey 1px solid;
+  border-radius: 3px;
+  box-shadow: 2px 2px 2px lightgrey;
+  padding: 12px;
+  padding-bottom: 14px;
 }
 
 .input-box {
@@ -387,10 +392,23 @@ TODO Fix the top menu alignments etc
 
 .submit-form label {
   display: block;
+  padding-top: 10px;
+  padding-bottom: 3px;
+  font-size: 1.2em;
 }
 
-.submit-form input, .submit-form textarea {
+.submit-form input {
   min-width: 100%;
+  overflow: hidden;
+  max-width: inherit;
+  resize: none;
+  padding: 4px;
+}
+
+.submit-form textarea {
+    max-width: inherit;
+    resize: none;
+    min-width: 100%;
 }
 
 .comments h3 {
@@ -612,7 +630,7 @@ TODO Fix the top menu alignments etc
   position: relative;
   width: fit-content;
   height: fit-content;
-  
+
   margin-left: 10%;
   border: 2px solid black;
 }
@@ -677,6 +695,46 @@ TODO Fix the top menu alignments etc
 
 .rules{
   margin-left: 10px;
+}
+
+button.spacing__extra {
+  padding: 4px;
+  width: 90%;
+  margin: 12px;
+}
+
+#form-container {
+  display: flex;
+  margin-top: 7px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 20px 400px;
+  align-items: stretch;
+  align-content: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 800px;
+}
+
+.button-tab__header {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: inherit;
+}
+
+.button-tab__header button {
+  background-color: darkgrey;
+}
+
+.button-tab__header button:hover {
+  background-color:#cee3f8;
+  color: white;
+}
+
+.button-tab__header button.active {
+  background-color: #cee3f8;
+  color: black;
+  font-weight: bold;
 }
 
 .subreddit__form__container{
@@ -956,7 +1014,7 @@ TODO Fix the top menu alignments etc
   .reg-form {
     padding: 10px;
   }
-  
+
   .user-header {
     border-radius: 0;
     width: 100%;

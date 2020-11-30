@@ -1,11 +1,7 @@
 import React, { useState, useReducer } from 'react'
-import ReactDOM from 'react-dom'
-import moment from 'moment'
-import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Comment from '../Comment/Comment'
 import CommentForm from '../Comment/CommentForm'
-import store from '../redux/store'
 import reducer from '../../services/commentReducer'
 
 

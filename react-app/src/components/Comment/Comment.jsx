@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
 import moment from 'moment'
-import {connect} from 'react-redux';
 import CommentForm from './CommentForm';
 
 
@@ -17,26 +15,26 @@ function Comment({ comment, userid, dispatch, postId }) {
         return <Comment key={comment.id} userid={comment.userid} comment={comment} type="child" dispatch={dispatch} postId={postId}/>
     })
 
-    function formHandle(event) {
-        event.preventDefault()
-        const comment = {
-            id: "1",
-            postid: "1", // Get it from the post
-            userid: "user1", // Logged in user
-            content: event.target.comment.value,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-        }
+    // function formHandle(event) {
+    //     event.preventDefault()
+    //     const comment = {
+    //         id: "1",
+    //         postid: "1", // Get it from the post
+    //         userid: "user1", // Logged in user
+    //         content: event.target.comment.value,
+    //         createdAt: new Date(),
+    //         updatedAt: new Date(),
+    //     }
 
-        // Send the comment to the API
+    //     // Send the comment to the API
 
-        // Put the comment into the local state
-        const allReplies = [...replies];
-        allReplies.push(comment);
-        addNewReply(allReplies);
-        console.log("Posting the comment", comment)
+    //     // Put the comment into the local state
+    //     const allReplies = [...replies];
+    //     allReplies.push(comment);
+    //     addNewReply(allReplies);
+    //     console.log("Posting the comment", comment)
 
-    }
+    // }
 
     return (
         <>
@@ -99,9 +97,6 @@ function Comment({ comment, userid, dispatch, postId }) {
     )
 }
 
-function mapStateToProps(state) {
-    return {comments: state.comments};
-  }
 
 
 export default Comment;

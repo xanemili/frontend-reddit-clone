@@ -13,8 +13,6 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
   const [posts, setPosts] = useState([])
   const [errors, setErrors] = useState('')
   const [subscribed, setSubscribed] = useState(false)
-  const [postErrors, setPostErrors] = useState('')
-  const [postList, setPostList] = useState({})
   const { subredditName } = useParams();
   const [loading, setloading] = useState(true)
 
@@ -68,10 +66,10 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
 
   const postComponents = posts.map((post) => {
     return (
-      <Link key={post.id} className='landing__posts__container' to={`/r/${subredditName}/post/${post.id}`}>
+      <div className='landing__posts__container'>
         <PostKarma id={post.id} />
         <Post id={post.id} username={post.user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
-      </Link>
+      </div>
     );
   })
 
@@ -81,6 +79,7 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
     <div> {loading ? <img src={loadingGif} alt="loading"/> :
       <>
         <div className='content__subheader'>
+
           <div className="subreddit-title">
             <h3 id={'subreddit__name'}>{subreddit.name}</h3>
           </div>
@@ -90,6 +89,7 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
             </button>
           </div>
         </div>
+
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
         <ul>{postComponents}</ul>

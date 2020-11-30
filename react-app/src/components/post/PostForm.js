@@ -101,10 +101,12 @@ const PostForm = ({authenticated}) => {
   if (type === 'image'){
     console.log('type', type)
     return (
-      <div>
-        <button type='button' onClick={setTextType}>Text</button>
-        <button type='button' onClick={setImageType}>Image</button>
-        <form encType='multipart/formdata' onSubmit={submitImagePost}>
+        <div id='form-container'>
+        <div className='button-tab__header'>
+          <button type='button' onClick={setTextType}>Text</button>
+          <button className='active' type='button' onClick={setImageType}>Image</button>
+        </div>
+        <form encType='multipart/formdata' onSubmit={submitImagePost} className='submit-form'>
           <div>
             <label htmlFor='title'>Title</label>
             <input
@@ -134,10 +136,12 @@ const PostForm = ({authenticated}) => {
   }
 
   return(
-    <div>
-      <button type='button' onClick={setTextType}>Text</button>
-      <button type='button' onClick={setImageType}>Image</button>
-      <form onSubmit={submitTextPost}>
+    <div id='form-container'>
+      <div className='button-tab__header'>
+        <button className='active'type='button' onClick={setTextType}>Text</button>
+        <button type='button' onClick={setImageType}>Image</button>
+      </div>
+      <form onSubmit={submitTextPost} className='submit-form'>
         <div>
           {errors.map((error) => (
             <div>{error}</div>
@@ -156,12 +160,12 @@ const PostForm = ({authenticated}) => {
         </div>
         <div>
         <label htmlFor='content'>Content</label>
-          <input
+          <textarea
             name='content'
-            type='text'
             placeholder='content'
             value={content}
             onChange={updateValue(setContent)}
+            rows='5'
             required
           />
         </div>
@@ -173,8 +177,8 @@ const PostForm = ({authenticated}) => {
               ))}
 
           </select>
-        <button type='submit'>Create</button>
         </div>
+        <button className='button-primary spacing__extra' type='submit'>Create</button>
       </form>
     </div>
   );

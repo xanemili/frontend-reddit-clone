@@ -67,7 +67,7 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
             </div>
           </div>
         </div>
-          
+
         <div className="user-header">
           {authenticated ? (
             <>
@@ -93,7 +93,6 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
             </NavLink>
               </span>
             )}
-          
         </div>
 
       </div>
