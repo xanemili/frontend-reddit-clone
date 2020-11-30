@@ -91,11 +91,7 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
             </div>
           </div>
         </div>
-<<<<<<< HEAD
       <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} subCount={subreddit.subscribers} />
-=======
-      <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} />
->>>>>>> pulling in landing page and more styling
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
         <ul>{postComponents}</ul>

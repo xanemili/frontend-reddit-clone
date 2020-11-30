@@ -2,13 +2,8 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 
-<<<<<<< HEAD
 const CreateContent = ({ name, about, created, rules, subCount }) => {
-  
-=======
-const CreateContent = ({ name, about, created, rules }) => {
 
->>>>>>> pulling in landing page and more styling
   let ruleList = rules.split('#')
 
 
