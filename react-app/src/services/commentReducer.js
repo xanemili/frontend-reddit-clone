@@ -3,6 +3,7 @@ function reducer(state, action) {
     let comments = [...state]
     if (type === "SUBMIT_COMMENT") {
         comments.push(item);
+        console.log(comments)
         return comments    
     }
 

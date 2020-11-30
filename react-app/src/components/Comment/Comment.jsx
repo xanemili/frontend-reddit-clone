@@ -2,22 +2,19 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import moment from 'moment'
 import {connect} from 'react-redux';
+import CommentForm from './CommentForm';
 
 
-
-function Comment({ comment, userid }) {
+function Comment({ comment, userid, dispatch }) {
     const [showChildren, setShowChildren] = useState(true);
     const [showCommentBox, setCommentBox] = useState(false);
     const [replies, addNewReply] = useState([])
-
-
-
 
     // this causes the data to check if there are more "children" comments under
     // the current comment. If there are then is recursively renders more of this
     // same component below the one we originally called and if not renders nothing
     const nestedComments = (comment.children || []).map(comment => {
-        return <Comment key={comment.id} userid={comment.userid} comment={comment} type="child" />
+        return <Comment key={comment.id} userid={comment.userid} comment={comment} type="child" dispatch={dispatch} />
     })
 
     function formHandle(event) {
@@ -76,17 +73,21 @@ function Comment({ comment, userid }) {
 
                         {
                             showCommentBox ?
-                                <div className="comment-form" style={{marginLeft: "25px"}}>
-                                    <form onSubmit={(event) => formHandle(event)} >
-                                        <textarea name="comment" rows="5"></textarea>
-                                        <button class="fake-button" type="submit" style={{marginRight: "15px"}}>Save</button>
-                                        {
-                            showCommentBox ?
-                                <button class="fake-button" onClick={() => setCommentBox(false)}>Cancel</button>
-                                : null
-                        }
-                                    </form></div> : null
-                        }
+                            <>
+                            <CommentForm dispatch={dispatch} parentId={comment.id}/>
+                                {/* // <div className="comment-form" style={{marginLeft: "25px"}}>
+                                //     <form onSubmit={(event) => formHandle(event)} >
+                                //         <textarea name="comment" rows="5"></textarea>
+                                //         <button class="fake-button" type="submit" style={{marginRight: "15px"}}>Save</button>
+                                        // { */}
+                            {/* // showCommentBox ? */}
+                            <button class="fake-button" onClick={() => setCommentBox(false)}>Cancel</button>
+                                {/* : null */}
+                        {/* // } */}
+                                    {/* </form></div>  */}
+                                    </>
+                                    : null
+                                    }
                         
                         {/* display any nested comments */}
                         {nestedComments}
@@ -103,4 +104,4 @@ function mapStateToProps(state) {
   }
   
 
-export default connect(mapStateToProps)(Comment);
+export default Comment;

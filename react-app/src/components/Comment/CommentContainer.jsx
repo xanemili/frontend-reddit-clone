@@ -79,7 +79,7 @@ const CommentContainer = ({postId}) => {
             </div >
             {console.log(comments)}
             <CommentForm dispatch={dispatch} postId={postId}/>
-            { nestComments(comments).map(comment => <Comment comment={comment} />)}
+            { nestComments(comments).map(comment => <Comment comment={comment} dispatch={dispatch} />)}
         </>}
         </div>
     )

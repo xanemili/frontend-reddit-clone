@@ -10,6 +10,7 @@ const CommentForm = (props) => {
             id: new Date(),
             postId: 92,
             content: event.target.body.value,
+            parentId: props.parentId
         }
         // fetch POST api goes here
         fetch('/api/comments/new', {
@@ -21,7 +22,6 @@ const CommentForm = (props) => {
         })
         .then(res => res.json())
         .then(res => {
-            console.log(res)
             if (!res.errors) {
                 props.dispatch({ type: 'SUBMIT_COMMENT', item: res })
                 // Do some app logic
