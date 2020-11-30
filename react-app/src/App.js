@@ -74,8 +74,8 @@ function App() {
           <PostForm authenticated={authenticated}/>
         </ProtectedRoute>
         <Route path="/" exact={true} authenticated={authenticated}>
-          <LandingPage />
-          <Sidebar {...user} />
+          <LandingPage user = {user} />
+          {/* <Sidebar  /> */}
         </Route>
        </Layout>
     </BrowserRouter>
