@@ -77,7 +77,6 @@ TODO Fix the top menu alignments etc
 */
 
 .subreddit-title{
-
   width: fit-content;
   grid-column-start: 2;
 }
