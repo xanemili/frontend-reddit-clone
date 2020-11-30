@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import CommentForm from './CommentForm';
 
 
-function Comment({ comment, userid, dispatch }) {
+function Comment({ comment, userid, dispatch, postId }) {
     const [showChildren, setShowChildren] = useState(true);
     const [showCommentBox, setCommentBox] = useState(false);
     const [replies, addNewReply] = useState([])
@@ -14,7 +14,7 @@ function Comment({ comment, userid, dispatch }) {
     // the current comment. If there are then is recursively renders more of this
     // same component below the one we originally called and if not renders nothing
     const nestedComments = (comment.children || []).map(comment => {
-        return <Comment key={comment.id} userid={comment.userid} comment={comment} type="child" dispatch={dispatch} />
+        return <Comment key={comment.id} userid={comment.userid} comment={comment} type="child" dispatch={dispatch} postId={postId}/>
     })
 
     function formHandle(event) {
@@ -74,7 +74,7 @@ function Comment({ comment, userid, dispatch }) {
                         {
                             showCommentBox ?
                             <>
-                            <CommentForm dispatch={dispatch} parentId={comment.id}/>
+                            <CommentForm dispatch={dispatch} parentId={comment.id} postId={postId}/>
                                 {/* // <div className="comment-form" style={{marginLeft: "25px"}}>
                                 //     <form onSubmit={(event) => formHandle(event)} >
                                 //         <textarea name="comment" rows="5"></textarea>
@@ -88,7 +88,7 @@ function Comment({ comment, userid, dispatch }) {
                                     </>
                                     : null
                                     }
-                        
+
                         {/* display any nested comments */}
                         {nestedComments}
 
@@ -102,6 +102,6 @@ function Comment({ comment, userid, dispatch }) {
 function mapStateToProps(state) {
     return {comments: state.comments};
   }
-  
+
 
 export default Comment;

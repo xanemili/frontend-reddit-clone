@@ -8,7 +8,7 @@ const CommentForm = (props) => {
 
         let comment = {
             id: new Date(),
-            postId: 92,
+            postId: props.postId,
             content: event.target.body.value,
             parentId: props.parentId
         }
@@ -30,7 +30,7 @@ const CommentForm = (props) => {
         // .catch(err =>  /*handle error event*/)
 
     }
-    
+
     const updateContent = (event) => {
         setContent(event.target.value)
     }

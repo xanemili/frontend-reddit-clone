@@ -34,11 +34,11 @@ function nestComments(commentList) {
 const CommentContainer = ({postId}) => {
     const [loading, setLoading] = useState(true)
     const [comments, dispatch] = useReducer(reducer, [])
-    
+
     useEffect(() => {
         let mounted = true
         const fetchData = async () => {
-            const commentResponse = await fetch(`/api/comments/post/92`)
+            const commentResponse = await fetch(`/api/comments/post/${postId}`)
             const comments = await commentResponse.json();
 
             console.log(comments)
@@ -79,7 +79,7 @@ const CommentContainer = ({postId}) => {
             </div >
             {console.log(comments)}
             <CommentForm dispatch={dispatch} postId={postId}/>
-            { nestComments(comments).map(comment => <Comment comment={comment} dispatch={dispatch} />)}
+            { nestComments(comments).map(comment => <Comment comment={comment} dispatch={dispatch} postId={postId}/>)}
         </>}
         </div>
     )
