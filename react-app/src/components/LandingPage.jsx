@@ -38,7 +38,7 @@ const LandingPage = () => {
 
   const postComponents = posts.map((post) => {
     return (
-      <Link key={post.id} className='landing__posts__container' to={`/r/${'testlinkfornow'}/post/${post.id}`}>
+      <Link key={post.id} className='landing__posts__container' to={`/r/${post.subreddit.name}/post/${post.id}`}>
         <PostKarma id={post.id} />
         <Post id={post.id} username={post.user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
       </Link>

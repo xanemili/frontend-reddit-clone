@@ -22,9 +22,9 @@ const Post = ({title, type, content, username, subreddit, created_on }) => {
           r/{subreddit} u/{username}  created on {created_on}
         </div>
         <div className='comments'>
-          <a className='meta-area'>
+          <div className='meta-area'>
             Comments
-          </a>
+          </div>
         </div>
 
     </div>

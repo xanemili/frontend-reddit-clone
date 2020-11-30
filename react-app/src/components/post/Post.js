@@ -51,7 +51,7 @@ const Post = () => {
                 <span className='post_subreddit'>{`r/${subreddit.name}`}</span> <span className='post_username'>{`Posted by ${user.username}`}</span>
             </div>
             <div className='post_karma'>
-                <PostKarma id={post.id}/>
+                <PostKarma id={postId}/>
             </div>
             <h1 className='post_title'>{post.title}</h1>
             <div className='post_content'>{post.content}</div>
