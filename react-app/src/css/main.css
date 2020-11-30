@@ -77,7 +77,6 @@ TODO Fix the top menu alignments etc
 */
 
 .subreddit-title{
-
   width: fit-content;
   grid-column-start: 2;
 }
@@ -836,6 +835,8 @@ button.spacing__extra {
 }
 
 .search {
+  background-image: url("https://cdn0.iconfinder.com/data/icons/it-hardware/100/search-512.png");
+  background-size: cover;
   display: flex;
   flex: 1;
   width: 15%;
@@ -884,8 +885,7 @@ button.spacing__extra {
 }
 
 .dropdown__button {
-    background-color: darkgrey;
-    color: white;
+    color: black;
     padding: 16px;
     font-size: 16px;
     border: none;

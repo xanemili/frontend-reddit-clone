@@ -79,7 +79,6 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
     <div> {loading ? <img src={loadingGif} alt="loading"/> :
       <>
         <div className='content__subheader'>
-
           <div className="subreddit-title">
             <h3 id={'subreddit__name'}>{subreddit.name}</h3>
           </div>
@@ -89,7 +88,6 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
             </button>
           </div>
         </div>
-
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
         <ul>{postComponents}</ul>

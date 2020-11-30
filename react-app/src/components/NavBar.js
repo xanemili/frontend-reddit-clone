@@ -28,9 +28,9 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
   const selectOptions = (subs) => {
     return (
       <div className='dropdown__subreddit'>
-        <button className='dropdown__button' onClick={showMenu}>
-          Subscriptions
-        </button>
+        <a className='dropdown__button' onClick={showMenu}>
+          My Subscriptions
+        </a>
       {menuToggle && subscriptions ? <div className={`dropdown__subreddit__content`}>
         {subs.map( (sub, idx) => (
           <div key={idx}>
