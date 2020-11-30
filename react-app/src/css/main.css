@@ -96,10 +96,6 @@ TODO Fix the top menu alignments etc
   margin: 0px;
 }
 
-#subreddit__name__description__container {
-  display: flex;
-  flex-direction: row;
-}
 
 #header-img.default-header {
   background-image: url('../img/logo.png');
