@@ -6,12 +6,12 @@ import PostNavBar from './PostNavBar'
 const PostDisplay = ({authenticated}) => {
 
     return (
-        <>
+        <div className="post_display_container">
             <PostNavBar />
-            <div className='post_content_container'>
+            <div className="insertHere">
                 <Post authenticated={authenticated}/>
             </div>
-        </>
+        </div>
     )
 }
 

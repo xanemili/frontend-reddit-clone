@@ -51,6 +51,8 @@ const CommentContainer = ({postId}) => {
 
         fetchData()
 
+        window.scrollTo(0,0)
+
         return () => {
             mounted = false
         }
@@ -58,13 +60,7 @@ const CommentContainer = ({postId}) => {
 
     var commentHeader = '';
     if (comments) {
-        if (comments.length > 1) {
-            commentHeader = `all ${comments.length} Comments`;
-        } else {
-            commentHeader = `1 Comment`;
-        }
-    } else {
-        commentHeader = 'No comments';
+        commentHeader = `${comments.length} Comment(s)`;
     }
 
     return (
