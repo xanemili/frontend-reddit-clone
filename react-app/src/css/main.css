@@ -77,7 +77,7 @@ TODO Fix the top menu alignments etc
 */
 
 .subreddit-title{
-  
+
   width: fit-content;
   grid-column-start: 2;
 }
@@ -96,6 +96,10 @@ TODO Fix the top menu alignments etc
   margin: 0px;
 }
 
+#subreddit__name__description__container {
+  display: flex;
+  flex-direction: row;
+}
 
 #header-img.default-header {
   background-image: url('../img/logo.png');
@@ -612,7 +616,7 @@ TODO Fix the top menu alignments etc
   position: relative;
   width: fit-content;
   height: fit-content;
-  
+
   margin-left: 10%;
   border: 2px solid black;
 }
@@ -795,18 +799,13 @@ TODO Fix the top menu alignments etc
 .dropdown__subreddit {
   position: relative;
   display: inline-block;
-<<<<<<< HEAD
   grid-column-start: 2;
   width: 200px;
   align-self: center;
-=======
-  width: 200px;
->>>>>>> subscriptions redcuer put in place
 }
 
 .dropdown__subreddit__content {
   position: absolute;
-<<<<<<< HEAD
   box-shadow: 0px 8px 16px rgba(85, 50, 50, 0.2);
   border-radius: 3px;
   z-index: 1;
@@ -814,14 +813,6 @@ TODO Fix the top menu alignments etc
   padding: 3px;
   width: inherit;
   display: block;
-=======
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-  border-radius: 3px;
-  z-index: 1;
-  background-color: lightcoral;
-  padding: 3px;
-  width: inherit;
->>>>>>> subscriptions redcuer put in place
 }
 
 .show {
@@ -839,17 +830,12 @@ TODO Fix the top menu alignments etc
 }
 
 .dropdown__button {
-<<<<<<< HEAD
     background-color: darkgrey;
-=======
-    background-color: black;
->>>>>>> subscriptions redcuer put in place
     color: white;
     padding: 16px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-<<<<<<< HEAD
     width: fit-content;
     height: fit-content;
     align-self: center;
@@ -922,9 +908,6 @@ TODO Fix the top menu alignments etc
   text-align: center;
   margin: 10px;
   border-radius: 5px;
-=======
-    width: inherit;
->>>>>>> subscriptions redcuer put in place
 }
 
 .dropdown__button:hover .dropdown__button:focus {
@@ -977,7 +960,7 @@ TODO Fix the top menu alignments etc
   .reg-form {
     padding: 10px;
   }
-  
+
   .user-header {
     border-radius: 0;
     width: 100%;

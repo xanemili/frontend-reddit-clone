@@ -93,7 +93,6 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
             </NavLink>
               </span>
             )}
-
         </div>
 
       </div>
