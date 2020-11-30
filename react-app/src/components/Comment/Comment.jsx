@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import moment from 'moment'
+import { connect } from 'react-redux';
 import CommentForm from './CommentForm';
 
 
@@ -11,8 +12,9 @@ function Comment({ comment, userid, dispatch, postId }) {
     // this causes the data to check if there are more "children" comments under
     // the current comment. If there are then is recursively renders more of this
     // same component below the one we originally called and if not renders nothing
-    const nestedComments = (comment.children || []).map(comment => {
-        return <Comment key={comment.id} userid={comment.userid} comment={comment} type="child" dispatch={dispatch} postId={postId}/>
+ 
+    const nestedComments = (comment.children ? comment.children : []).map(comment => {
+        return <Comment key={comment.id} userid={comment.userid} comment={comment} type="child" dispatch={dispatch} postId={postId} />
     })
 
     // function formHandle(event) {
@@ -32,7 +34,6 @@ function Comment({ comment, userid, dispatch, postId }) {
     //     const allReplies = [...replies];
     //     allReplies.push(comment);
     //     addNewReply(allReplies);
-    //     console.log("Posting the comment", comment)
 
     // }
 
@@ -46,15 +47,15 @@ function Comment({ comment, userid, dispatch, postId }) {
                     <div
                         className={`arrow down`}
                     />
-                    </div>
+                </div>
 
 
-                    <div className="comment-author">
-                        <span onClick={() => setShowChildren(!setShowChildren)}>
+                <div className="comment-author">
+                    <span onClick={() => setShowChildren(!setShowChildren)}>
                         [{showChildren ? '-' : '+'}]
                         </span>{' '}
                     <span className="author-link">{comment.userid}</span> 1 points, posted {moment(comment.createdAt).fromNow()}
-                    </div>
+                </div>
                 {/* this left border is the line that connects the comments on the same level in the thread */}
                 {showChildren &&
                     <div style={{ "marginTop": "2px", borderLeft: '1px solid #efefef', marginLeft: '4px', position: 'relative' }}>
@@ -63,7 +64,7 @@ function Comment({ comment, userid, dispatch, postId }) {
                         {/* outputs the comment text in the HTML format in which it was saved. this is the main comment */}
                         <div className="commentDiv comment" dangerouslySetInnerHTML={{ __html: comment.content }} />
                         <div className="link-area">
-                        <a class="fake-link" onClick={() => setCommentBox(true)}>reply</a>
+                            <a class="fake-link" onClick={() => setCommentBox(true)}>reply</a>
                         </div>
                         {
                             replies.map(comment => <div class="comment">{comment.content}</div>)
@@ -71,21 +72,14 @@ function Comment({ comment, userid, dispatch, postId }) {
 
                         {
                             showCommentBox ?
-                            <>
-                            <CommentForm dispatch={dispatch} parentId={comment.id} postId={postId}/>
-                                {/* // <div className="comment-form" style={{marginLeft: "25px"}}>
-                                //     <form onSubmit={(event) => formHandle(event)} >
-                                //         <textarea name="comment" rows="5"></textarea>
-                                //         <button class="fake-button" type="submit" style={{marginRight: "15px"}}>Save</button>
-                                        // { */}
-                            {/* // showCommentBox ? */}
-                            <button class="fake-button" onClick={() => setCommentBox(false)}>Cancel</button>
-                                {/* : null */}
-                        {/* // } */}
-                                    {/* </form></div>  */}
-                                    </>
-                                    : null
-                                    }
+                                <>
+                                    <CommentForm dispatch={dispatch} parentId={comment.id} postId={postId} />
+
+                                    <button class="fake-button" onClick={() => setCommentBox(false)}>cancel</button>
+
+                                </>
+                                : null
+                        }
 
                         {/* display any nested comments */}
                         {nestedComments}
@@ -97,6 +91,9 @@ function Comment({ comment, userid, dispatch, postId }) {
     )
 }
 
+// function mapStateToProps(state) {
+//     return { comments: state.comments };
+// }
 
 
 export default Comment;
