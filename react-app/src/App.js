@@ -10,7 +10,6 @@ import SubredditForm from './components/subreddit/SubredditForm'
 import Subreddit from "./components/subreddit/Subreddit";
 import PostForm from './components/post/PostForm'
 import PostDisplay from "./components/post/PostDisplay"
-import Sidebar from './components/sidebar/Sidebar'
 import { authenticate } from "./services/auth";
 import {subscriptionReducer} from './services/reducer'
 import LandingPage from './components/LandingPage'

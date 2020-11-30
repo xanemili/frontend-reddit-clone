@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useParams, Link, NavLink, Redirect} from "react-router-dom";
+import {useParams, Link,} from "react-router-dom";
 import UserSidebar from './sidebar/UserSidebar'
 import Post from './subreddit/Post'
 import PostKarma from './karma/PostKarma.jsx'
@@ -8,7 +8,6 @@ import PostKarma from './karma/PostKarma.jsx'
 
 function User({ id }) {
   const [user, setUser] = useState({});
-  const [subreddits, setSubreddits] = useState([])
   const [posts, setPosts] = useState([])
   const [karma, setKarma] = useState(0)
   const [display, setDisplay] = useState('')

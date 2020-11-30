@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import {Link } from 'react-router-dom';
 import Post from './subreddit/Post'
 import PostKarma from './karma/PostKarma.jsx'
 import loadingGif from '../img/loading.gif'
@@ -39,20 +39,18 @@ const LandingPage = ({ user }) => {
 
   const postComponents = posts.map((post) => {
     return (
-      <Link key={post.id} className='landing__posts__container' to={`/r/${post.subreddit.name}/post/${post.id}`}>
+      <div className='landing__posts__container'>
         <PostKarma id={post.id} />
-        <Post id={post.id} username={post.user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
-      </Link>
+        <Link key={post.id}  to={`/r/${post.subreddit.name}/post/${post.id}`}>
+          <Post id={post.id} username={post.user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
+        </Link>
+      </div>
     );
   })
 
   return (
     <div> {loading ? <img src={loadingGif} alt="loading"/> :
       <>
-        <div className='content__subheader'>
-          <div>
-          </div>
-        </div>
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
         <ul>{postComponents}</ul>

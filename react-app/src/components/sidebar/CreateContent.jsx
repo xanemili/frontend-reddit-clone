@@ -21,6 +21,8 @@ const CreateContent = ({ name, about, created, rules, subCount }) => {
         {ruleList.map((rule, idx) => {
           if (rule !== ""){
             return <li className='rules' key={idx}>{rule}</li>
+          } else {
+            return ''
           }
         })}
         <NavLink style={{ width: 'fit-content', textDecoration: 'none' }} to="/subreddits/create" exact={true} activeClassName="active">

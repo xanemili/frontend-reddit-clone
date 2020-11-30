@@ -47,7 +47,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           {regErrorMsg}
           <div className="close-button"
             onClick={() => {
-              setErrorMsg = ''
+              setErrorMsg('')
             }}>
           </div>
         </div>

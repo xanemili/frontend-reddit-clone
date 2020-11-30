@@ -1,5 +1,4 @@
 import React , {useState} from 'react';
-import { connect } from 'react-redux'
 
 const CommentForm = (props) => {
     const [content, setContent] = useState('')
