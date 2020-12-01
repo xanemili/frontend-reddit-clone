@@ -8,12 +8,10 @@ const Post = ({title, type, content, username, subreddit, created_on, id }) => {
     return(
       <div>
         <h3 className="post-title">{title}</h3>
-        <div>
+        <div className='post_header'>
           r/{subreddit} u/{username}  created on {created_on}
         </div>
-        <Link to={`/r/${subreddit}/post/${id}`}>
-          <img className="post-img" src={content}/>
-        </Link>
+        <img className="post-img" src={content}/>
         <div className='meta-area'>
             Comments
         </div>
@@ -23,12 +21,11 @@ const Post = ({title, type, content, username, subreddit, created_on, id }) => {
 
   return (
     <div className='landing__posts'>
-      <Link to={`/r/${subreddit}/post/${id}`}>
+      <Link to={`/r/${subreddit}/post/${id}`} />
         <div className='title title-area'>
           {title}
         </div>
-      </Link>
-        <div>
+        <div className='post_header'>
           r/{subreddit} u/{username}  created on {created_on}
         </div>
         <div className='comments'>
@@ -36,7 +33,6 @@ const Post = ({title, type, content, username, subreddit, created_on, id }) => {
             Comments
           </div>
         </div>
-
     </div>
   )
 }

@@ -41,7 +41,9 @@ const Post = () => {
                     <div>
                         <img className='image_display' src={post.content} />
                     </div>
-                    <div><CommentContainer postId={postId}/></div>
+                    <div>
+                        <CommentContainer postId={postId}/>
+                    </div>
                 </div>
             </div>
         )
@@ -59,7 +61,9 @@ const Post = () => {
                 </div>
                 <h1 className='post_title'>{post.title}</h1>
                 <div className='post_content'>{post.content}</div>
-                <div><CommentContainer postId={postId}/></div>
+                <div>
+                    <CommentContainer postId={postId}/>
+                </div>
             </div>
         </div>
     )
