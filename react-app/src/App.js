@@ -14,9 +14,9 @@ import { authenticate } from "./services/auth";
 import {subscriptionReducer} from './services/reducer'
 import LandingPage from './components/LandingPage'
 
-function Layout(props) {
-  return <div id="layout">{props.children}</div>;
-}
+// function Layout(props) {
+//   return <div id="layout">{props.children}</div>;
+// }
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -42,7 +42,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Layout>
+      {/* <Layout> */}
         <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions} setSubscriptions={setSubscriptions} username={user.username} id={user.id}/>
         <Route path="/login" exact={true}>
           <LoginForm
@@ -74,7 +74,7 @@ function App() {
         <Route path="/" exact={true} authenticated={authenticated}>
           <LandingPage user = {user} />
         </Route>
-       </Layout>
+      {/* </Layout> */}
     </BrowserRouter>
   );
 }

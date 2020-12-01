@@ -19,13 +19,13 @@ function User({ id }) {
       return
     }
     (async () => {
-      const response = await fetch(`/api/users/${id}`);
+      const response = await fetch(`/api/users/${userId}`);
       const userResponse = await response.json();
       // console.log(user)
       setUser(userResponse);
       // Sets the posts after fetching all posts that belong to a user.
       // Must be done seperate from the user response to add the subreddit names on the returned object
-      const postResponse = await fetch(`/api/posts/user/${id}`)
+      const postResponse = await fetch(`/api/posts/user/${userId}`)
       const postRes = await postResponse.json()
       setPosts(postRes.posts);
     })();
