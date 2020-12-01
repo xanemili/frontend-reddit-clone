@@ -11,22 +11,20 @@ const Sidebar= ({ username }) => {
   const updateValue = (func) => async (e) => {
     await func(e.target.value)
   }
-  
+
 
   useEffect(() => {
     (async () => {
       let subResults = await sideContent(username)
-      console.log(subResults);
         if(subResults) {
             setTopSubs(subResults.top_subreddits)
           }
         })();
       }, [])
-      
-      
+
+
     return(
       <div>
-      {console.log(typeof topSubs)}
       <div className="home-sidebar__container">
           {/* <div className="home-sidebar__followed">
             <h4>Followed Communities</h4>
@@ -42,10 +40,10 @@ const Sidebar= ({ username }) => {
           <ul className="home-sidebar__list">
           {topSubs.map((sub) => {
             return(
-              <div className="home-sidebar__list-item">
+              <div className="home-sidebar__list-item" key={sub.id}>
                 <NavLink key = {sub.id} className="sidebar__top-subreddits" style={{ width: 'fit-content', textDecoration: 'none' }} to={`/r/${sub.name}`} exact={true}>
                   <li>/r/{sub.name}</li>
-                </NavLink> 
+                </NavLink>
                 <div>Members: {sub.subscribers}</div>
               </div>
             )

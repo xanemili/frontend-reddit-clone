@@ -7,6 +7,8 @@ import searchFetch from '../services/search'
 const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }) => {
   const [search, setSearch] = useState('')
   const [menuToggle, setMenuToggle] = useState(false)
+  const [searchToggle, setSearchToggle] = useState(false)
+  const [searchList, setSearchList] = useState([])
 
   const updateValue= async (e) => {
     await setSearch(e.target.value)
@@ -16,7 +18,9 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
     if (search !== ""){
       let searchResults = await searchFetch(search);
       if (searchResults) {
-        console.log(searchResults)
+        let subArray = []
+        searchResults.subreddits.forEach( sub => subArray.push(sub.name))
+        setSearchList(subArray)
       }
     }
   }
@@ -25,23 +29,23 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
     setMenuToggle(!menuToggle)
   }
 
-  const selectOptions = (subs) => {
+  const showSearch = () => {
+    setSearchToggle(!searchToggle)
+  }
+
+  const selectOptions = (arr, toggle) => {
     return (
-      <div className='dropdown__subreddit'>
-        <a className='dropdown__button' onClick={showMenu}>
-          My Subscriptions
-        </a>
-      {menuToggle && subscriptions ? <div className={`dropdown__subreddit__content`}>
-        {subs.map( (sub, idx) => (
+      <>
+      {toggle && arr ? <div className={`dropdown__subreddit__content`}>
+        {arr.map( (sub, idx) => (
           <div key={idx}>
-            <NavLink to={`/r/${sub}`}>
+            <NavLink to={`/r/${sub}`} onClick={showSearch}>
               {sub}
             </NavLink>
           </div>
         ))}
       </div> : ''}
-    </div>
-    )
+      </>)
   }
 
   return (
@@ -50,20 +54,32 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
       <div className="main-header">
         <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img" />
         <div className="tab-menu">
-          {selectOptions(subscriptions)}
+          <div className='dropdown__subreddit'>
+            <div className='dropdown__button' onClick={showMenu}>
+              My Subscriptions
+            </div>
+            {selectOptions(subscriptions, menuToggle)}
+          </div>
         </div>
         <div className="search__container">
           <div className="search__elements">
             <button className="search" onClick={searchRes}></button>
-            <div className="search__bar">
+            <div className="search__bar" onClick={showSearch}>
               <input
                 className="search__input"
                 name="search"
                 type="text"
                 placeholder="Search..."
                 value={search}
-                onChange={updateValue}
+                onChange={async (e) => {
+                  await updateValue(e)
+                  await searchRes()
+                }}
               />
+
+            <div>
+              {selectOptions(searchList, searchToggle)}
+            </div>
             </div>
           </div>
         </div>

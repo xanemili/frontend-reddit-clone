@@ -2,8 +2,9 @@
 export const subscriptionReducer = (state, action) => {
     switch (action.type) {
         case 'REMOVE':
-            const subscriptions = state.filter(sub => sub !== action.name)
-            console.log(subscriptions)
+            const subscriptions = state.filter(sub => {
+                return sub !== action.name
+            })
             return subscriptions;
         case 'ADD':
             const newState = [...state]

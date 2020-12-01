@@ -57,8 +57,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             value={password}
             onChange={updatePassword}
             />
-          <button type="submit">Login</button>
         </div>
+          <button className='button-primary' type="submit">Login</button>
       </form>
       </div>
     </aside>

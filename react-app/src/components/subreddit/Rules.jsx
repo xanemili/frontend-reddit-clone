@@ -7,7 +7,6 @@ const Rule = ({ id, rules, setRules }) => {
 
     const updateValue = async (e) => {
         await setRule(e.target.value)
-        console.log(rule)
         let newRules = rules
         newRules[id - 1] = e.target.value
         setRules(newRules)
