@@ -42,7 +42,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Layout>
+      <Layout>
         <NavBar setAuthenticated={setAuthenticated} authenticated={authenticated} subscriptions={subscriptions} setSubscriptions={setSubscriptions} username={user.username} id={user.id}/>
         <Route path="/login" exact={true}>
           <LoginForm

@@ -124,12 +124,13 @@ TODO Fix the top menu alignments etc
   grid-column-start: 4;
   font-size: small;
   width: 250px;
-  right: 0px;
-  bottom: 0px;
   background-color: #EFF7FF;
   padding: 4px;
-  line-height: 12px;
-  border-top-left-radius: 7px;
+}
+
+.logout-btn{
+  width: fit-content;
+  height: fit-content;
 }
 
 .user-header a {
@@ -676,10 +677,11 @@ TODO Fix the top menu alignments etc
 .create__btn {
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 10px;
   text-decoration: none;
   text-align: center;
   border: 1px solid black;
-  width: 100px;
+  width: fit-content;
   background-color: #c4dbf1;
   margin-top: 10px;
 }
@@ -758,25 +760,23 @@ button.spacing__extra {
   margin: 10px;
 }
 
-.home-sidebar__container{
-  grid-column-start: 2;
-  margin-top: 0%;
-  border: 1px solid black;
-  width: 20%;
-  float: right;
-  margin-right: 5%;
-}
-.home-sidebar__followed{
-  text-align: center;
-  background-color: #4f86b5;
-  border-bottom: 1px solid rgba(137, 137, 137, 1);
-}
 
 .home-sidebar__top{
-  background-color: #4f86b5;
+  background-color: #c4dbf1fd;
+  border-radius: 15px 15px 0px 0px;
   text-align: center;
   border-top: 1px solid rgba(137, 137, 137, 1);
   border-bottom: 1px solid rgba(137, 137, 137, 1);
+}
+
+.home-sidebar__list{
+  list-style-type: none;
+  padding: 0%;
+}
+
+.home-sidebar__list-item{
+  border-bottom: 1px solid black;
+  text-align: center;
 }
 
 .subreddit__form-header{
@@ -798,6 +798,7 @@ button.spacing__extra {
 
 .home-sidebar__container{
   border: 1px solid black;
+  border-radius: 15px;
   grid-column-start: 2;
   width: 50%;
   margin-left: auto;
@@ -809,13 +810,6 @@ button.spacing__extra {
   margin-top: 0px;
   background-color: #4f86b5;
   text-align: center;
-  border-bottom: 1px solid rgba(137, 137, 137, 1);
-}
-
-.home-sidebar__top{
-  background-color: #4f86b5;
-  text-align: center;
-  border-top: 1px solid rgba(137, 137, 137, 1);
   border-bottom: 1px solid rgba(137, 137, 137, 1);
 }
 
