@@ -11,7 +11,7 @@ export const createSubreddit = async(name, about, rules) => {
       rules: ruleString
     })
   });
-  console.log(response)
+
   return await response.json()
 }
 
@@ -22,6 +22,6 @@ export const getOneSubreddit = async (name) => {
 
 export const getSubreddits = async () => {
   const response = await fetch('/api/subreddits/all')
-  console.log(response)
+
   return await response.json()
 }

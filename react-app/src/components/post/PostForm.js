@@ -17,7 +17,6 @@ const PostForm = ({authenticated}) => {
   // Calls the helper function when the component is loaded
   useEffect(() => {
     getAllSubreddits()
-    // console.log("type", type)
   }, [])
 
   // Will only set the subreddit after someone as changed the selected subreddit
@@ -54,7 +53,6 @@ const PostForm = ({authenticated}) => {
   }
 
   const setImageHelper = (e) => {
-    // console.log(e.target.files[0])
     setImage(e.target.files[0])
 
   }
@@ -99,7 +97,6 @@ const PostForm = ({authenticated}) => {
   }
 
   if (type === 'image'){
-    console.log('type', type)
     return (
         <div id='form-container'>
         <div className='button-tab__header'>

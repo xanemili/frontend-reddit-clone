@@ -292,12 +292,12 @@ TODO Fix the top menu alignments etc
 .arrow {
   margin: 2px 0px 0px 0px;
   width: 100%;
-  height: 14px;
+  height: 20px;
   display: block;
   cursor: pointer;
   background-position: center center;
   background-repeat: no-repeat;
-  width: 15px;
+  width: 20px;
   margin-left: auto;
   margin-right: auto;
   outline: none;
@@ -323,7 +323,7 @@ TODO Fix the top menu alignments etc
 
 .arrow.downvoted {
   background-image: url('../img/sprite.png');
-  background-position: -107px -1654px;
+  background-position: -106px -1652px;
   background-repeat: no-repeat;
 }
 
@@ -483,6 +483,8 @@ TODO Fix the top menu alignments etc
   padding: 7px;
   border: 1px solid #666;
   margin: 10px 0;
+  width: 800px;
+  border-radius: 3px;
 }
 
 .login-box input {
@@ -897,7 +899,7 @@ button.spacing__extra {
     color: black;
     padding: 16px;
     font-size: 16px;
-    border: none;
+    border: 1px #c4dbf1 solid;
     cursor: pointer;
     width: fit-content;
     height: fit-content;
@@ -975,8 +977,8 @@ button.spacing__extra {
   border-radius: 5px;
 }
 
-.dropdown__button:hover .dropdown__button:focus {
-  background-color: khaki;
+.dropdown__button:hover, .dropdown__button:focus {
+  background-color: lightgrey;
 }
 
 .navbar-username {
@@ -988,7 +990,10 @@ button.spacing__extra {
   justify-content: space-between;
 }
 
+#sidebar {
+  padding-left: 400px;
 
+}
 
 @media only screen and (max-width: 800px) {
   #container {

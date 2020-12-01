@@ -18,10 +18,8 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
     if (search !== ""){
       let searchResults = await searchFetch(search);
       if (searchResults) {
-        console.log(searchResults)
         let subArray = []
         searchResults.subreddits.forEach( sub => subArray.push(sub.name))
-        console.log(subArray)
         setSearchList(subArray)
       }
     }
@@ -38,7 +36,6 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
   const selectOptions = (arr, toggle) => {
     return (
       <>
-      {console.log(arr)}
       {toggle && arr ? <div className={`dropdown__subreddit__content`}>
         {arr.map( (sub, idx) => (
           <div key={idx}>
@@ -58,9 +55,9 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
         <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img" />
         <div className="tab-menu">
           <div className='dropdown__subreddit'>
-            <a className='dropdown__button' onClick={showMenu}>
+            <div className='dropdown__button' onClick={showMenu}>
               My Subscriptions
-            </a>
+            </div>
             {selectOptions(subscriptions, menuToggle)}
           </div>
         </div>

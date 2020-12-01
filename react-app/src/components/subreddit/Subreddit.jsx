@@ -60,15 +60,15 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
     let subscribe = await response.json()
     if (!subscribe.errors){
       setSubscribed(!subscribed)
-      setSubscriptions({type: subscribe.type, name: subscribe.name, subscriptions: subscribe.subscription})
+      setSubscriptions({type: subscribe.type, name: subscribe.subscription, subscriptions: subscribe.subscription})
     }
   }
 
   const postComponents = posts.map((post) => {
     return (
-      <div className='landing__posts__container'>
+      <div className='landing__posts__container' key={post.id}>
         <PostKarma id={post.id} />
-        <Post id={post.id} username={post.user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
+        <Post id={post.id} username={post.user.username} userId={post.user.id} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
       </div>
     );
   })

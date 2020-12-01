@@ -58,7 +58,6 @@ function reducer(state, action) {
     if (type === "GET_COMMENT") {
         let new_comments = [...state.comments]
         let new_state = new_comments.concat(item)
-        console.log(new_comments, item)
         return new_state
     }
 

@@ -5,6 +5,8 @@ import React, {
 
 const PostKarma = ({id}) => {
   const [karma, setKarma] = useState(0)
+  const [activeUp, setActiveUp] = useState('')
+  const [activeDown, setActiveDown] = useState('')
 
   useEffect(() => {
     (async () => {
@@ -28,16 +30,38 @@ const PostKarma = ({id}) => {
     })
     let test = await response.json()
     setKarma(test.karma)
+    if (vote === 'upvote') {
+      setActiveUpArrow()
+    } else {
+      setActiveDownArrow()
+    }
     return
   }
 
+  const setActiveUpArrow = () => {
+    if (activeUp) {
+      setActiveUp('')
+    } else {
+      setActiveUp('upvoted')
+    }
+  }
+
+  const setActiveDownArrow = () => {
+    if (activeDown) {
+      setActiveDown('')
+    } else {
+      setActiveDown('downvoted')
+    }
+  }
+
+
   return(
-    <div className='karma__box'>
-      <button onClick={sendKarma('upvote')} className='arrow up' />
+    <div className={`karma__box`}>
+      <button onClick={sendKarma('upvote')} className={`arrow ${activeUp ? activeUp : 'up' }`} />
       <div className='score votecount'>
         {karma}
       </div>
-      <button onClick={sendKarma('downvote')} className='arrow down'/>
+      <button onClick={sendKarma('downvote')} className={`arrow ${activeDown ? activeDown : 'down'}`}/>
     </div>
     )
 }

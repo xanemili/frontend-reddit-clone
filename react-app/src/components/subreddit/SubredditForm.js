@@ -21,7 +21,6 @@ const SubredditForm = ({authenticated}) => {
   const [about, setAbout] = useState('');
   const [ruleIds, setRuleIds] = useState([1])
   const [rules, setRules] = useState([]);
-  // console.log('rules', rule)
 
   const updateValue = (setfunc) => (e) => {
     setfunc(e.target.value)
@@ -36,7 +35,6 @@ const SubredditForm = ({authenticated}) => {
   const submitSubreddit = async (e) => {
     e.preventDefault();
     const subreddit = await createSubreddit(name, about, rules);
-    console.log(subreddit)
     if (!subreddit.errors) {
       return <Redirect to='/r/subreddit.name' />
     } else {

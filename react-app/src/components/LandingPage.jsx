@@ -19,7 +19,7 @@ const LandingPage = ({ user }) => {
 
       const postResponse = await fetch(`/api/subreddits/`)
       const posts = await postResponse.json();
-      console.log(posts)
+
 
       if(mounted && !posts.errors) {
         setloading(false)
@@ -30,7 +30,7 @@ const LandingPage = ({ user }) => {
     };
 
     fetchData();
-    console.log(posts)
+
 
     return () => {
       mounted = false
@@ -39,11 +39,9 @@ const LandingPage = ({ user }) => {
 
   const postComponents = posts.map((post) => {
     return (
-      <div className='landing__posts__container'>
+      <div className='landing__posts__container' key={post.id}>
         <PostKarma id={post.id} />
-
           <Post id={post.id} username={post.user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
-
       </div>
     );
   })
