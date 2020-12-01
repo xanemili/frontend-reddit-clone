@@ -39,15 +39,15 @@ const Sidebar= ({ username }) => {
           <div className="home-sidebar__top">
             <h4>Top Communities</h4>
           </div>
-          <ul>
+          <ul className="home-sidebar__list">
           {topSubs.map((sub) => {
             return(
-              <>
+              <div className="home-sidebar__list-item">
                 <NavLink key = {sub.id} className="sidebar__top-subreddits" style={{ width: 'fit-content', textDecoration: 'none' }} to={`/r/${sub.name}`} exact={true}>
                   <li>/r/{sub.name}</li>
                 </NavLink> 
                 <div>Members: {sub.subscribers}</div>
-              </>
+              </div>
             )
             })}
           </ul>
