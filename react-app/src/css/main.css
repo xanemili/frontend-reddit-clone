@@ -484,6 +484,7 @@ TODO Fix the top menu alignments etc
   border: 1px solid #666;
   margin: 10px 0;
   width: 800px;
+  height: 500px;
   border-radius: 3px;
 }
 
@@ -492,6 +493,12 @@ TODO Fix the top menu alignments etc
   width: 49%;
   font-size: 0.9rem;
   padding: 3px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .reg-error {
@@ -533,6 +540,23 @@ TODO Fix the top menu alignments etc
 .login-reset-link {
   text-decoration: none;
   margin-right: 10px;
+}
+
+.login-form_email,
+.login-form_password {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin: 5px;
+}
+
+.login-form_label {
+  margin-right: 3px;
+}
+
+.login-form_button {
+  margin-top: 10px;
 }
 
 /* Post submit button style from reddit */
@@ -993,6 +1017,10 @@ button.spacing__extra {
 #sidebar {
   padding-left: 400px;
 
+}
+
+.demo-button {
+  margin-left: 2rem;
 }
 
 @media only screen and (max-width: 800px) {

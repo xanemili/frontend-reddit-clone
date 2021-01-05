@@ -42,14 +42,14 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   return (
     <aside id="sidebar">
       <div className="login-box" id="login">
-      <form onSubmit={onLogin}>
-        <div>
+      <form onSubmit={onLogin} className="login-form">
+        <div className="login-form_errors">
           {errors.map((error) => (
             <div>{error}</div>
             ))}
         </div>
-        <div>
-          <label htmlFor="email">Email</label>
+        <div className="login-form_email">
+          <label className="login-form_label" htmlFor="email">Email</label>
           <input
             name="email"
             type="text"
@@ -58,8 +58,8 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             onChange={updateEmail}
             />
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div className="login-form_password">
+          <label className="login-form_label" htmlFor="password">Password</label>
           <input
             name="password"
             type="password"
@@ -68,8 +68,11 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             onChange={updatePassword}
             />
         </div>
+        <div className="login-form_button">
           <button className='button-primary' type="submit">Login</button>
-          <button className='button-primary' onClick={demoLogin}>Demo</button>
+          <button className='button-primary demo-button' onClick={demoLogin}>Demo</button>
+
+        </div>
       </form>
       </div>
     </aside>
