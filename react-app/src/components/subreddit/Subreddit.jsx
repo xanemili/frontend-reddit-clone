@@ -7,7 +7,7 @@ import loadingGif from '../../img/loading.gif'
 
 // Utility function to convert comment list into nested form
 
-const Subreddit = ({subscriptions, setSubscriptions}) => {
+const Subreddit = ({subscriptions, setSubscriptions, authenicated}) => {
 
   const [subreddit, setSubreddit] = useState({ rules: "" })
   const [posts, setPosts] = useState([])
@@ -91,7 +91,7 @@ const Subreddit = ({subscriptions, setSubscriptions}) => {
       <div id='container'>
         {errors ? <div>{errors}</div> : ''}
         <ul>{postComponents}</ul>
-        <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} subCount={subreddit.subscribers} />
+        <CreateContent name={subreddit.name} about={subreddit.about} created={subreddit.created_on} rules={subreddit.rules} subCount={subreddit.subscribers} authenicated={authenicated}/>
       </div>
       </>
     }
