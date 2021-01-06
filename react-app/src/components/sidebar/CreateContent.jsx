@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 
-const CreateContent = ({ name, about, created, rules, subCount }) => {
+const CreateContent = ({ name, about, created, rules, subCount, authenticated }) => {
 
   let ruleList = rules.split('#')
 
@@ -25,7 +25,7 @@ const CreateContent = ({ name, about, created, rules, subCount }) => {
             return ''
           }
         })}
-        <NavLink style={{ width: 'fit-content', textDecoration: 'none' }} to="/posts/create" exact={true} activeClassName="active">
+        <NavLink style={{ width: 'fit-content', textDecoration: 'none' }} to={authenticated ? "/posts/create" : "/login"} exact={true} activeClassName="active">
           <div className="create__btn">
               Create Post
           </div>

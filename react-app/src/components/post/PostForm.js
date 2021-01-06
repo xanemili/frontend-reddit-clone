@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import { createPost, uploadImage } from '../../services/post';
 import { getSubreddits } from '../../services/subreddit'
 
@@ -13,6 +13,8 @@ const PostForm = ({authenticated}) => {
   const [subredditId, setSubredditId] = useState(0)
   const [redirect, setRedirect] = useState(false)
   const [image, setImage] = useState({})
+
+  const history = useHistory();
 
   // Calls the helper function when the component is loaded
   useEffect(() => {
@@ -88,8 +90,9 @@ const PostForm = ({authenticated}) => {
     }
   }
 
-  if (!authenticated) {
-    return <Redirect to='/login' />;
+  if (authenticated) {
+    // console.log('redirect')
+    return history.push("/login");
   }
 
   if (redirect) {
