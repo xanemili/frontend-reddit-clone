@@ -54,14 +54,17 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
       <div className="main-header">
         <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img" />
         <div className="tab-menu">
+        {authenticated ?
           <div className='dropdown__subreddit'>
             <div className='dropdown__button' onClick={showMenu}>
               My Subscriptions
             </div>
             {selectOptions(subscriptions, menuToggle)}
-          </div>
+          </div> : ""
+        }
         </div>
         <div className="search__container">
+          { authenticated ?
           <div className="search__elements">
             <button className="search" onClick={searchRes}></button>
             <div className="search__bar" onClick={showSearch}>
@@ -81,7 +84,9 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
               {selectOptions(searchList, searchToggle)}
             </div>
             </div>
-          </div>
+          </div> : ""
+          }
+
         </div>
 
         <div className="user-header">
