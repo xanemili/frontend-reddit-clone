@@ -103,16 +103,19 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
             </div>
             </>
           ) : (
-              <span>
+              <div className="navbar-user-router-container">
                 Want to join?
-                <NavLink to="/sign-up" exact={true} activeClassName="active">
-                  Sign up
-            </NavLink> in
-              seconds. Or
-                <NavLink to="/login" exact={true} activeClassName="active">
-                  Login
-            </NavLink>
-              </span>
+                <div className="navbar_user_router">
+                  <NavLink to="/sign-up" exact={true} activeClassName="active">
+                    Sign up
+              </NavLink> in
+                seconds. Or {' '}
+                  <NavLink to="/login" exact={true} activeClassName="active">
+                    Login
+              </NavLink>
+
+                </div>
+              </div>
             )}
         </div>
 

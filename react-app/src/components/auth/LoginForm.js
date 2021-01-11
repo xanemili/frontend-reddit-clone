@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { login } from "../../services/auth";
 
 const LoginForm = ({ authenticated, setAuthenticated }) => {
@@ -40,8 +40,23 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <aside id="sidebar">
+    <div className="login-container">
       <div className="login-box" id="login">
+      <div className="login-form_header">
+        <div className="login-form_title">
+            Login
+        </div>
+        <div className="login-form_agreement">
+          By continuing you agree to our {' '}
+          <Link to="/policy/user-agreement">
+            User Agreement {' '}
+          </Link>
+            and {' '}
+          <Link to="/policy/privacy-policy">
+            Privacy Policy.
+          </Link>
+        </div>
+      </div>
       <form onSubmit={onLogin} className="login-form">
         <div className="login-form_errors">
           {errors.map((error) => (
@@ -75,7 +90,7 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
         </div>
       </form>
       </div>
-    </aside>
+    </div>
   );
 };
 

@@ -15,7 +15,7 @@ const LandingPage = ({ user }) => {
 
   useEffect(() => {
     // This will set the title for the home page
-    document.title = "Reddit - Home Page"
+    document.title = "reddit: the front page of the interet"
 
     let mounted = true
     const fetchData = async () => {
