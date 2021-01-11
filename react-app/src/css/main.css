@@ -16,10 +16,10 @@ body {
   padding: 0;
 }
 
-a {
+/* a {
   text-decoration: none;
   color: #000;
-}
+} */
 
 #root {
   height: 100%;
@@ -134,7 +134,12 @@ TODO Fix the top menu alignments etc
   font-size: small;
   width: 250px;
   background-color: #EFF7FF;
-  padding: 4px;
+  margin: 0.5rem;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+.navbar-user-router-container {
+  margin: 3px;
 }
 
 .logout-btn{
@@ -482,7 +487,7 @@ TODO Fix the top menu alignments etc
 .login-box {
   padding: 7px;
   border: 1px solid #666;
-  margin: 10px 0;
+  margin-top: 3rem;
   width: 800px;
   height: 500px;
   border-radius: 3px;
@@ -548,15 +553,49 @@ TODO Fix the top menu alignments etc
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin: 5px;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .login-form_label {
   margin-right: 3px;
+  margin-bottom: 1rem;
 }
 
 .login-form_button {
   margin-top: 10px;
+}
+
+.user-agreement {
+  border: 1px solid black;
+}
+
+.user-agreement_title {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.user-agreement_container {
+  margin-left: 1rem;
+}
+
+.user-agreement_container div {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+}
+
+.user-agreement_date {
+  font-size: large;
+}
+
+.user-agreement_notice {
+  font-weight: bold;
+}
+
+.user-agreement_bullet {
+  font-size: large;
+  font-weight: bold;
 }
 
 /* Post submit button style from reddit */
@@ -1014,9 +1053,27 @@ button.spacing__extra {
   justify-content: space-between;
 }
 
-#sidebar {
-  padding-left: 400px;
+.login-container {
+  display: flex;
+  justify-content: center;
 
+}
+
+.login-form_header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2rem;
+}
+
+.login-form_title {
+  font-size: medium;
+  margin-bottom: 1rem;
+
+}
+
+.login-form_agreement {
+  font-size: small;
 }
 
 .demo-button {
@@ -1029,8 +1086,10 @@ button.spacing__extra {
     display: grid;
     grid-template-columns: 80% 20%;
   }
-  #sidebar {
-    padding: 10px;
+  .login-container {
+    /* padding: 10px; */
+    display: flex;
+
   }
   #body-submissions {
     border: 0;
@@ -1062,5 +1121,6 @@ button.spacing__extra {
   .user-header {
     border-radius: 0;
     width: 100%;
+    margin: 1rem;
   }
 }

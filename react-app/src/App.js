@@ -13,10 +13,8 @@ import PostDisplay from "./components/post/PostDisplay"
 import { authenticate } from "./services/auth";
 import {subscriptionReducer} from './services/reducer'
 import LandingPage from './components/LandingPage'
+import UserAgreement from './components/policy/userAgreement'
 
-// function Layout(props) {
-//   return <div id="layout">{props.children}</div>;
-// }
 
 function App() {
   const [authenticated, setAuthenticated] = useState(false);
@@ -52,6 +50,9 @@ function App() {
         </Route>
         <Route path="/sign-up" exact={true}>
           <SignUpForm authenticated={authenticated} setAuthenticated={setAuthenticated} />
+        </Route>
+        <Route path="/policy/user-agreement" exact={true} >
+          <UserAgreement authenticated={authenticated} />
         </Route>
         <Route path="/r/:subredditName/post/:postId">
           <PostDisplay authenticated={authenticated}/>
