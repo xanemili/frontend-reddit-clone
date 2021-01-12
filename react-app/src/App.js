@@ -14,6 +14,7 @@ import { authenticate } from "./services/auth";
 import {subscriptionReducer} from './services/reducer'
 import LandingPage from './components/LandingPage'
 import UserAgreement from './components/policy/userAgreement'
+import PrivacyPolicy from './components/policy/privacy-policy'
 
 
 function App() {
@@ -53,6 +54,9 @@ function App() {
         </Route>
         <Route path="/policy/user-agreement" exact={true} >
           <UserAgreement authenticated={authenticated} />
+        </Route>
+        <Route path="/policy/privacy-policy" exact={true} >
+          <PrivacyPolicy authenticated={authenticated} />
         </Route>
         <Route path="/r/:subredditName/post/:postId">
           <PostDisplay authenticated={authenticated}/>

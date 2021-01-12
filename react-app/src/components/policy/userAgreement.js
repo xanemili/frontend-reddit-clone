@@ -4,8 +4,11 @@ import {Link} from 'react-router-dom'
 const UserAgreement = () => {
     return (
         <div className="user-agreement_container">
-            <div className="user-agreement_title">
-                Reddit User Agreement
+            <div className="user-agreement_title_container">
+                <div className="user-agreement_title">
+                    Reddit User Agreement
+                </div>
+
             </div>
             <div className="user-agreement_date">
                 Effective October 15, 2020. Last Revised September 15, 2020

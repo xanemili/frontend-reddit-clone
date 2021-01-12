@@ -83,9 +83,12 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
             onChange={updatePassword}
             />
         </div>
-        <div className="login-form_button">
-          <button className='button-primary' type="submit">Login</button>
-          <button className='button-primary demo-button' onClick={demoLogin}>Demo</button>
+        <div className="login-form_button_container">
+          <div className="login-form_button">
+            <button className='button-primary' type="submit">Login</button>
+            <button className='button-primary demo-button' onClick={demoLogin}>Demo</button>
+
+          </div>
 
         </div>
       </form>
