@@ -64,7 +64,7 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
         }
         </div>
         <div className="search__container">
-          { authenticated ?
+
           <div className="search__elements">
             <button className="search" onClick={searchRes}></button>
             <div className="search__bar" onClick={showSearch}>
@@ -84,8 +84,8 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
               {selectOptions(searchList, searchToggle)}
             </div>
             </div>
-          </div> : ""
-          }
+          </div>
+
 
         </div>
 
