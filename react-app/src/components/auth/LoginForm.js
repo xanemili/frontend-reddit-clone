@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { login } from "../../services/auth";
 
+
 const LoginForm = ({ authenticated, setAuthenticated }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
@@ -42,56 +43,66 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
   return (
     <div className="login-container">
       <div className="login-box" id="login">
-      <div className="login-form_header">
-        <div className="login-form_title">
-            Login
-        </div>
-        <div className="login-form_agreement">
-          By continuing you agree to our {' '}
-          <Link to="/policy/user-agreement">
-            User Agreement {' '}
-          </Link>
-            and {' '}
-          <Link to="/policy/privacy-policy">
-            Privacy Policy.
-          </Link>
-        </div>
-      </div>
-      <form onSubmit={onLogin} className="login-form">
-        <div className="login-form_errors">
-          {errors.map((error) => (
-            <div>{error}</div>
-            ))}
-        </div>
-        <div className="login-form_email">
-          <label className="login-form_label" htmlFor="email">Email</label>
-          <input
-            name="email"
-            type="text"
-            placeholder="Email"
-            value={email}
-            onChange={updateEmail}
-            />
-        </div>
-        <div className="login-form_password">
-          <label className="login-form_label" htmlFor="password">Password</label>
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={updatePassword}
-            />
-        </div>
-        <div className="login-form_button_container">
-          <div className="login-form_button">
-            <button className='button-primary' type="submit">Login</button>
-            <button className='button-primary demo-button' onClick={demoLogin}>Demo</button>
+      <div className="login-box_image_container">
+          <div className="login-box_image_format">
+            <img className="login-box_image" src={require('../../img/loginImage.jpg')} alt="login footer"/>
 
           </div>
+        </div>
+        <div className="login-box_form_container">
+          <div className="login-form_header">
+            <div className="login-form_title">
+                Login
+            </div>
+            <div className="login-form_agreement">
+              By continuing you agree to our {' '}
+              <Link to="/policy/user-agreement">
+                User Agreement {' '}
+              </Link>
+                and {' '}
+              <Link to="/policy/privacy-policy">
+                Privacy Policy.
+              </Link>
+            </div>
+          </div>
+          <form onSubmit={onLogin} className="login-form">
+            <div className="login-form_errors">
+              {errors.map((error) => (
+                <div>{error}</div>
+                ))}
+            </div>
+            <div className="login-form_email">
+              <label className="login-form_label" htmlFor="email">Email</label>
+              <input
+                name="email"
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={updateEmail}
+                />
+            </div>
+            <div className="login-form_password">
+              <label className="login-form_label" htmlFor="password">Password</label>
+              <input
+                name="password"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={updatePassword}
+                />
+            </div>
+            <div className="login-form_button_container">
+              <div className="login-form_button">
+                <button className='button-primary' type="submit">Login</button>
+                <button className='button-primary demo-button' onClick={demoLogin}>Demo</button>
+
+              </div>
+
+            </div>
+          </form>
 
         </div>
-      </form>
+
       </div>
     </div>
   );
