@@ -1,3 +1,13 @@
+export const getUpvote = async (userId, postId) => {
+    const response = await fetch(`/api/likes/${userId}/post/${postId}`)
+    return await response.json()
+}
+
+export const getDownvote = async (userId, postId) => {
+    const response = await fetch(`/api/dislikes/${userId}/post/${postId}`)
+    return await response.json()
+}
+
 export const addUpvote = async (userId, postId) => {
     const response = await fetch(`/api/likes/${userId}/post/${postId}`, {
         method: 'POST',

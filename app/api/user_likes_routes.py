@@ -4,6 +4,15 @@ from app.models import db, UserLikes, UserDislikes
 user_likes_routes = Blueprint('user_likes', __name__)
 
 
+@user_likes_routes.route("/<int:userId>/post/<int:postId>", methods=["GET"])
+def user_likes(userId, postId):
+    user_like = UserLikes.query.filter(UserLikes.post_id == postId).filter(UserLikes.user_id == userId).first()
+    if(user_like):
+        return {'likes': True}
+    else:
+        return {'likes': False}
+
+
 # This route create a connection between a user and a post when upvoting a post.
 @user_likes_routes.route("/<int:userId>/post/<int:postId>", methods=["POST"])
 def create_user_like(userId, postId):
@@ -18,7 +27,7 @@ def create_user_like(userId, postId):
     )
     db.session.add(user_like)
     db.session.commit()
-    return {'success': 'user_like has been created'}
+    return {'success': True}
 
 
 # This route will remove a connection between a user and a post when downvoting
@@ -28,6 +37,6 @@ def delete_user_like(userId, postId):
     if user_like:
         db.session.delete(user_like)
         db.session.commit()
-        return {'success': 'user_like has been deleted'}
+        return {'success': True}
     else:
-        return{'error': 'user does not like this post'}
+        return{'success': False}
