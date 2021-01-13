@@ -1,4 +1,4 @@
-import { createStore } from 'redux';
+import { createStore, compose } from 'redux';
 
 const defaultState = {
 
@@ -32,14 +32,18 @@ const defaultState = {
             updated_on: "2020-11-23 13:59:55",
 
         }
-    ]
+    ],
+
+    user: {}
 
 }
 
 function reducer(state, action) {
+    debugger;
     let { type, item } = action;
     let comments = [...state.comments]
     if (type === "SUBMIT_COMMENT") {
+        debugger;
         comments.push(item);
         return {
             comments
@@ -61,9 +65,17 @@ function reducer(state, action) {
         return new_state
     }
 
+    if(type === "add_user"){
+        debugger;
+        return state.user = {...item}
+
+    }
+
     return state;
 }
 
-const store = createStore(reducer, defaultState)
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(reducer, defaultState, composeEnhancers())
 
 export default store

@@ -22,6 +22,7 @@ const CommentForm = (props) => {
         .then(res => res.json())
         .then(res => {
             if (!res.errors) {
+                // debugger;
                 props.dispatch({ type: 'SUBMIT_COMMENT', item: res })
                 // Do some app logic
             }
