@@ -30,7 +30,7 @@ def create_user_like(userId, postId):
     return {'success': True}
 
 
-# This route will remove a connection between a user and a post when downvoting
+# This route will remove a connection between a user and a post when upvoting
 @user_likes_routes.route("/<int:userId>/post/<int:postId>", methods=["DELETE"])
 def delete_user_like(userId, postId):
     user_like = UserLikes.query.filter(UserLikes.post_id == postId).filter(UserLikes.user_id == userId).first()

@@ -15,7 +15,6 @@ import {subscriptionReducer} from './services/reducer'
 import {useDispatch} from 'react-redux'
 import {setUpUser} from './components/redux/actions/users'
 import LandingPage from './components/LandingPage'
-import userReducer from './services/userReducer'
 import UserAgreement from './components/policy/userAgreement'
 import PrivacyPolicy from './components/policy/privacy-policy'
 
