@@ -46,6 +46,6 @@ def delete_user_dislike(userId, postId):
     if user_dislike:
         db.session.delete(user_dislike)
         db.session.commit()
-        return {'success': 'user_dislike has been deleted'}
+        return {'success': True}
     else:
-        return{'error': 'user does not dislike this post'}
+        return{'success': False}
