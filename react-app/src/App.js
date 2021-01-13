@@ -12,7 +12,10 @@ import PostForm from './components/post/PostForm'
 import PostDisplay from "./components/post/PostDisplay"
 import { authenticate } from "./services/auth";
 import {subscriptionReducer} from './services/reducer'
+import {useDispatch} from 'react-redux'
+import {setUpUser} from './components/redux/actions/users'
 import LandingPage from './components/LandingPage'
+import userReducer from './services/userReducer'
 import UserAgreement from './components/policy/userAgreement'
 import PrivacyPolicy from './components/policy/privacy-policy'
 
@@ -22,18 +25,20 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const [subscriptions, setSubscriptions] = useReducer(subscriptionReducer, [])
   const [user, setUser] = useState({})
+  const dispatch = useDispatch()
 
   useEffect(() => {
     (async() => {
       const user = await authenticate();
       setUser(user)
       if (!user.errors) {
+        dispatch(setUpUser(user));
         setAuthenticated(true);
         setSubscriptions({type: 'ADD', subscriptions: user.subscriptions})
       }
       setLoaded(true);
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;

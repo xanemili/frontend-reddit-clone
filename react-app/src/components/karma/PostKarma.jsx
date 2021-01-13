@@ -1,7 +1,5 @@
-import React, {
-  useState,
-  useEffect
-} from 'react';
+import React, {useState,useEffect} from 'react';
+import {getUpvote, getDownvote, addDownvote, addUpvote, removeDownvote, removeUpvote} from '../../services/karma'
 
 const PostKarma = ({id}) => {
   const [karma, setKarma] = useState(0)
@@ -17,6 +15,12 @@ const PostKarma = ({id}) => {
       }
     })();
   }, [id, setKarma])
+
+  // useEffect(() => {
+  //   (async () => {
+  //     const response = await getUpvote()
+  //   })
+  // }, [])
 
   const sendKarma = (vote) => async (e) => {
     const response = await fetch(`/api/posts/${id}/karma`, {
