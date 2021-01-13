@@ -5,3 +5,4 @@ from .post import Post
 from .subscription import Subscription
 from .comment import Comment
 from .userLikes import UserLikes
+from .userDislikes import UserDislikes
