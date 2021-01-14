@@ -4,8 +4,6 @@ import {getUpvote, getDownvote, addDownvote, addUpvote, removeDownvote, removeUp
 
 const PostKarma = ({id}) => {
   const [karma, setKarma] = useState(0)
-  const [activeUp, setActiveUp] = useState('')
-  const [activeDown, setActiveDown] = useState('')
   const [userUpvote, setUserUpvote] = useState(false)
   const [userDownvote, setUserDownvote] = useState(false)
   const user = useSelector(state => state.users.user)
@@ -18,7 +16,7 @@ const PostKarma = ({id}) => {
         setKarma(karma.karma)
       }
     })();
-  }, [id, setKarma])
+  }, [id, setKarma, userUpvote, userDownvote])
 
   useEffect(() => {
     (async () => {
@@ -27,12 +25,12 @@ const PostKarma = ({id}) => {
       console.log(id, "postId")
       console.log(upvoteResponse, 'response')
       if(upvoteResponse.likes === true) {
-        await setActiveUpArrow()
+        // await setActiveUpArrow()
       }
       const downvoteResponse = await getDownvote(user.id, id)
       setUserDownvote(downvoteResponse.likes)
       if(downvoteResponse.likes === true){
-        await setActiveDownArrow()
+        // await setActiveDownArrow()
       }
     })()
   }, [])
@@ -56,27 +54,27 @@ const PostKarma = ({id}) => {
 
 
 
-  const setActiveUpArrow = () => {
-    if (userUpvote) {
-      setActiveUp('')
-    } else {
-      setActiveUp('upvoted')
-    }
-  }
+  // const setActiveUpArrow = () => {
+  //   if (userUpvote) {
+  //     setActiveUp('')
+  //   } else {
+  //     setActiveUp('upvoted')
+  //   }
+  // }
 
-  const setActiveDownArrow = () => {
-    if (userDownvote) {
-      setActiveDown('')
-    } else {
-      setActiveDown('downvoted')
-    }
-  }
+  // const setActiveDownArrow = () => {
+  //   if (userDownvote) {
+  //     setActiveDown('')
+  //   } else {
+  //     setActiveDown('downvoted')
+  //   }
+  // }
 
   const upvoteKarma = async () => {
     const response = await addUpvote(user.id, id)
     if(response.success === true){
       await setUserUpvote(true)
-      await setActiveUpArrow()
+      // await setActiveUpArrow()
     }
   }
 
@@ -84,7 +82,7 @@ const PostKarma = ({id}) => {
     const response = await addDownvote(user.id, id)
     if(response.success === true) {
       await setUserDownvote(true)
-      await setActiveDownArrow()
+      // await setActiveDownArrow()
     }
   }
 
@@ -92,7 +90,7 @@ const PostKarma = ({id}) => {
     const response = await removeUpvote(user.id, id)
     if(response.success === true){
       await setUserUpvote(false)
-      await setActiveUpArrow()
+      // await setActiveUpArrow()
     }
   }
 
@@ -100,7 +98,7 @@ const PostKarma = ({id}) => {
     const response = await removeDownvote(user.id, id)
     if(response.success === true){
       await setUserDownvote(false)
-      await setActiveDownArrow()
+      // await setActiveDownArrow()
     }
   }
 
