@@ -49,11 +49,10 @@ const LoginForm = ({ authenticated, setAuthenticated }) => {
     <div className="login-container">
       <div className="login-box" id="login">
       <div className="login-box_image_container">
-          <div className="login-box_image_format">
-            <img className="login-box_image" src={require('../../img/loginImage.jpg')} alt="login footer"/>
-
-          </div>
+        <div className="login-box_image_format">
+          <img className="login-box_image" src={require('../../img/loginImage.jpg')} alt="login footer"/>
         </div>
+      </div>
         <div className="login-box_form_container">
           <div className="login-form_header">
             <div className="login-form_title">

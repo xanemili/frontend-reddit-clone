@@ -1,16 +1,16 @@
-# Reddit Clone
+# Readdit
 
 ## MVPs (in order of completion)
-1. Subreddit CR UD
+1. Subreaddit CR UD
 2. Post CR UD
 3. Comments on Posts
 4. Upvote / Downvote -> Karma
-5. Following subreddits
+5. Following subreaddits
 6. Nested Comments
 
 ### Strech Goals
 1. Comment Karma
-2. Subreddit moderators
+2. Subreaddit moderators
 3. Saved Posts
 4. Users
 
@@ -49,14 +49,14 @@ https://wireframe.cc/wEpFRi
 | /api/user/:id/post             | GET                     | Get posts associated with the User |
 | /api/user/:id/comments         | GET                     | Get comments associated with the User |
 
-/api/user/:id/subreddit/:subredditId - post/delete
+/api/user/:id/subreaddit/:subreadditId - post/delete
 
-### Subreddit
+### Subreaddit
 | Route                                | Methods                 | Purpose |
 | -----------------------------------  | ------------------------| ------- |
-| /api/subreddit/create                | POST                    | creating subreddits |
-| /api/subreddit/:subredditId          | GET, PUT, DELETE        | subreddit retrieval. edit / delete if owner |
-| /api/subreddits/:subredditId/post/   | GET                     | what was this for again? |
+| /api/subreaddit/create                | POST                    | creating subreaddits |
+| /api/subreaddit/:subreadditId          | GET, PUT, DELETE        | subreaddit retrieval. edit / delete if owner |
+| /api/subreaddits/:subreadditId/post/   | GET                     | what was this for again? |
 | /api/post/:postId                    | GET, POST, PUT, DELETE  | CRUD Posts |
 | /api/post/:postId/karma/             | GET, POST               | Upvote and downvote |
 
@@ -65,12 +65,12 @@ https://wireframe.cc/wEpFRi
 ---
 | Route                                | Methods                 | Purpose |
 | -----------------------------------  | ------------------------| ------- |
-| /                                    | GET                     | display top posts from subreddits you follow |
+| /                                    | GET                     | display top posts from subreaddits you follow |
 | /login                               | POST                    | Login Functionality |
 | /register                            | POST                    | User creation form |
-| /r/:subreddit                        | GET                     | Subreddit view page |
-| /r/:subreddit/posts/:postId          | GET                     | Viewing a post within a subreddit |
-| /subreddits/create                   | GET, POST               | Form for creating a subreddit |
+| /r/:subreaddit                        | GET                     | Subreaddit view page |
+| /r/:subreaddit/posts/:postId          | GET                     | Viewing a post within a subreaddit |
+| /subreaddits/create                   | GET, POST               | Form for creating a subreaddit |
 | /posts/create                        | GET, POST               | Form for creating a post |
 | /u/user/:user                        | GET, PUT, DELETE        | User profile page |
 | /u/user/:user/comments               | GET                     | User comments |
