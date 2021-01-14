@@ -14,6 +14,8 @@ from .api.post import post_routes
 from .api.s3_routes import s3_routes
 from .api.search import search_route
 from .api.comments import comment_routes
+from .api.user_likes_routes import user_likes_routes
+from .api.user_dislikes_routes import user_dislikes_routes
 from .seeds import seed_commands
 
 from .config import Config
@@ -41,6 +43,8 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(s3_routes, url_prefix='/api/s3')
 app.register_blueprint(search_route, url_prefix='/api/search')
 app.register_blueprint(comment_routes, url_prefix='/api/comments')
+app.register_blueprint(user_likes_routes, url_prefix='/api/likes')
+app.register_blueprint(user_dislikes_routes, url_prefix='/api/dislikes')
 db.init_app(app)
 Migrate(app, db)
 
