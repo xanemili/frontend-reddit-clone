@@ -44,7 +44,7 @@ const LandingPage = ({ user }) => {
     return (
       <div className='landing__posts__container' key={post.id}>
         <PostKarma id={post.id} />
-          <Post id={post.id} username={post.user.username} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
+          <Post id={post.id} username={post.user.username} userId={post.user.id} subreddit={post.subreddit.name} created_on={post.created_on} title={post.title} type={post.type} content={post.content}/>
       </div>
     );
   })

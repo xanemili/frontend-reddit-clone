@@ -22,15 +22,11 @@ const PostKarma = ({id}) => {
     (async () => {
       const upvoteResponse = await getUpvote(user.id, id)
       setUserUpvote(upvoteResponse.likes)
-      console.log(id, "postId")
-      console.log(upvoteResponse, 'response')
       if(upvoteResponse.likes === true) {
-        // await setActiveUpArrow()
       }
       const downvoteResponse = await getDownvote(user.id, id)
       setUserDownvote(downvoteResponse.likes)
       if(downvoteResponse.likes === true){
-        // await setActiveDownArrow()
       }
     })()
   }, [])
@@ -39,7 +35,6 @@ const PostKarma = ({id}) => {
   useEffect(() => {
     if(userUpvote === true){
       setUserDownvote(false)
-      // setActiveDownArrow()
     }
 
   },[userUpvote])
@@ -47,34 +42,15 @@ const PostKarma = ({id}) => {
   useEffect(() => {
     if(userDownvote === true){
       setUserUpvote(false)
-      // setActiveUpArrow()
     }
 
   },[userDownvote])
 
 
-
-  // const setActiveUpArrow = () => {
-  //   if (userUpvote) {
-  //     setActiveUp('')
-  //   } else {
-  //     setActiveUp('upvoted')
-  //   }
-  // }
-
-  // const setActiveDownArrow = () => {
-  //   if (userDownvote) {
-  //     setActiveDown('')
-  //   } else {
-  //     setActiveDown('downvoted')
-  //   }
-  // }
-
   const upvoteKarma = async () => {
     const response = await addUpvote(user.id, id)
     if(response.success === true){
       await setUserUpvote(true)
-      // await setActiveUpArrow()
     }
   }
 
@@ -82,7 +58,6 @@ const PostKarma = ({id}) => {
     const response = await addDownvote(user.id, id)
     if(response.success === true) {
       await setUserDownvote(true)
-      // await setActiveDownArrow()
     }
   }
 
@@ -90,7 +65,6 @@ const PostKarma = ({id}) => {
     const response = await removeUpvote(user.id, id)
     if(response.success === true){
       await setUserUpvote(false)
-      // await setActiveUpArrow()
     }
   }
 
@@ -98,7 +72,6 @@ const PostKarma = ({id}) => {
     const response = await removeDownvote(user.id, id)
     if(response.success === true){
       await setUserDownvote(false)
-      // await setActiveDownArrow()
     }
   }
 
