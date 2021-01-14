@@ -52,7 +52,15 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
     <header id="header">
       <nav className="top-menu" />
       <div className="main-header">
-        <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img" />
+        {authenticated ?
+        <NavLink to="/" exact={true} activeClassName="active" className="default-header" id="header-img">
+          <div className="main-header_title">Readdit</div>
+        </NavLink> :
+        <NavLink to="/login" exact={true} activeClassName="active" className="default-header" id="header-img">
+          <div className="main-header_title">Readdit</div>
+        </NavLink>
+        }
+
         <div className="tab-menu">
         {authenticated ?
           <div className='dropdown__subreddit'>
@@ -68,11 +76,24 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
           <div className="search__elements">
             <button className="search" onClick={searchRes}></button>
             <div className="search__bar" onClick={showSearch}>
-              <input
+              {authenticated ?
+                <input
+                  className="search__input"
+                  name="search"
+                  type="text"
+                  placeholder="Search..."
+                  value={search}
+                  onChange={async (e) => {
+                    await updateValue(e)
+                    await searchRes()
+                  }}
+                /> :
+
+                <input
                 className="search__input"
                 name="search"
                 type="text"
-                placeholder="Search..."
+                placeholder="Login to search!"
                 value={search}
                 onChange={async (e) => {
                   await updateValue(e)
@@ -80,8 +101,10 @@ const NavBar = ({ username, id, authenticated, setAuthenticated, subscriptions }
                 }}
               />
 
+              }
+
             <div>
-              {selectOptions(searchList, searchToggle)}
+              {authenticated ? selectOptions(searchList, searchToggle) : ""}
             </div>
             </div>
           </div>

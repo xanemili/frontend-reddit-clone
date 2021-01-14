@@ -104,9 +104,17 @@ TODO Fix the top menu alignments etc
   margin: 0px;
 }
 
+.main-header_title {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  font-family: Varela Round;
+  font-size: 30px;
+}
+
 
 #header-img.default-header {
-  background-image: url('../img/logo.png');
+  background-image: url('../img/readdit-logo.png');
   /* background-position: 0px -1323px; */
   background-repeat: no-repeat;
   background-size: contain;
@@ -114,7 +122,10 @@ TODO Fix the top menu alignments etc
   width: 250px;
   display: inline-block;
   vertical-align: bottom;
+  margin-left: 2rem;
   margin-bottom: 3px;
+  text-decoration: none;
+  color: black;
 }
 
 #header-img {
@@ -135,6 +146,7 @@ TODO Fix the top menu alignments etc
   width: 250px;
   background-color: #EFF7FF;
   margin: 0.5rem;
+  padding: 0.5rem;
   box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12);
 }
 
@@ -487,10 +499,19 @@ TODO Fix the top menu alignments etc
 .login-box {
   /* padding: 7px; */
   border: 3px solid #666;
-  margin-top: 7rem;
+  margin-top: 4rem;
   width: 800px;
   height: 500px;
   border-radius: 10px;
+}
+
+.signup-box{
+  border: 3px solid #666;
+  margin-top: 4rem;
+  width: 800px;
+  height: 800px;
+  border-radius: 10px;
+  margin-bottom: 4rem;
 }
 
 .login-box input {
@@ -498,6 +519,14 @@ TODO Fix the top menu alignments etc
   width: 49%;
   font-size: 0.9rem;
   padding: 3px;
+}
+
+.signup-box input {
+  display: inline;
+  width: 49%;
+  font-size: 0.9rem;
+  padding: 3px;
+
 }
 
 .login-form {
@@ -637,11 +666,12 @@ TODO Fix the top menu alignments etc
 .privacy-policy_container {
   margin-left: 8rem;
   margin-right: 8rem;
+  /* margin-bottom: 2rem; */
 }
 
 .privacy-policy_container div {
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 
 }
 
@@ -661,6 +691,7 @@ TODO Fix the top menu alignments etc
 .privacy-policy_info_container {
   border: 1px solid black;
   padding: 1rem;
+  /* margin-bottom: 2rem; */
 }
 
 .privacy-policy_info_header_title {
@@ -1136,6 +1167,7 @@ button.spacing__extra {
 
 .navbar-username {
   justify-self: center;
+  font-weight: bold;
 }
 
 .navbar-profile-link {
